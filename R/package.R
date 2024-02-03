@@ -1,5 +1,5 @@
 ##### Creating a data set to use for functions that require data
-library(tidyverse)
+library(dplyr)
 set.seed(2024)
 
 ## Question for select all that apply: Why don't you eat out?
@@ -13,10 +13,10 @@ Q3 <- sample(c("Prefer not to answer", NA), 20, prob=c(.3, .7), replace = TRUE)
 # Creating the data frame
 exp.data <- data.frame(Q1, Q2, Q3)
 
-exp.data <- exp.data %>%
+exp.data <- exp.data |>
   mutate(
     no_goingout_cooking = as.numeric(grepl("I like cooking", Q1)),
-    no_goingout_broke = as.numeric(grepl("I am a broke college student", Q2))) %>%
+    no_goingout_broke = as.numeric(grepl("I am a broke college student", Q2))) |>
   select(-c(Q1, Q2))
 
 
@@ -33,8 +33,9 @@ exp.data <- exp.data %>%
 #' @export
 #'
 #' @examples
-#' pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = Q3)
-#'
+#' pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = 'Q3')
+
+
 pnta.unanswered.to.miss <- function(prefix, data, pnta){
   these.cols <- grepl(prefix , colnames(data)) # get all relevant columns
   n.answer <- rowSums(data[,these.cols])       # count number of responses per row
@@ -42,19 +43,20 @@ pnta.unanswered.to.miss <- function(prefix, data, pnta){
   data[n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
   return(data)
 }
-#BNS_pnta <- pnta.unanswered.to.miss(prefix = "eth_", data = BNSp2b, pnta = BNSp2b$eth_PNTA)
+
 
 
 
 
 # set up the function
-remove.na.levels <- function(x){
-  levels(x)[which(is.na(levels(x)))] <- NA
-  return(x)
-}
+# remove.na.levels <- function(x){
+#   levels(x)[which(is.na(levels(x)))] <- NA
+#   return(x)
+# }
 # list out all variable names with this problem and apply function
-cols.with.na.lvls <- pisaitems %>% select(where(is.ordered)) %>% names()
-pisaitems <- pisaitems %>% mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
+# cols.with.na.lvls <- pisaitems |> select(where(is.ordered)) |> names()
+# pisaitems <- pisaitems |> mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
+
 
 
 
