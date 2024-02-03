@@ -60,16 +60,6 @@ pisaitems <- pisaitems %>% mutate(across(all_of(cols.with.na.lvls), ~remove.na.l
 
 
 
-clean_factor_mutate <- function(df, ...) {
-  df_mutated <- df %>% mutate(across(c(...), ~{
-    levels(.) <- na.omit(levels(.))
-    return(.)
-  }))
-  return(df_mutated)
-}
-
-
-
 
 # Some useful keyboard shortcuts for package authoring:
 #
