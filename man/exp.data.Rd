@@ -17,7 +17,7 @@ exp.data
 This is data included in my package
 }
 \examples{
-data(exp.data)
+exp.data
 }
 \author{
 Saul Mooradian

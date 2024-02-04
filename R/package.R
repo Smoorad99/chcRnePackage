@@ -5,7 +5,7 @@ set.seed(2024)
 ## Question for select all that apply: Why don't you eat out?
 # Generating data for 20 respondents for 3 questions
 
-respondent_id <- 1:20
+# id <- 1:20
 Q1 <- sample(c("I like cooking", NA), 20, replace = TRUE)
 Q2 <- sample(c("I am a broke college student", NA), 20, replace = TRUE)
 Q3 <- sample(c("Prefer not to answer", NA), 20, prob=c(.3, .7), replace = TRUE)
@@ -32,8 +32,7 @@ exp.data <- exp.data |>
 #' @return A new data frame
 #' @export
 #'
-#' @examples
-#' pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = 'Q3')
+#' @examples pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = exp.data$Q3)
 
 
 pnta.unanswered.to.miss <- function(prefix, data, pnta){
@@ -44,6 +43,7 @@ pnta.unanswered.to.miss <- function(prefix, data, pnta){
   return(data)
 }
 
+# pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = Q3)
 
 
 

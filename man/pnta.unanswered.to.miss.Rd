@@ -20,5 +20,5 @@ A new data frame
 Sets all options (vars) in select all that apply questions to NA when the "Prefer not to answer" option was selected
 }
 \examples{
-pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = 'Q3')
+pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = exp.data$Q3)
 }

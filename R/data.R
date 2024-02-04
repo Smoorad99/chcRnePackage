@@ -5,5 +5,5 @@
 #' @author Saul Mooradian
 #' @keywords data
 #' @source {Data created in the project for function examples}
-#' @examples data(exp.data)
+#' @examples exp.data
 "exp.data"
