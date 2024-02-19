@@ -1,0 +1,31 @@
+---
+output: rmarkdown::html_vignette
+title: "Introduction to chcRne"
+pkgdown:
+  as_is: true
+description: >
+  If you are new to chcRne or are blanking on function names you can find documentation on the functions including  examples here.
+
+vignette: >
+  %\VignetteIndexEntry{Introduction to chcRne}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(chcRne)
+```
+
+
+Welcome to chcRne!
+Created to organize functions, useful code snippets, and other information relevant to the Research and Evaluation team at the Center for Healthy Communities.
+
+
+
+

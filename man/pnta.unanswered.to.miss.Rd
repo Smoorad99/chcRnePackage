@@ -4,12 +4,12 @@
 \alias{pnta.unanswered.to.miss}
 \title{PNTA to MISS}
 \usage{
-pnta.unanswered.to.miss(prefix, data, pnta)
+pnta.unanswered.to.miss(data, prefix, pnta)
 }
 \arguments{
-\item{prefix}{A commonality/string shared by all sub-questions in the select all that applies question.}
-
 \item{data}{The data frame of interest}
+
+\item{prefix}{A commonality/string shared by all sub-questions in the select all that applies question.}
 
 \item{pnta}{The variable that has the "Prefer not to answer" option}
 }
@@ -20,5 +20,5 @@ A new data frame
 Sets all options (vars) in select all that apply questions to NA when the "Prefer not to answer" option was selected
 }
 \examples{
-pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = exp.data$Q3)
+pnta.unanswered.to.miss(data = exp.data, prefix = "no_going", pnta = exp.data$Q3)
 }

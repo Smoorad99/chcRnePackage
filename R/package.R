@@ -20,7 +20,7 @@ exp.data <- exp.data |>
   select(-c(Q1, Q2))
 
 
-
+# PNTA to MISS ----
 #' @title PNTA to MISS
 #' @description
 #' Sets all options (vars) in select all that apply questions to NA when the "Prefer not to answer" option was selected
@@ -32,10 +32,10 @@ exp.data <- exp.data |>
 #' @return A new data frame
 #' @export
 #'
-#' @examples pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = exp.data$Q3)
+#' @examples pnta.unanswered.to.miss(data = exp.data, prefix = "no_going", pnta = exp.data$Q3)
 
 
-pnta.unanswered.to.miss <- function(prefix, data, pnta){
+pnta.unanswered.to.miss <- function(data, prefix, pnta){
   these.cols <- grepl(prefix , colnames(data)) # get all relevant columns
   n.answer <- rowSums(data[,these.cols])       # count number of responses per row
   n.answer <- replace(n.answer, pnta == "Prefer not to answer", 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
@@ -43,7 +43,7 @@ pnta.unanswered.to.miss <- function(prefix, data, pnta){
   return(data)
 }
 
-# pnta.unanswered.to.miss(prefix = "no_going", data = exp.data, pnta = Q3)
+# pnta.unanswered.to.miss(data = exp.data, prefix = "no_going", pnta = Q3)
 
 
 
@@ -68,3 +68,6 @@ pnta.unanswered.to.miss <- function(prefix, data, pnta){
 #   Install Package:           'Ctrl + Shift + B'
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
+
+
+# pkgdown::build_site()
