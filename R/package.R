@@ -1,23 +1,22 @@
 ##### Creating a data set to use for functions that require data
-library(dplyr)
 set.seed(2024)
 
 ## Question for select all that apply: Why don't you eat out?
 # Generating data for 20 respondents for 3 questions
 
 # id <- 1:20
-Q1 <- sample(c("I like cooking", NA), 20, replace = TRUE)
-Q2 <- sample(c("I am a broke college student", NA), 20, replace = TRUE)
-Q3 <- sample(c("Prefer not to answer", NA), 20, prob=c(.3, .7), replace = TRUE)
+Q1 <- sample(c("I like cooking", NA), 30, replace = TRUE)
+Q2 <- sample(c("I am a broke college student", NA), 30, replace = TRUE)
+Q3 <- sample(c("Prefer not to answer", NA), 30, prob=c(.3, .7), replace = TRUE)
 
 # Creating the data frame
 exp.data <- data.frame(Q1, Q2, Q3)
 
 exp.data <- exp.data |>
-  mutate(
+  dplyr::mutate(
     no_goingout_cooking = as.numeric(grepl("I like cooking", Q1)),
     no_goingout_broke = as.numeric(grepl("I am a broke college student", Q2))) |>
-  select(-c(Q1, Q2))
+  dplyr::select(-c(Q1, Q2))
 
 
 # PNTA to MISS ----
@@ -71,3 +70,7 @@ pnta.unanswered.to.miss <- function(data, prefix, pnta){
 
 
 # pkgdown::build_site()
+## builds website
+
+# devtools::document()
+## updates documentation

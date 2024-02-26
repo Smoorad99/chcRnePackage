@@ -1,0 +1,5 @@
+snippet dp
+	library(dplyr)
+
+snippet td
+  library(tidyverse)

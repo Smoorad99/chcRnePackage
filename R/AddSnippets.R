@@ -148,3 +148,5 @@ addPackageSnippets <- function() {
   return(invisible(added))
 
 }
+
+# r.nippets file cant be empty for this to work
