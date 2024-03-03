@@ -31,7 +31,9 @@ exp.data <- exp.data |>
 #' @return A new data frame
 #' @export
 #'
-#' @examples pnta.unanswered.to.miss(data = exp.data, prefix = "no_going", pnta = exp.data$Q3)
+#' @examples pnta.unanswered.to.miss(data = exp.data,
+#'                                   prefix = "no_going",
+#'                                   pnta = exp.data$Q3)
 
 
 pnta.unanswered.to.miss <- function(data, prefix, pnta){

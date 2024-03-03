@@ -2,7 +2,7 @@
 % Please edit documentation in R/nperc_tbl_MATA.R
 \name{nperc_tbl_MATA}
 \alias{nperc_tbl_MATA}
-\title{n count and percent table}
+\title{Count and percent table}
 \usage{
 nperc_tbl_MATA(df, vars, value, row.names, punc, col.title = "")
 }
@@ -36,4 +36,6 @@ nperc_tbl_MATA(df = exp.data,
                row.names = rnames,
                punc = ".",
                col.title = "Why not go out to eat?")
+
+
 }
