@@ -2,22 +2,22 @@
 % Please edit documentation in R/pnta_unanswered_to_miss.R
 \name{pnta.unanswered.to.miss}
 \alias{pnta.unanswered.to.miss}
-\title{PNTA to MISS}
+\title{PNTA to NA}
 \usage{
 pnta.unanswered.to.miss(data, prefix, pnta)
 }
 \arguments{
-\item{data}{The data frame of interest}
+\item{data}{The data frame of interest.}
 
-\item{prefix}{A commonality/string shared by all sub-questions in the select all that applies question.}
+\item{prefix}{The prefix used to identify the relevant columns.}
 
-\item{pnta}{The variable that has the "Prefer not to answer" option}
+\item{pnta}{The variable that contains the "Prefer not to answer" option.}
 }
 \value{
-A new data frame
+A modified data frame with NA assigned to cells in specified columns for rows with PNTA responses.
 }
 \description{
-Sets all options (vars) in select all that apply questions to NA when the "Prefer not to answer" option was selected
+This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
 }
 \examples{
 pnta.unanswered.to.miss(data = exp.data,

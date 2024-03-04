@@ -19,8 +19,8 @@ Functions in this section return statistics that are often used for
 expalnations on figures. Many of these functions will often be used in
 inline code.
 
-- `count_and_percent()` Returns a string tha includes the total count and
-  percentage of the categories in the input variable.
+- `count_and_percent()` Returns a string that includes the total count
+  and percentage of the categories in the input variable.
 
 ### Visualization
 
@@ -85,3 +85,9 @@ I am a broke college student. (n = 20)
 </tr>
 </tbody>
 </table>
+
+``` r
+count_and_percent(var = exp.data$no_goingout_cooking, "1")
+```
+
+    ## [1] "11 (55.0%)"

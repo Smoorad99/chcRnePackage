@@ -2,21 +2,23 @@
 % Please edit documentation in R/count_and_percent.R
 \name{count_and_percent}
 \alias{count_and_percent}
-\title{Count and Percent}
+\title{Creates a string with count and percent}
 \usage{
 count_and_percent(var, ...)
 }
 \arguments{
-\item{var}{The variable for which the count and percent are calculated.}
+\item{var}{A variable for which the counts and percents are calculated.}
 
-\item{...}{One or more categories of `var` to count and calculate percentages.}
+\item{...}{One or more categories of `var` to get the counts and calculate the percentages.}
 }
 \value{
 A string including the total count and percentage of the
 categories in the input variable.
 }
 \description{
-Count and Percent
+This function calculates counts and percentages for specified categories within a variable
+then returns a string including the total count and total percent of those categories relative to the
+variable they reside in.
 }
 \examples{
 count_and_percent(var = exp.data$no_goingout_cooking, "1")

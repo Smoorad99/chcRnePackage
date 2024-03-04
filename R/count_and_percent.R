@@ -1,10 +1,14 @@
 
 
 ## Get the count and percent for n (...) categories
-#' Count and Percent
+#' Creates a string with count and percent
+#' @description
+#' This function calculates counts and percentages for specified categories within a variable
+#' then returns a string including the total count and total percent of those categories relative to the
+#' variable they reside in.
 #'
-#' @param var The variable for which the count and percent are calculated.
-#' @param ... One or more categories of `var` to count and calculate percentages.
+#' @param var A variable for which the counts and percents are calculated.
+#' @param ... One or more categories of `var` to get the counts and calculate the percentages.
 #'
 #' @return A string including the total count and percentage of the
 #' categories in the input variable.

@@ -14,7 +14,7 @@ Functions in this section are used used for data management.
 ### Statistics (often used in inline code)
 Functions in this section return statistics that are often used for expalnations on figures. Many of these functions will often be used in inline code.
 
-- `count_and_percent` Returns a string tha includes the total count and percentage of the categories in the input variable.
+- `count_and_percent()` Returns a string that includes the total count and percentage of the categories in the input variable.
 
 
 ### Visualization
@@ -50,5 +50,9 @@ table1 <- nperc_tbl_MATA(df = exp.data,
 table1
 ```
 
+
+```{r}
+count_and_percent(var = exp.data$no_goingout_cooking, "1")
+```
 
 

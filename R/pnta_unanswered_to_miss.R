@@ -20,15 +20,15 @@ exp.data <- exp.data |>
 
 
 # PNTA to MISS ----
-#' @title PNTA to MISS
+#' @title PNTA to NA
 #' @description
-#' Sets all options (vars) in select all that apply questions to NA when the "Prefer not to answer" option was selected
+#' This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
 #'
-#' @param prefix A commonality/string shared by all sub-questions in the select all that applies question.
-#' @param data The data frame of interest
-#' @param pnta The variable that has the "Prefer not to answer" option
+#' @param data The data frame of interest.
+#' @param prefix The prefix used to identify the relevant columns.
+#' @param pnta The variable that contains the "Prefer not to answer" option.
 #'
-#' @return A new data frame
+#' @return A modified data frame with NA assigned to cells in specified columns for rows with PNTA responses.
 #' @export
 #'
 #' @examples pnta.unanswered.to.miss(data = exp.data,

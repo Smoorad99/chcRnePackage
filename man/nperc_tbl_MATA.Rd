@@ -2,28 +2,28 @@
 % Please edit documentation in R/nperc_tbl_MATA.R
 \name{nperc_tbl_MATA}
 \alias{nperc_tbl_MATA}
-\title{Count and percent table}
+\title{Creates frequency table}
 \usage{
 nperc_tbl_MATA(df, vars, value, row.names, punc, col.title = "")
 }
 \arguments{
-\item{df}{The data frame used to create the table}
+\item{df}{A data frame used to create the table.}
 
-\item{vars}{The variables of interest (all vars have to be binary)}
+\item{vars}{A character vector of variable names to include in the table (all vars have to be binary).}
 
-\item{value}{The value in the rows of `vars` (should be "Yes" or "1")}
+\item{value}{The value in the rows of `vars` (only one value across all variables).}
 
 \item{row.names}{The name of each row in the table. Should be equivalent to each option in the select all that apply question}
 
-\item{punc}{The punctuation at the end of the row names}
+\item{punc}{The punctuation at the end of the row names.}
 
-\item{col.title}{The name of the first column in the table}
+\item{col.title}{The name of the first column in the table.}
 }
 \value{
-A table
+A frequency table
 }
 \description{
-Creates a table showing the n counts and percentages for each option in a mark all that apply question.
+This function creates a table showing the n counts and percentages for each option in a mark all that apply question.
 }
 \examples{
 # Save the variable names ti questions and the names of the questions to rnames
