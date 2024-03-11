@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#'count_and_percent(var = exp.data$no_goingout_cooking, "1")
+#'count_and_percent(var = bns2_pkg_data$q14_1, "Yes")
 #'
 count_and_percent <-  function(var, ...) {  # Takes in a variable and an ellipsis ('...') which represents multiple categories
   values <- list(...)  # Stores the values of each of the selected categories as a list

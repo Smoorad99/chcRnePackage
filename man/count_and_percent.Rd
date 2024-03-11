@@ -21,6 +21,6 @@ then returns a string including the total count and total percent of those categ
 variable they reside in.
 }
 \examples{
-count_and_percent(var = exp.data$no_goingout_cooking, "1")
+count_and_percent(var = bns2_pkg_data$q14_1, "Yes")
 
 }
