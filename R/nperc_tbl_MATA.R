@@ -8,25 +8,23 @@
 #' @param value The value in the rows of `vars` (only one value across all variables).
 #' @param row.names The name of each row in the table. Should be equivalent to each option in the select all that apply question
 #' @param punc The punctuation at the end of the row names.
-#' @param col.title The name of the first column in the table.
 #'
 #' @return A frequency table
 #' @export
 #'
 #' @examples
-#' # Save the variable names ti questions and the names of the questions to rnames
-#' cols <- c("no_goingout_cooking", "no_goingout_broke")
-#' rnames <- c("I like cooking", "I am a broke college student")
+#' # Save the variable names to questions and the names of the questions to rnames
+#' cols <- c("q14_1", "q14_2", "q14_3")
+#' rnames <- c("I am a broke college student", "I like cooking", "No good restaurants")
 #'
-#' nperc_tbl_MATA(df = exp.data,
+#' nperc_tbl_MATA(df = bns2_pkg_data,
 #'                vars = cols,
-#'                value = "1",
+#'                value = "Yes",
 #'                row.names = rnames,
-#'                punc = ".",
-#'                col.title = "Why not go out to eat?")
+#'                punc = ".")
 #'
 #'
-nperc_tbl_MATA <- function(df, vars, value, row.names, punc, col.title = "") {
+nperc_tbl_MATA <- function(df, vars, value, row.names, punc) {
     tmp <- as.data.frame(t(df[vars]))
     tmp2 <- data.frame(Freq=apply(tmp, 1, function(x, value) sum(x == value, na.rm=TRUE), value))
     n.s <- apply(tmp, 1, function(x) sum(!is.na(x))) # get this
@@ -34,6 +32,8 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc, col.title = "") {
     rownames(tmp2) <- paste0(rnames, punc, " (n = ", n.s, ")")
     tmp2 <- tmp2 |> dplyr::arrange(dplyr::desc(Freq)) |> dplyr::select(-Freq)
     colnames(tmp2) <- "Yes (%)"
-    tmp2 <- tibble::rownames_to_column(tmp2, var = "Temp")
-    tmp2 |> kableExtra::kable(col.names = c(col.title, "Yes (%)")) |> kableExtra::kable_styling(bootstrap_options = "striped") |> kableExtra::column_spec(2, width='3.5cm')
+    tmp2
+    #tmp2 <- tibble::rownames_to_column(tmp2, var = "Temp")
+    #tmp2 |> kableExtra::kable(col.names = c(col.title, "Yes (%)")) |> kableExtra::kable_styling(bootstrap_options = "striped") |> kableExtra::column_spec(2, width='3.5cm')
     }
+# Removed col.title as input for the function because we removed the kables styling
