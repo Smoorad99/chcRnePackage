@@ -4,7 +4,7 @@
 \alias{nperc_tbl_MATA}
 \title{Creates frequency table}
 \usage{
-nperc_tbl_MATA(df, vars, value, row.names, punc, col.title = "")
+nperc_tbl_MATA(df, vars, value, row.names, punc)
 }
 \arguments{
 \item{df}{A data frame used to create the table.}
@@ -16,8 +16,6 @@ nperc_tbl_MATA(df, vars, value, row.names, punc, col.title = "")
 \item{row.names}{The name of each row in the table. Should be equivalent to each option in the select all that apply question}
 
 \item{punc}{The punctuation at the end of the row names.}
-
-\item{col.title}{The name of the first column in the table.}
 }
 \value{
 A frequency table
@@ -26,16 +24,15 @@ A frequency table
 This function creates a table showing the n counts and percentages for each option in a mark all that apply question.
 }
 \examples{
-# Save the variable names ti questions and the names of the questions to rnames
-cols <- c("no_goingout_cooking", "no_goingout_broke")
-rnames <- c("I like cooking", "I am a broke college student")
+# Save the variable names to questions and the names of the questions to rnames
+cols <- c("q14_1", "q14_2", "q14_3")
+rnames <- c("I am a broke college student", "I like cooking", "No good restaurants")
 
-nperc_tbl_MATA(df = exp.data,
+nperc_tbl_MATA(df = bns2_pkg_data,
                vars = cols,
-               value = "1",
+               value = "Yes",
                row.names = rnames,
-               punc = ".",
-               col.title = "Why not go out to eat?")
+               punc = ".")
 
 
 }

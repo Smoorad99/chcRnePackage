@@ -20,7 +20,7 @@ A modified data frame with NA assigned to cells in specified columns for rows wi
 This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
 }
 \examples{
-pnta.unanswered.to.miss(data = exp.data,
-                                  prefix = "no_going",
-                                  pnta = exp.data$Q3)
+pnta.unanswered.to.miss(data = bns2_pkg_data,
+                                  prefix = "q14_1",
+                                  pnta = bns2_pkg_data$q14_27)
 }
