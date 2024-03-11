@@ -48,7 +48,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span><span class="va">df</span>, <span class="va">vars</span>, <span class="va">value</span>, <span class="va">row.names</span>, <span class="va">punc</span>, col.title <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span><span class="va">df</span>, <span class="va">vars</span>, <span class="va">value</span>, <span class="va">row.names</span>, <span class="va">punc</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -72,10 +72,6 @@
 <dt>punc</dt>
 <dd><p>The punctuation at the end of the row names.</p></dd>
 
-
-<dt>col.title</dt>
-<dd><p>The name of the first column in the table.</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -86,17 +82,16 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Save the variable names ti questions and the names of the questions to rnames</span></span></span>
-<span class="r-in"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"no_goingout_cooking"</span>, <span class="st">"no_goingout_broke"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">rnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"I like cooking"</span>, <span class="st">"I am a broke college student"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Save the variable names to questions and the names of the questions to rnames</span></span></span>
+<span class="r-in"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q14_1"</span>, <span class="st">"q14_2"</span>, <span class="st">"q14_3"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">rnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"I am a broke college student"</span>, <span class="st">"I like cooking"</span>, <span class="st">"No good restaurants"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span>df <span class="op">=</span> <span class="va">exp.data</span>,</span></span>
+<span class="r-in"><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span>df <span class="op">=</span> <span class="va">bns2_pkg_data</span>,</span></span>
 <span class="r-in"><span>               vars <span class="op">=</span> <span class="va">cols</span>,</span></span>
-<span class="r-in"><span>               value <span class="op">=</span> <span class="st">"1"</span>,</span></span>
+<span class="r-in"><span>               value <span class="op">=</span> <span class="st">"Yes"</span>,</span></span>
 <span class="r-in"><span>               row.names <span class="op">=</span> <span class="va">rnames</span>,</span></span>
-<span class="r-in"><span>               punc <span class="op">=</span> <span class="st">"."</span>,</span></span>
-<span class="r-in"><span>               col.title <span class="op">=</span> <span class="st">"Why not go out to eat?"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in nperc_tbl_MATA(df = exp.data, vars = cols, value = "1", row.names = rnames,     punc = ".", col.title = "Why not go out to eat?"):</span> unused argument (col.title = "Why not go out to eat?")</span>
+<span class="r-in"><span>               punc <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in nperc_tbl_MATA(df = bns2_pkg_data, vars = cols, value = "Yes",     row.names = rnames, punc = "."):</span> object 'rnames' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
