@@ -1,23 +1,3 @@
-##### Creating a data set to use for functions that require data
-set.seed(2024)
-
-## Question for select all that apply: Why don't you eat out?
-# Generating data for 20 respondents for 3 questions
-
-# id <- 1:20
-Q1 <- sample(c("I like cooking", NA), 30, replace = TRUE)
-Q2 <- sample(c("I am a broke college student", NA), 30, replace = TRUE)
-Q3 <- sample(c("Prefer not to answer", NA), 30, prob=c(.3, .7), replace = TRUE)
-
-# Creating the data frame
-exp.data <- data.frame(Q1, Q2, Q3)
-
-exp.data <- exp.data |>
-  dplyr::mutate(
-    no_goingout_cooking = as.numeric(grepl("I like cooking", Q1)),
-    no_goingout_broke = as.numeric(grepl("I am a broke college student", Q2))) |>
-  dplyr::select(-c(Q1, Q2))
-
 
 # PNTA to MISS ----
 #' @title PNTA to NA
@@ -31,9 +11,9 @@ exp.data <- exp.data |>
 #' @return A modified data frame with NA assigned to cells in specified columns for rows with PNTA responses.
 #' @export
 #'
-#' @examples pnta.unanswered.to.miss(data = exp.data,
-#'                                   prefix = "no_going",
-#'                                   pnta = exp.data$Q3)
+#' @examples pnta.unanswered.to.miss(data = bns2_pkg_data,
+#'                                   prefix = "q14_1",
+#'                                   pnta = bns2_pkg_data$q14_27)
 
 
 pnta.unanswered.to.miss <- function(data, prefix, pnta){
