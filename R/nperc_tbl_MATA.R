@@ -1,4 +1,3 @@
-
 #' @title Creates frequency table
 #' @description
 #' This function creates a table showing the n counts and percentages for each option in a mark all that apply question.
