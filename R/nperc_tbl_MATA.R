@@ -15,12 +15,11 @@
 #' @examples
 #' # Save the variable names to questions and the names of the questions to rnames
 #' cols <- c("q14_1", "q14_2", "q14_3")
-#' rnames <- c("I am a broke college student", "I like cooking", "No good restaurants")
 #'
 #' nperc_tbl_MATA(df = bns2_pkg_data,
 #'                vars = cols,
 #'                value = "Yes",
-#'                row.names = rnames,
+#'                row.names = c("I am a broke college student", "I like cooking", "No good restaurants"),
 #'                punc = ".")
 #'
 #'
@@ -29,7 +28,7 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc) {
     tmp2 <- data.frame(Freq=apply(tmp, 1, function(x, value) sum(x == value, na.rm=TRUE), value))
     n.s <- apply(tmp, 1, function(x) sum(!is.na(x))) # get this
     tmp2$label <- paste0(tmp2$Freq, " (", unname(formattable::percent(tmp2$Freq/n.s, digits = 1)), ")")
-    rownames(tmp2) <- paste0(rnames, punc, " (n = ", n.s, ")")
+    rownames(tmp2) <- paste0(row.names, punc, " (n = ", n.s, ")")
     tmp2 <- tmp2 |> dplyr::arrange(dplyr::desc(Freq)) |> dplyr::select(-Freq)
     colnames(tmp2) <- "Yes (%)"
     tmp2

@@ -44,8 +44,6 @@ pnta.unanswered.to.miss <- function(data, prefix, pnta){
   return(data)
 }
 
-# pnta.unanswered.to.miss(data = exp.data, prefix = "no_going", pnta = Q3)
-
 
 
 
@@ -59,9 +57,15 @@ pnta.unanswered.to.miss <- function(data, prefix, pnta){
 # pisaitems <- pisaitems |> mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
 
 
+yesno_to_binary <- function(data, prefix) {
+  vars <- grepl(prefix, names(data)) # Identify columns matching the prefix
+  data[vars] <- lapply(data[vars], function(x) {
+    x <- factor(x, levels = c("No", "Yes"))
+    ifelse(!is.na(x), as.numeric(x) - 1, NA) # Convert to numeric and subtract 1 to get 0/1 binary values
+  })
 
-
-
+  return(data)
+}
 
 
 # Some useful keyboard shortcuts for package authoring:
