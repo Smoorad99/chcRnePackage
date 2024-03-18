@@ -1,4 +1,3 @@
-
 #' @title Creates frequency table
 #' @description
 #' This function creates a table showing the n counts and percentages for each option in a mark all that apply question.
@@ -15,12 +14,11 @@
 #' @examples
 #' # Save the variable names to questions and the names of the questions to rnames
 #' cols <- c("q14_1", "q14_2", "q14_3")
-#' rnames <- c("I am a broke college student", "I like cooking", "No good restaurants")
 #'
 #' nperc_tbl_MATA(df = bns2_pkg_data,
 #'                vars = cols,
 #'                value = "Yes",
-#'                row.names = rnames,
+#'                row.names = c("I am a broke college student", "I like cooking", "No good restaurants"),
 #'                punc = ".")
 #'
 #'
