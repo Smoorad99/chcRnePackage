@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   chcRne_vignette: chcRne_vignette.html
-last_built: 2024-03-21T22:41Z
+last_built: 2024-03-22T23:17Z
 urls:
   reference: https://smoorad99.github.io/chcRnePackage/reference
   article: https://smoorad99.github.io/chcRnePackage/articles
