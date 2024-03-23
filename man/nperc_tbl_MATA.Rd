@@ -25,7 +25,7 @@ This function creates a table showing the n counts and percentages for each opti
 }
 \examples{
 # Save the variable names to questions and the names of the questions to rnames
-cols <- c("q14_1", "q14_2", "q14_3")
+cols <- c("q14_21", "q14_22", "q14_23")
 
 nperc_tbl_MATA(df = bns2_pkg_data,
                vars = cols,

@@ -21,6 +21,6 @@ This function sets all options (vars) in a select all that apply question to NA 
 }
 \examples{
 pnta.unanswered.to.miss(data = bns2_pkg_data,
-                                  prefix = "q14_1",
+                                  prefix = "q14_21",
                                   pnta = bns2_pkg_data$q14_27)
 }

@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples pnta.unanswered.to.miss(data = bns2_pkg_data,
-#'                                   prefix = "q14_1",
+#'                                   prefix = "q14_21",
 #'                                   pnta = bns2_pkg_data$q14_27)
 
 
@@ -23,7 +23,6 @@ pnta.unanswered.to.miss <- function(data, prefix, pnta){
   data[n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
   return(data)
 }
-
 
 
 
