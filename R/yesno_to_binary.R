@@ -18,8 +18,11 @@
 #' # Convert "Yes"/"No" responses in columns starting with "q14" to 0/1
 #' df_converted <- yesno_to_binary(bns2_pkg_data, "q14_")
 #'
-#' # View the converted dataframe
-#' print(df_converted)
+#' # View the converted dataframe side-by-side
+#' old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
+#' new <- df_converted |> dplyr::select(q14_1, q14_4)
+#' cbind(old, new)
+#'
 yesno_to_binary <- function(data, prefix) {
   vars <- grepl(prefix, names(data)) # Identify columns matching the prefix
   data[vars] <- lapply(data[vars], function(x) {

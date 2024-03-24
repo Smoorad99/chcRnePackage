@@ -13,12 +13,12 @@
 #'
 #' @examples
 #' # Save the variable names to questions and the names of the questions to rnames
-#' cols <- c("q14_21", "q14_22", "q14_23")
+#' cols <- c("q14_1", "q14_3", "q14_4")
 #'
 #' nperc_tbl_MATA(df = bns2_pkg_data,
 #'                vars = cols,
 #'                value = "Yes",
-#'                row.names = c("I am a broke college student", "I like cooking", "No good restaurants"),
+#'                row.names = c("I am a broke college student","No good restaurants", "I like cooking"),
 #'                punc = ".")
 #'
 #'

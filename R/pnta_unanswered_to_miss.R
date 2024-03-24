@@ -11,29 +11,20 @@
 #' @return A modified data frame with NA assigned to cells in specified columns for rows with PNTA responses.
 #' @export
 #'
-#' @examples pnta.unanswered.to.miss(data = bns2_pkg_data,
-#'                                   prefix = "q14_21",
-#'                                   pnta = bns2_pkg_data$q14_27)
+#' @examples updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+#'                                   prefix = "q14_2",
+#'                                   pnta = bns2_pkg_data$q14_30)
+#' updated_data |> dplyr::select(q14_20:q14_26, q14_30)
+#'
 
 
 pnta.unanswered.to.miss <- function(data, prefix, pnta){
   these.cols <- grepl(prefix , colnames(data)) # get all relevant columns
   n.answer <- rowSums(data[,these.cols])       # count number of responses per row
-  n.answer <- replace(n.answer, pnta == "Prefer not to answer", 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
-  data[n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
+  n.answer <- replace(n.answer, pnta == 1, 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
+  data[!is.na(n.answer) & n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
   return(data)
 }
-
-
-
-# set up the function
-# remove.na.levels <- function(x){
-#   levels(x)[which(is.na(levels(x)))] <- NA
-#   return(x)
-# }
-# list out all variable names with this problem and apply function
-# cols.with.na.lvls <- pisaitems |> select(where(is.ordered)) |> names()
-# pisaitems <- pisaitems |> mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
 
 
 # Some useful keyboard shortcuts for package authoring:

@@ -12,11 +12,6 @@
 #'
 #' @examples
 #' # Given a factor with NA as one of its levels
-#' factor_var <- factor(c("low", "medium", "high", NA),
-#'                      levels = c("low", "medium", "high", NA), ordered = TRUE)
-#' # Applying remove.na.levels to clean up NA levels
-#' cleaned_factor_var <- remove.na.levels(factor_var)
-#' levels(cleaned_factor_var)
 #'
 #' @export
 remove.na.levels <- function(x){

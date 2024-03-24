@@ -20,7 +20,9 @@ A modified data frame with NA assigned to cells in specified columns for rows wi
 This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
 }
 \examples{
-pnta.unanswered.to.miss(data = bns2_pkg_data,
-                                  prefix = "q14_21",
-                                  pnta = bns2_pkg_data$q14_27)
+updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+                                  prefix = "q14_2",
+                                  pnta = bns2_pkg_data$q14_30)
+updated_data |> dplyr::select(q14_20:q14_26, q14_30)
+
 }
