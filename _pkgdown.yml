@@ -2,5 +2,23 @@ url: https://smoorad99.github.io/chcRnePackage/
 template:
   bootstrap: 5
 
+# reference:
+#   - title: Functions
+#     contents:
+#       - text: Data Management
+#         contents:
+#           - remove.na.levels
+#           - yesno_to_binary
+#           - pnta.unanswered.to.miss
+#       - text: Tables
+#         contents:
+#           - nperc_tbl_MATA
+#           - question_table
+#       - text: Data Summary
+#         contents:
+#           - print_n_reporting
+#           - count_and_percent
+#           - get_perct
 
-
+development:
+  mode: auto
