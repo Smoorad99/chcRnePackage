@@ -62,34 +62,6 @@
 <div class="page-header"><h1 id="chcrne">chcRne<a class="anchor" aria-label="anchor" href="#chcrne"></a>
 </h1></div>
 <p>The chcRne package was developed to organize functions, useful code snippets, and other information relevant to the Research and Evaluation team at the Center for Healthy Communities.</p>
-<div class="section level3">
-<h3 id="data-management">Data Management<a class="anchor" aria-label="anchor" href="#data-management"></a>
-</h3>
-<p>Functions in this section are used used for data management.</p>
-<ul>
-<li>
-<code><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> Sets all options (vars) in select all that apply questions to NA when the “Prefer not to answer” option was selected.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="statistics-often-used-in-inline-code">Statistics (often used in inline code)<a class="anchor" aria-label="anchor" href="#statistics-often-used-in-inline-code"></a>
-</h3>
-<p>Functions in this section return statistics that are often used for expalnations on figures. Many of these functions will often be used in inline code.</p>
-<ul>
-<li>
-<code><a href="reference/count_and_percent.html">count_and_percent()</a></code> Returns a string that includes the total count and percentage of the categories in the input variable.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
-</h3>
-<p>Functions in this section are used for the creation of figures, tables, and other visualizations.</p>
-<ul>
-<li>
-<code><a href="reference/nperc_tbl_MATA.html">nperc_tbl_MATA()</a></code> Creates a table showing the n counts and percentages for each option in a mark all that apply question.</li>
-</ul>
-<p>Link to package description:</p>
-</div>
 <div class="section level2">
 <h2 id="how-to-install">How to install:<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h2>
@@ -99,51 +71,164 @@
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
+<p><br></p>
+<div class="section level3">
+<h3 id="data-management">Data Management<a class="anchor" aria-label="anchor" href="#data-management"></a>
+</h3>
+<p>Functions in this section are used for data management.</p>
+<ul>
+<li>We are using <code>yesno_to_binary</code> to change q14_1 - q14_10 from yes/no to 1/0.</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://smoorad99.github.io/chcRnePackage/">chcRne</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"no_goingout_cooking"</span>, <span class="st">"no_goingout_broke"</span><span class="op">)</span></span>
-<span><span class="va">rnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"I like cooking"</span>, <span class="st">"I am a broke college student"</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">bns2_pkg_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q13</span>, <span class="va">q14_1</span><span class="op">:</span><span class="va">q14_10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_converted</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/yesno_to_binary.html">yesno_to_binary</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"q14_"</span><span class="op">)</span></span>
+<span><span class="co"># View the converted dataframe side-by-side</span></span>
+<span><span class="va">old</span> <span class="op">&lt;-</span> <span class="va">bns2_pkg_data</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span>, <span class="va">q14_4</span><span class="op">)</span></span>
+<span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_converted</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span>, <span class="va">q14_4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">old</span>, <span class="va">new</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">##    q14_1 q14_4 q14_1 q14_4</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="do">## 1     No    No     0     0</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="do">## 2    Yes   Yes     1     1</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="do">## 3   &lt;NA&gt;  &lt;NA&gt;    NA    NA</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="do">## 4    Yes    No     1     0</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="do">## 5     No   Yes     0     1</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="do">## 6    Yes    No     1     0</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="do">## 7    Yes   Yes     1     1</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## 8    Yes   Yes     1     1</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="do">## 9     No   Yes     0     1</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="do">## 10   Yes   Yes     1     1</span></span></code></pre></div>
+<ul>
+<li>Now that each column of our mark all that apply question is 1/0, we are using <code><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> to set all columns in the select all that apply question to NA when the “Prefer not to answer” option was selected.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df_unanswered_to_miss</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_converted</span>,</span>
+<span>                                  prefix <span class="op">=</span> <span class="st">"q14_"</span>,</span>
+<span>                                  pnta <span class="op">=</span> <span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q14_30</span><span class="op">)</span></span>
+<span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_unanswered_to_miss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_3</span><span class="op">:</span><span class="va">q14_5</span>, <span class="va">q14_30</span><span class="op">)</span></span>
+<span><span class="va">new</span><span class="op">$</span><span class="va">q14_30</span> <span class="op">&lt;-</span> <span class="va">df_converted</span><span class="op">$</span><span class="va">q14_30</span></span>
+<span><span class="va">new</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">## # A tibble: 10 × 4</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="do">##    q14_3 q14_4 q14_5 q14_30</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="do">##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">##  1    NA    NA    NA      1</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="do">##  2     0     1     0      0</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">##  3    NA    NA    NA      0</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="do">##  4     0     0     0      0</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="do">##  5     0     1     0      0</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="do">##  6     0     0     0     NA</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="do">##  7     0     1     0      0</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="do">##  8     0     1     0      0</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="do">##  9    NA    NA    NA      1</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="do">## 10    NA    NA    NA      1</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div class="section level3">
+<h3 id="tables">Tables<a class="anchor" aria-label="anchor" href="#tables"></a>
+</h3>
+<p>Functions in this section are for the creation tables the R&amp;E team frequently uses.</p>
+<ul>
+<li>
+<code><a href="reference/nperc_tbl_MATA.html">nperc_tbl_MATA()</a></code> Creates a table showing the n counts and percentages for each option in a mark all that apply question.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q14_3"</span>, <span class="st">"q14_4"</span>, <span class="st">"q14_5"</span><span class="op">)</span></span>
+<span><span class="va">rnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"I like cooking"</span>, <span class="st">"I am a broke college student"</span>, <span class="st">"I live with chefs"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Create table that reports n count and percent for a mark all that apply question</span></span>
-<span><span class="va">table1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/nperc_tbl_MATA.html">nperc_tbl_MATA</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">exp.data</span>,</span>
+<span><span class="va">mark_all_that_apply_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/nperc_tbl_MATA.html">nperc_tbl_MATA</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df_unanswered_to_miss</span>,</span>
 <span>               vars <span class="op">=</span> <span class="va">cols</span>,</span>
 <span>               value <span class="op">=</span> <span class="st">"1"</span>,</span>
 <span>               row.names <span class="op">=</span> <span class="va">rnames</span>,</span>
-<span>               punc <span class="op">=</span> <span class="st">"."</span>,</span>
-<span>               col.title <span class="op">=</span> <span class="st">"Why not go out to eat?"</span><span class="op">)</span></span>
-<span><span class="va">table1</span></span></code></pre></div>
+<span>               punc <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
+<span><span class="va">mark_all_that_apply_tbl</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="do">##                                           Yes (%)</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## I am a broke college student. (n = 37) 15 (40.5%)</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## I live with chefs. (n = 40)             4 (10.0%)</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## I like cooking. (n = 40)                 3 (7.5%)</span></span></code></pre></div>
+<ul>
+<li>
+<code>question_table</code> creates a table with counts and percentages for a single categorical variable.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">question_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/question_table.html">question_table</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bns2_pkg_data</span>, </span>
+<span>               x <span class="op">=</span> <span class="st">'q13'</span>, </span>
+<span>               cnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Level of Education"</span>, <span class="st">"Yes %"</span><span class="op">)</span>, </span>
+<span>               kbl_styling <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">question_tbl</span></span></code></pre></div>
 <table class="table table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
-Why not go out to eat?
+Level of Education
 </th>
 <th style="text-align:left;">
-Yes (%)
+Yes %
 </th>
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-I like cooking. (n = 20)
+Less than high school
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-11 (55.0%)
+28 (57.1%)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-I am a broke college student. (n = 20)
+High school diploma or GED
 </td>
 <td style="text-align:left;width: 3.5cm; ">
-9 (45.0%)
+9 (18.4%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Some college
+</td>
+<td style="text-align:left;width: 3.5cm; ">
+8 (16.3%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Associate’s degree
+</td>
+<td style="text-align:left;width: 3.5cm; ">
+2 (4.1%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bachelor’s degree
+</td>
+<td style="text-align:left;width: 3.5cm; ">
+1 (2.0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Other/Unknown
+</td>
+<td style="text-align:left;width: 3.5cm; ">
+1 (2.0%)
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/count_and_percent.html">count_and_percent</a></span><span class="op">(</span>var <span class="op">=</span> <span class="va">exp.data</span><span class="op">$</span><span class="va">no_goingout_cooking</span>, <span class="st">"1"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## [1] "11 (55.0%)"</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div class="section level3">
+<h3 id="statistics-often-used-in-inline-code">Statistics (often used in inline code)<a class="anchor" aria-label="anchor" href="#statistics-often-used-in-inline-code"></a>
+</h3>
+<p>Functions in this section return statistics that are often used for explanations on figures. Many of these functions will often be used in inline code.</p>
+<p><code><a href="reference/print_n_reporting.html">print_n_reporting()</a></code></p>
+<p><code><a href="reference/count_and_percent.html">count_and_percent()</a></code> Returns a string that includes the total count and percentage of the categories in the input variable.</p>
+<p><code><a href="reference/get_perct.html">get_perct()</a></code></p>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
