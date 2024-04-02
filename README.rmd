@@ -34,7 +34,39 @@ devtools::install_github("Smoorad99/chcRnePackage")
 
 ## Examples
 
-```{r table1, include = TRUE}
+<br/>
+
+### Data Management
+```{r include=TRUE}
+library(chcRne)
+library(dplyr)
+
+data <- bns2_pkg_data %>% select(q13, q14_1:q14_10)
+
+df_converted <- yesno_to_binary(data, "q14_")
+# View the converted dataframe side-by-side
+old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
+new <- df_converted |> dplyr::select(q14_1, q14_4)
+cbind(old, new)
+
+```
+
+```{r echo=FALSE}
+df_converted$q14_30 <- bns2_pkg_data$q14_30
+```
+
+
+```{r}
+df_converted <- pnta.unanswered.to.miss(data = df_converted,
+                                  prefix = "q14_",
+                                  pnta = bns2_pkg_data$q14_30)
+a <- df_converted %>%  dplyr::select(q14_3:q14_5, q14_30)
+```
+
+<br/>
+
+### Tables
+```{r table1, include=TRUE}
 library(chcRne)
 
 cols <- c("no_goingout_cooking", "no_goingout_broke")
