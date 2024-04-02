@@ -79,9 +79,9 @@ mark_all_that_apply_tbl
 
 ```{r}
 question_tbl <- question_table(data = bns2_pkg_data, 
-               x = 'q13', 
-               cnames = c("Level of Education", "Yes %"), 
-               kbl_styling = TRUE)
+                               x = 'q13', 
+                               cnames = c("Level of Education", "Yes %"), 
+                               kbl_styling = TRUE)
 question_tbl
 ```
 

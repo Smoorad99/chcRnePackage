@@ -11,13 +11,9 @@ remove.na.levels(x)
 }
 \value{
 The same factor variable with NA levels explicitly marked as `NA`.
-        No levels are actually removed from the factor; instead, they are
-        just marked to ensure correct recognition and handling in R.
 }
 \description{
-This function explicitly marks NA levels in a factor as `NA`, without removing them.
-It is useful for cleaning up factors by ensuring that NA levels are properly recognized,
-especially before conducting further data analysis or modeling.
+Remove NA Levels in Ordered Factors
 }
 \examples{
 # Given a factor with NA as one of its levels
