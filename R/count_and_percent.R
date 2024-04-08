@@ -18,7 +18,7 @@
 #' @examples
 #'count_and_percent(var = bns2_pkg_data$q14_1, "Yes")
 #'
-count_and_percent <-  function(var, ...) {  # Takes in a variable and an ellipsis ('...') which represents multiple categories
+count_and_percent <-  function(var, ..., format1 = TRUE) {  # Takes in a variable and an ellipsis ('...') which represents multiple categories
   values <- list(...)  # Stores the values of each of the selected categories as a list
   tblcount <- table(var)
   name_common <- names(which.max(tblcount)) # Getting the category with the most responses
@@ -29,4 +29,8 @@ count_and_percent <-  function(var, ...) {  # Takes in a variable and an ellipsi
   total_count <- sum(unlist(counts))
   total_percent <- formattable::percent(total_count/total, digits = 1)
   paste0(total_count, " (", total_percent, ")")
+
+  if (format1) return(paste0(total_count, " (", total_percent, ")"))
+
+  if (!format1) return(paste0("(n=", total_count, ", ", total_percent, ")"))
 }
