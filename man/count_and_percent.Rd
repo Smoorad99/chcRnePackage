@@ -9,7 +9,8 @@ count_and_percent(var, ...)
 \arguments{
 \item{var}{A variable for which the counts and percents are calculated.}
 
-\item{...}{One or more categories of `var` to get the counts and calculate the percentages.}
+\item{...}{One or more categories of `var` to get the counts and calculate the percentages. If the ellipsis is left blank, the function
+will calculate the count and percent for the category with highest count.}
 }
 \value{
 A string including the total count and percentage of the

@@ -8,7 +8,8 @@
 #' variable they reside in.
 #'
 #' @param var A variable for which the counts and percents are calculated.
-#' @param ... One or more categories of `var` to get the counts and calculate the percentages.
+#' @param ... One or more categories of `var` to get the counts and calculate the percentages. If the ellipsis is left blank, the function
+#' will calculate the count and percent for the category with highest count.
 #'
 #' @return A string including the total count and percentage of the
 #' categories in the input variable.
@@ -19,6 +20,9 @@
 #'
 count_and_percent <-  function(var, ...) {  # Takes in a variable and an ellipsis ('...') which represents multiple categories
   values <- list(...)  # Stores the values of each of the selected categories as a list
+  tblcount <- table(var)
+  name_common <- names(which.max(tblcount)) # Getting the category with the most responses
+  values <- ifelse(rlang::is_empty(values), name_common, values) # If nothing is input in the ellSipsis, grab the category with the largest n
   counts <- lapply(values, function(val) sum(var == val, na.rm = TRUE))  # Applies the function to each element of the list
   total <- sum(!is.na(var)) # Calculates the total count of non-missing values
   percent <- sapply(counts, function(count) formattable::percent(count/total, digits = 5))
