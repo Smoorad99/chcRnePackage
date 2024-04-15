@@ -22,7 +22,11 @@ count_and_percent <-  function(var, ..., format1 = TRUE) {  # Takes in a variabl
   values <- list(...)  # Stores the values of each of the selected categories as a list
   tblcount <- table(var)
   name_common <- names(which.max(tblcount)) # Getting the category with the most responses
-  values <- ifelse(rlang::is_empty(values), name_common, values) # If nothing is input in the ellSipsis, grab the category with the largest n
+  if (length(values) == 0) {
+    values <- name_common
+  } else {
+    values <- values
+  }
   counts <- lapply(values, function(val) sum(var == val, na.rm = TRUE))  # Applies the function to each element of the list
   total <- sum(!is.na(var)) # Calculates the total count of non-missing values
   percent <- sapply(counts, function(count) formattable::percent(count/total, digits = 5))
@@ -34,3 +38,4 @@ count_and_percent <-  function(var, ..., format1 = TRUE) {  # Takes in a variabl
 
   if (!format1) return(paste0("(n=", total_count, ", ", total_percent, ")"))
 }
+
