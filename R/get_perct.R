@@ -1,11 +1,11 @@
 #' Calculate the Percentage of Occurrences for a Value in a Column
 #'
 #' This function calculates the percentage of a value within a column,
-#' excluding NA values. It returns a string summarizing the count of the specific value,
-#' the total count of non-NA values, and the percentage of the specific value among
+#' excluding NA values. It returns the count of the specific value,
+#' the total count of non-NA values, and the percentage of the specific value out of all the
 #' non-NA values.
 #'
-#' @param x A numeric or character vector that contains the value of interest.
+#' @param x A number or character that contains the value of interest.
 #' @param value The specific value to search for in the column `x`.
 #'
 #' @return A string that provides the count of the specific value, the total count

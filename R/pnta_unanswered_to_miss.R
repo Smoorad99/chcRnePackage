@@ -8,7 +8,7 @@
 #' @param prefix The prefix used to identify the relevant columns.
 #' @param pnta The variable that contains the "Prefer not to answer" option.
 #'
-#' @return A modified data frame with NA assigned to cells in specified columns for rows with PNTA responses.
+#' @return A modified data frame with NA assigned to cells in specified rows where prefer not to answer was selected.
 #' @export
 #'
 #' @examples updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
@@ -20,9 +20,9 @@
 
 pnta.unanswered.to.miss <- function(data, prefix, pnta){
   these.cols <- grepl(prefix , colnames(data)) # get all relevant columns
-  n.answer <- rowSums(data[,these.cols])       # count number of responses per row
+  n.answer <- rowSums(data[,these.cols])       # count number of response per row
   n.answer <- replace(n.answer, pnta == 1, 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
-  data[!is.na(n.answer) & n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
+  data[n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
   return(data)
 }
 
