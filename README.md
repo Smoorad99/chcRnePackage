@@ -1,7 +1,7 @@
 
-<img src="man/figures/hex.png" style="width: 20%; float: left;" alt="chcRne logo">
+<img src="man/figures/hex.png" style="width: 18%; float: left;" alt="chcRne logo">
 
-<br/>
+<hr style="height:40px; visibility:hidden;" />
 
 # chcRne
 
@@ -88,10 +88,9 @@ new %>% head(10)
 Functions in this section are for the creation tables the R&E team
 frequently uses.
 
-- Now that our select all that apply question is clean, we can use a
-  `nperc_tbl_MATA()` to create a table illustrating creates a table
-  showing the n counts and percentages for each option in a mark all
-  that apply question.
+- Now that our select all that apply question is clean, we can use
+  `nperc_tbl_MATA()` to create a table showing the n counts and
+  percentages for each option in a mark all that apply question.
 
 ``` r
 cols <- c("q14_3", "q14_4", "q14_5")
@@ -141,7 +140,7 @@ question_tbl
 Functions in this section return statistics often used for figure/table
 summaries. Many of these functions will often be used in inline code.
 
-- `print_n_reporting()` reports the count and percent of non-NA
+- `print_n_reporting()` reports the coun and percent of non-NA
   responses.
 
 ``` r
