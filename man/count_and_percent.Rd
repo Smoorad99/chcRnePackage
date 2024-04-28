@@ -4,7 +4,7 @@
 \alias{count_and_percent}
 \title{Creates a string with count and percent}
 \usage{
-count_and_percent(var, ...)
+count_and_percent(var, ..., format1 = TRUE)
 }
 \arguments{
 \item{var}{A variable for which the counts and percents are calculated.}
@@ -18,7 +18,7 @@ categories in the input variable.
 }
 \description{
 This function calculates counts and percentages for specified categories within a variable
-then returns a string including the total count and total percent of those categories relative to the
+then returns the total count and total percent of those categories relative to the
 variable they reside in.
 }
 \examples{

@@ -7,7 +7,7 @@
 get_perct(x, value)
 }
 \arguments{
-\item{x}{A numeric or character vector that contains the value of interest.}
+\item{x}{A number or character that contains the value of interest.}
 
 \item{value}{The specific value to search for in the column `x`.}
 }
@@ -17,8 +17,8 @@ of non-NA values, and the percentage of the specific value in the format of "cou
 }
 \description{
 This function calculates the percentage of a value within a column,
-excluding NA values. It returns a string summarizing the count of the specific value,
-the total count of non-NA values, and the percentage of the specific value among
+excluding NA values. It returns the count of the specific value,
+the total count of non-NA values, and the percentage of the specific value out of all the
 non-NA values.
 }
 \examples{

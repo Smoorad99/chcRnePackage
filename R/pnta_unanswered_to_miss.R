@@ -22,7 +22,7 @@ pnta.unanswered.to.miss <- function(data, prefix, pnta){
   these.cols <- grepl(prefix , colnames(data)) # get all relevant columns
   n.answer <- rowSums(data[,these.cols])       # count number of response per row
   n.answer <- replace(n.answer, pnta == 1, 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
-  data[n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
+  data[!is.na(n.answer) & n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
   return(data)
 }
 

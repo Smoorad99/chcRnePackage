@@ -14,7 +14,7 @@ pnta.unanswered.to.miss(data, prefix, pnta)
 \item{pnta}{The variable that contains the "Prefer not to answer" option.}
 }
 \value{
-A modified data frame with NA assigned to cells in specified columns for rows with PNTA responses.
+A modified data frame with NA assigned to cells in specified rows where prefer not to answer was selected.
 }
 \description{
 This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
