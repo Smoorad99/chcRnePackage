@@ -56,20 +56,23 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
+  <main id="main" class="col-md-9"><p><img src="reference/figures/hex.png" style="width: 20%; float: left;" alt="chcRne logo"></p>
+<p><br></p>
+<div class="section level1">
 <div class="page-header"><h1 id="chcrne">chcRne<a class="anchor" aria-label="anchor" href="#chcrne"></a>
 </h1></div>
-<p>The chcRne package was developed to organize functions, useful code snippets, and other information relevant to the Research and Evaluation team at the Center for Healthy Communities.</p>
 <div class="section level2">
-<h2 id="how-to-install">How to install:<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
+<h2 id="overview-and-installation">Overview and Installation<a class="anchor" aria-label="anchor" href="#overview-and-installation"></a>
 </h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>) </span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Smoorad99/chcRnePackage"</span>)</span></code></pre></div>
+<p>The chcRne package was developed to organize functions, useful code snippets, and other information relevant to the Research and Evaluation team at the Center for Healthy Communities.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Run the following two lines of code to install chcRne</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>) </span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Smoorad99/chcRnePackage"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p><br></p>
+<p>The following sections serve as a walk through to help users see how the chcRne functions can be used when cleaning data, making figures and tables, and reporting on those figures and tables.</p>
 <div class="section level3">
 <h3 id="data-management">Data Management<a class="anchor" aria-label="anchor" href="#data-management"></a>
 </h3>
@@ -100,7 +103,7 @@
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="do">## 9     No   Yes     0     1</span></span>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="do">## 10   Yes   Yes     1     1</span></span></code></pre></div>
 <ul>
-<li>Now that each column of our mark all that apply question is 1/0, we are using <code><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> to set all columns in the select all that apply question to NA when the “Prefer not to answer” option was selected.</li>
+<li>Each column of our mark all that apply question is now 1/0, which allows us to use <code><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> to set all columns in the select all that apply question to NA when the “Prefer not to answer” option was selected.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_unanswered_to_miss</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_converted</span>,</span>
@@ -129,8 +132,7 @@
 </h3>
 <p>Functions in this section are for the creation tables the R&amp;E team frequently uses.</p>
 <ul>
-<li>
-<code><a href="reference/nperc_tbl_MATA.html">nperc_tbl_MATA()</a></code> Creates a table showing the n counts and percentages for each option in a mark all that apply question.</li>
+<li>Now that our select all that apply question is clean, we can use a <code><a href="reference/nperc_tbl_MATA.html">nperc_tbl_MATA()</a></code> to create a table illustrating creates a table showing the n counts and percentages for each option in a mark all that apply question.</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q14_3"</span>, <span class="st">"q14_4"</span>, <span class="st">"q14_5"</span><span class="op">)</span></span>
@@ -148,87 +150,47 @@
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## I live with chefs. (n = 40)             4 (10.0%)</span></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## I like cooking. (n = 40)                 3 (7.5%)</span></span></code></pre></div>
 <ul>
-<li>
-<code>question_table</code> creates a table with counts and percentages for a single categorical variable.</li>
+<li>If we were working with a single categorical variable we could use <code>question_table</code> to create a table with counts and percentages.</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">question_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/question_table.html">question_table</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bns2_pkg_data</span>, </span>
-<span>               x <span class="op">=</span> <span class="st">'q13'</span>, </span>
-<span>               cnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Level of Education"</span>, <span class="st">"Yes %"</span><span class="op">)</span>, </span>
-<span>               kbl_styling <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># kbl_styling = FALSE indicating that we do not want any styling for the table</span></span>
+<span><span class="va">question_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/question_table.html">question_table</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bns2_pkg_data</span>, </span>
+<span>                               x <span class="op">=</span> <span class="st">'q13'</span>, </span>
+<span>                               cnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Level of Education"</span>, <span class="st">"Yes %"</span><span class="op">)</span>, </span>
+<span>                               kbl_styling <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">question_tbl</span></span></code></pre></div>
-<table class="table table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead><tr>
-<th style="text-align:left;">
-Level of Education
-</th>
-<th style="text-align:left;">
-Yes %
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Less than high school
-</td>
-<td style="text-align:left;width: 3.5cm; ">
-28 (57.1%)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-High school diploma or GED
-</td>
-<td style="text-align:left;width: 3.5cm; ">
-9 (18.4%)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Some college
-</td>
-<td style="text-align:left;width: 3.5cm; ">
-8 (16.3%)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Associate’s degree
-</td>
-<td style="text-align:left;width: 3.5cm; ">
-2 (4.1%)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Bachelor’s degree
-</td>
-<td style="text-align:left;width: 3.5cm; ">
-1 (2.0%)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Other/Unknown
-</td>
-<td style="text-align:left;width: 3.5cm; ">
-1 (2.0%)
-</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="do">##   `Level of Education`       `Yes %`   </span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                      &lt;chr&gt;     </span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="do">## 1 Less than high school      28 (57.1%)</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="do">## 2 High school diploma or GED 9 (18.4%) </span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="do">## 3 Some college               8 (16.3%) </span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="do">## 4 Associate's degree         2 (4.1%)  </span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="do">## 5 Bachelor's degree          1 (2.0%)  </span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="do">## 6 Other/Unknown              1 (2.0%)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div class="section level3">
 <h3 id="statistics-often-used-in-inline-code">Statistics (often used in inline code)<a class="anchor" aria-label="anchor" href="#statistics-often-used-in-inline-code"></a>
 </h3>
-<p>Functions in this section return statistics that are often used for explanations on figures. Many of these functions will often be used in inline code.</p>
-<p><code><a href="reference/print_n_reporting.html">print_n_reporting()</a></code></p>
-<p><code><a href="reference/count_and_percent.html">count_and_percent()</a></code> Returns a string that includes the total count and percentage of the categories in the input variable.</p>
-<p><code><a href="reference/get_perct.html">get_perct()</a></code></p>
+<p>Functions in this section return statistics often used for figure/table summaries. Many of these functions will often be used in inline code.</p>
+<ul>
+<li>
+<code><a href="reference/print_n_reporting.html">print_n_reporting()</a></code> reports the count and percent of non-NA responses.</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/print_n_reporting.html">print_n_reporting</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span>, <span class="st">"q13"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="do">## [1] "(n=49, 98.0% of 50 reporting)"</span></span></code></pre></div>
+<p><code><a href="reference/count_and_percent.html">count_and_percent()</a></code> returns a string that includes the total count and percentage of the categories in the input variable.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Getting the count and percent of respondents reporting some college or a bachelors degree.</span></span>
+<span><span class="fu"><a href="reference/count_and_percent.html">count_and_percent</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q13</span>, <span class="st">"Some college"</span>, <span class="st">"Bachelor's degree"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">## [1] "9 (18.4%)"</span></span></code></pre></div>
 </div>
 </div>
 </div>
+
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
