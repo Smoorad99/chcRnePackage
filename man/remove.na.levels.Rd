@@ -2,20 +2,27 @@
 % Please edit documentation in R/remove.na.levels.R
 \name{remove.na.levels}
 \alias{remove.na.levels}
-\title{Remove NA Levels in Ordered Factors}
+\title{Remove NA levels in factor variables}
 \usage{
 remove.na.levels(x)
 }
 \arguments{
-\item{x}{A factor variable containing}
+\item{x}{A factor variable containing `NA` as a level.}
 }
 \value{
 The same factor variable with NA levels explicitly marked as `NA`.
 }
 \description{
-Remove NA Levels in Ordered Factors
+Remove NA levels in factor variables
 }
 \examples{
-# Given a factor with NA as one of its levels
+# As seen in the table below, this factor variable has `NA` as a level.
+
+table(bns2_pkg_data$q13.na)
+
+# Applying `remove.na.levels` TO remove the `NA` level.
+
+remove.na.levels(bns2_pkg_data$q13.na) |>
+  table()
 
 }

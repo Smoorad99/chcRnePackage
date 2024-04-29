@@ -2,7 +2,7 @@
 % Please edit documentation in R/question_table.R
 \name{question_table}
 \alias{question_table}
-\title{Table of Counts Percentages for Single Question}
+\title{Table of counts percentages for single question}
 \usage{
 question_table(data, x, cnames, kbl_styling = TRUE)
 }

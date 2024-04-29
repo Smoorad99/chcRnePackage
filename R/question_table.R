@@ -1,4 +1,4 @@
-#' Table of Counts Percentages for Single Question
+#' Table of counts percentages for single question
 #'
 #' This function takes a dataset and a specified column representing a single
 #' categorical or binary variable (e.g., level of education) and creates a table of

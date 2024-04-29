@@ -1,12 +1,19 @@
-#' Remove NA Levels in Ordered Factors
+#' Remove NA levels in factor variables
 #'
 #'
-#' @param x A factor variable containing
+#' @param x A factor variable containing `NA` as a level.
 #'
 #' @return The same factor variable with NA levels explicitly marked as `NA`.
 #'
 #' @examples
-#' # Given a factor with NA as one of its levels
+#' # As seen in the table below, this factor variable has `NA` as a level.
+#'
+#' table(bns2_pkg_data$q13.na)
+#'
+#' # Applying `remove.na.levels` TO remove the `NA` level.
+#'
+#' remove.na.levels(bns2_pkg_data$q13.na) |>
+#'   table()
 #'
 #' @export
 remove.na.levels <- function(x){

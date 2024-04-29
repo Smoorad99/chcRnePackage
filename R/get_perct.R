@@ -1,4 +1,4 @@
-#' Calculate the Percentage of Occurrences for a Value in a Column
+#' Calculate the percentage of occurrences for a value in a column
 #'
 #' This function calculates the percentage of a value within a column,
 #' excluding NA values. It returns the count of the specific value,

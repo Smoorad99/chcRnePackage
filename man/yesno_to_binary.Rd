@@ -2,7 +2,7 @@
 % Please edit documentation in R/yesno_to_binary.R
 \name{yesno_to_binary}
 \alias{yesno_to_binary}
-\title{Convert Yes/No Variables to Binary}
+\title{Convert Yes/No variables to binary}
 \usage{
 yesno_to_binary(data, prefix)
 }

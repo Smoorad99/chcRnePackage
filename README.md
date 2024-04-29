@@ -42,16 +42,16 @@ cbind(old, new) %>% head(10)
 ```
 
     ##    q14_1 q14_4 q14_1 q14_4
-    ## 1     No    No     0     0
-    ## 2    Yes   Yes     1     1
-    ## 3   <NA>  <NA>    NA    NA
-    ## 4    Yes    No     1     0
+    ## 1    Yes   Yes     1     1
+    ## 2     No   Yes     0     1
+    ## 3    Yes   Yes     1     1
+    ## 4    Yes   Yes     1     1
     ## 5     No   Yes     0     1
-    ## 6    Yes    No     1     0
-    ## 7    Yes   Yes     1     1
-    ## 8    Yes   Yes     1     1
+    ## 6     No   Yes     0     1
+    ## 7   <NA>  <NA>    NA    NA
+    ## 8     No   Yes     0     1
     ## 9     No   Yes     0     1
-    ## 10   Yes   Yes     1     1
+    ## 10    No   Yes     0     1
 
 - Each column of our mark all that apply question is now 1/0, which
   allows us to use `pnta.unanswered.to.miss()` to set all columns in the
@@ -70,15 +70,15 @@ new %>% head(10)
     ## # A tibble: 10 × 4
     ##    q14_3 q14_4 q14_5 q14_30
     ##    <dbl> <dbl> <dbl>  <dbl>
-    ##  1    NA    NA    NA      1
+    ##  1     0     1     1      0
     ##  2     0     1     0      0
-    ##  3    NA    NA    NA      0
-    ##  4     0     0     0      0
-    ##  5     0     1     0      0
-    ##  6     0     0     0     NA
-    ##  7     0     1     0      0
-    ##  8     0     1     0      0
-    ##  9    NA    NA    NA      1
+    ##  3     0     1     0      0
+    ##  4     0     1     0      0
+    ##  5     0     1     1      0
+    ##  6     0     1     0     NA
+    ##  7    NA    NA    NA      1
+    ##  8    NA    NA    NA      1
+    ##  9     0     1     0      0
     ## 10    NA    NA    NA      1
 
 <br/>
@@ -106,9 +106,9 @@ mark_all_that_apply_tbl
 ```
 
     ##                                           Yes (%)
-    ## I am a broke college student. (n = 37) 15 (40.5%)
-    ## I live with chefs. (n = 40)             4 (10.0%)
-    ## I like cooking. (n = 40)                 3 (7.5%)
+    ## I am a broke college student. (n = 38) 27 (71.1%)
+    ## I live with chefs. (n = 39)             7 (17.9%)
+    ## I like cooking. (n = 39)                 3 (7.7%)
 
 - If we were working with a single categorical variable we could use
   `question_table` to create a table with counts and percentages.
@@ -123,15 +123,14 @@ question_tbl <- question_table(data = bns2_pkg_data,
 question_tbl
 ```
 
-    ## # A tibble: 6 × 2
+    ## # A tibble: 5 × 2
     ##   `Level of Education`       `Yes %`   
     ##   <chr>                      <chr>     
-    ## 1 Less than high school      28 (57.1%)
-    ## 2 High school diploma or GED 9 (18.4%) 
-    ## 3 Some college               8 (16.3%) 
-    ## 4 Associate's degree         2 (4.1%)  
-    ## 5 Bachelor's degree          1 (2.0%)  
-    ## 6 Other/Unknown              1 (2.0%)
+    ## 1 Less than high school      25 (51.0%)
+    ## 2 High school diploma or GED 12 (24.5%)
+    ## 3 Some college               7 (14.3%) 
+    ## 4 Associate's degree         3 (6.1%)  
+    ## 5 Other/Unknown              2 (4.1%)
 
 <br/>
 
@@ -157,4 +156,4 @@ print_n_reporting(bns2_pkg_data, "q13")
 count_and_percent(bns2_pkg_data$q13, "Some college", "Bachelor's degree")
 ```
 
-    ## [1] "9 (18.4%)"
+    ## [1] "7 (14.3%)"

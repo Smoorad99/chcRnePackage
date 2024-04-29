@@ -1,4 +1,4 @@
-#' Convert Yes/No Variables to Binary
+#' Convert Yes/No variables to binary
 #'
 #' This function takes a dataframe and a prefix to identify specific columns
 #' by their names. It converts all "Yes"/"No" responses in these columns to

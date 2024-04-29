@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_perct.R
 \name{get_perct}
 \alias{get_perct}
-\title{Calculate the Percentage of Occurrences for a Value in a Column}
+\title{Calculate the percentage of occurrences for a value in a column}
 \usage{
 get_perct(x, value)
 }

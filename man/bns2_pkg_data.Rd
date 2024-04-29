@@ -5,7 +5,7 @@
 \alias{bns2_pkg_data}
 \title{This is data included in my package}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 50 rows and 27 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 50 rows and 28 columns.
 }
 \source{
 {Data created in the project for function examples}
