@@ -1,5 +1,7 @@
 #' Remove NA levels in factor variables
 #'
+#' `remove.na.levels()` processes a factor variable that includes NA as a level,
+#' removing the level while preserving the NA responses.
 #'
 #' @param x A factor variable containing `NA` as a level.
 #'

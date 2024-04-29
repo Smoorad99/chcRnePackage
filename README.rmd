@@ -96,18 +96,18 @@ question_tbl
 <br/>
 
 ### Statistics (often used in inline code)
-Functions in this section return statistics often used for figure/table summaries. Many of these functions will often be used in inline code.
+Functions in this section return statistics often used for figure/table summaries. Many of these functions will be used in inline code.
 
-- `print_n_reporting()` reports the coun and percent of non-NA responses.
+- `print_n_reporting()` reports the count and percent of non-NA responses.
 
 ```{r}
 print_n_reporting(bns2_pkg_data, "q13")
 ```
 
 
-- `count_and_percent()` returns a string that includes the total count and percentage of the categories in the input variable.
+- `count_and_percent()` returns a string that includes the total count and percentage of the categories of interest.
 
 ```{r}
-# Getting the count and percent of respondents reporting some college or a bachelors degree.
+# Getting the count and percent of respondents reporting a level of education of some college or a bachelors degree.
 count_and_percent(bns2_pkg_data$q13, "Some college", "Bachelor's degree")
 ```

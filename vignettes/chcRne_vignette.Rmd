@@ -14,15 +14,32 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
   comment = "#>"
 )
 ```
 
 ```{r setup}
+# Load in necessary libraries
 library(chcRne)
+library(dplyr)
 ```
 
-This page is currently under development and will contain commonly used code examples that are not suited to a single-function format. 
+This page is currently under development and will contain commonly used code examples that are not suited to a single-function format.
+
+### Applying `remove.na.levels()` to multiple variables
+
+```{r eval=FALSE}
+# List out all variable names with this problem
+cols.with.na.lvls <- bns2_pkg_data |> 
+  select(where(is.ordered)) |> names()
+
+# Apply function
+df <- bns2_pkg_data %>% mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
+```
+
+
 
 
 
