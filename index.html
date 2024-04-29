@@ -104,16 +104,16 @@
 <span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_converted</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span>, <span class="va">q14_4</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">old</span>, <span class="va">new</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">##    q14_1 q14_4 q14_1 q14_4</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="do">## 1     No    No     0     0</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="do">## 2    Yes   Yes     1     1</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="do">## 3   &lt;NA&gt;  &lt;NA&gt;    NA    NA</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="do">## 4    Yes    No     1     0</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="do">## 1    Yes   Yes     1     1</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="do">## 2     No   Yes     0     1</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="do">## 3    Yes   Yes     1     1</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="do">## 4    Yes   Yes     1     1</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="do">## 5     No   Yes     0     1</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="do">## 6    Yes    No     1     0</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="do">## 7    Yes   Yes     1     1</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## 8    Yes   Yes     1     1</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="do">## 6     No   Yes     0     1</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="do">## 7   &lt;NA&gt;  &lt;NA&gt;    NA    NA</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## 8     No   Yes     0     1</span></span>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="do">## 9     No   Yes     0     1</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="do">## 10   Yes   Yes     1     1</span></span></code></pre></div>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="do">## 10    No   Yes     0     1</span></span></code></pre></div>
 <ul>
 <li>Each column of our mark all that apply question is now 1/0, which allows us to use <code><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> to set all columns in the select all that apply question to NA when the “Prefer not to answer” option was selected.</li>
 </ul>
@@ -127,15 +127,15 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">## # A tibble: 10 × 4</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="do">##    q14_3 q14_4 q14_5 q14_30</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="do">##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">##  1    NA    NA    NA      1</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">##  1     0     1     1      0</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="do">##  2     0     1     0      0</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">##  3    NA    NA    NA      0</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="do">##  4     0     0     0      0</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="do">##  5     0     1     0      0</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="do">##  6     0     0     0     NA</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="do">##  7     0     1     0      0</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="do">##  8     0     1     0      0</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="do">##  9    NA    NA    NA      1</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">##  3     0     1     0      0</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="do">##  4     0     1     0      0</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="do">##  5     0     1     1      0</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="do">##  6     0     1     0     NA</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="do">##  7    NA    NA    NA      1</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="do">##  8    NA    NA    NA      1</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="do">##  9     0     1     0      0</span></span>
 <span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="do">## 10    NA    NA    NA      1</span></span></code></pre></div>
 <p><br></p>
 </div>
@@ -158,9 +158,9 @@
 <span>               punc <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
 <span><span class="va">mark_all_that_apply_tbl</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="do">##                                           Yes (%)</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## I am a broke college student. (n = 37) 15 (40.5%)</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## I live with chefs. (n = 40)             4 (10.0%)</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## I like cooking. (n = 40)                 3 (7.5%)</span></span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## I am a broke college student. (n = 38) 27 (71.1%)</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## I live with chefs. (n = 39)             7 (17.9%)</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## I like cooking. (n = 39)                 3 (7.7%)</span></span></code></pre></div>
 <ul>
 <li>If we were working with a single categorical variable we could use <code>question_table</code> to create a table with counts and percentages.</li>
 </ul>
@@ -172,15 +172,14 @@
 <span>                               kbl_styling <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">question_tbl</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="do">## # A tibble: 5 × 2</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="do">##   `Level of Education`       `Yes %`   </span></span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                      &lt;chr&gt;     </span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="do">## 1 Less than high school      28 (57.1%)</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="do">## 2 High school diploma or GED 9 (18.4%) </span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="do">## 3 Some college               8 (16.3%) </span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="do">## 4 Associate's degree         2 (4.1%)  </span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="do">## 5 Bachelor's degree          1 (2.0%)  </span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="do">## 6 Other/Unknown              1 (2.0%)</span></span></code></pre></div>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="do">## 1 Less than high school      25 (51.0%)</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="do">## 2 High school diploma or GED 12 (24.5%)</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="do">## 3 Some college               7 (14.3%) </span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="do">## 4 Associate's degree         3 (6.1%)  </span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="do">## 5 Other/Unknown              2 (4.1%)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div class="section level3">
@@ -201,7 +200,7 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Getting the count and percent of respondents reporting some college or a bachelors degree.</span></span>
 <span><span class="fu"><a href="reference/count_and_percent.html">count_and_percent</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q13</span>, <span class="st">"Some college"</span>, <span class="st">"Bachelor's degree"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">## [1] "9 (18.4%)"</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">## [1] "7 (14.3%)"</span></span></code></pre></div>
 </div>
 </div>
 </div>
