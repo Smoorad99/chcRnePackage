@@ -149,8 +149,8 @@ print_n_reporting(bns2_pkg_data, "q13")
 
     ## [1] "(n=49, 98.0% of 50 reporting)"
 
-`count_and_percent()` returns a string that includes the total count and
-percentage of the categories in the input variable.
+- `count_and_percent()` returns a string that includes the total count
+  and percentage of the categories in the input variable.
 
 ``` r
 # Getting the count and percent of respondents reporting some college or a bachelors degree.
