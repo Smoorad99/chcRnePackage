@@ -20,9 +20,11 @@ A modified data frame with NA assigned to cells in specified rows where prefer n
 This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
 }
 \examples{
-updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+subset <- bns2_pkg_data[c(14:15, 17:18), ]
+
+updated_data <- pnta.unanswered.to.miss(data = subset,
                                   prefix = "q14_2",
-                                  pnta = bns2_pkg_data$q14_30)
+                                  pnta = subset$q14_30)
 updated_data |> dplyr::select(q14_20:q14_26, q14_30)
 
 }

@@ -11,20 +11,31 @@
 #' @return A modified data frame with NA assigned to cells in specified rows where prefer not to answer was selected.
 #' @export
 #'
-#' @examples updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+#' @examples
+#' subset <- bns2_pkg_data[c(14:15, 17:18), ]
+#'
+#' updated_data <- pnta.unanswered.to.miss(data = subset,
 #'                                   prefix = "q14_2",
-#'                                   pnta = bns2_pkg_data$q14_30)
+#'                                   pnta = subset$q14_30)
 #' updated_data |> dplyr::select(q14_20:q14_26, q14_30)
 #'
 
 
 pnta.unanswered.to.miss <- function(data, prefix, pnta){
-  these.cols <- grepl(prefix , colnames(data)) # get all relevant columns
-  n.answer <- rowSums(data[,these.cols])       # count number of response per row
-  n.answer <- replace(n.answer, pnta == 1, 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
-  data[!is.na(n.answer) & n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
+  these.cols <- grepl(prefix, colnames(data)) # get all relevant columns
+  if (anyNA(data[, these.cols])) {
+    n.answer <- rowSums(!is.na(data[,these.cols])) # If there exists NAs, sum the non-NA answers in the row (for text/NA data)
+  }
+  else {
+    n.answer <- rowSums(data[,these.cols])   # count number of response per row
+  }
+  n.answer <- replace(n.answer, pnta == 1 | pnta == "Prefer not to answer", 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
+  data[n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
   return(data)
 }
+
+# Note: If a row in the `data` for the columns used in above function (i.e q14_20:q14_26) does not have any responses,
+# the function breaks
 
 
 # Some useful keyboard shortcuts for package authoring:
