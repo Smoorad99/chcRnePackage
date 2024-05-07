@@ -9,7 +9,7 @@ question_table(data, x, cnames, kbl_styling = TRUE)
 \arguments{
 \item{data}{A data frame containing the dataset to be analyzed.}
 
-\item{x}{The name of the column in `data` containing the question}
+\item{x}{The name of the column in `data` containing the question.}
 
 \item{cnames}{A character vector of length 2 specifying the column names for the
 resulting table. The first element is for the category name and the second for the percentages.}

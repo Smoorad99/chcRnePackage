@@ -7,10 +7,10 @@
 remove.na.levels(x)
 }
 \arguments{
-\item{x}{A factor variable containing `NA` as a level.}
+\item{x}{A factor variable containing NA as a level.}
 }
 \value{
-The same factor variable with NA levels explicitly marked as `NA`.
+The same factor variable with NA levels explicitly marked as NA.
 }
 \description{
 `remove.na.levels()` processes a factor variable that includes NA as a level,

@@ -13,7 +13,7 @@ get_perct(x, value)
 }
 \value{
 A string that provides the count of the specific value, the total count
-of non-NA values, and the percentage of the specific value in the format of "count/total (percentage%)".
+of non-NA values, and the percentage of the specific value in the format of "count/total (percentage)".
 }
 \description{
 This function calculates the percentage of a value within a column,

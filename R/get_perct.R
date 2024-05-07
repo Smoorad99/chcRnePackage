@@ -9,7 +9,7 @@
 #' @param value The specific value to search for in the column `x`.
 #'
 #' @return A string that provides the count of the specific value, the total count
-#' of non-NA values, and the percentage of the specific value in the format of "count/total (percentage%)".
+#' of non-NA values, and the percentage of the specific value in the format of "count/total (percentage)".
 #'
 #' @examples
 #' get_perct(bns2_pkg_data$q14_9, "Yes")

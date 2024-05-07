@@ -6,7 +6,7 @@
 #' @param data A dataframe containing the dataset to be analyzed.
 #' @param x The name of the column of interest.
 #'
-#' @return A character string formatted as "(n=X, Y% of Z reporting)", where X is
+#' @return A string formatted as "(n=X, Y of Z reporting)", where X is
 #' the number of non-NA entries in the specified column, Y is the percentage of
 #' non-NA entries out of the total number of rows in the dataframe, and Z is the
 #' total number of rows in the dataframe.

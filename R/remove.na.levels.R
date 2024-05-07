@@ -3,9 +3,9 @@
 #' `remove.na.levels()` processes a factor variable that includes NA as a level,
 #' removing the level while preserving the NA responses.
 #'
-#' @param x A factor variable containing `NA` as a level.
+#' @param x A factor variable containing NA as a level.
 #'
-#' @return The same factor variable with NA levels explicitly marked as `NA`.
+#' @return The same factor variable with NA levels explicitly marked as NA.
 #'
 #' @examples
 #' # As seen in the table below, this factor variable has `NA` as a level.

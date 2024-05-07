@@ -12,7 +12,7 @@ print_n_reporting(data, x)
 \item{x}{The name of the column of interest.}
 }
 \value{
-A character string formatted as "(n=X, Y% of Z reporting)", where X is
+A string formatted as "(n=X, Y of Z reporting)", where X is
 the number of non-NA entries in the specified column, Y is the percentage of
 non-NA entries out of the total number of rows in the dataframe, and Z is the
 total number of rows in the dataframe.

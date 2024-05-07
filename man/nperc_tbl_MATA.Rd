@@ -13,7 +13,7 @@ nperc_tbl_MATA(df, vars, value, row.names, punc)
 
 \item{value}{The value in the rows of `vars` (only one value across all variables).}
 
-\item{row.names}{The name of each row in the table. Should be equivalent to each option in the select all that apply question}
+\item{row.names}{The name of each row in the table. Should be equivalent to each option in the select all that apply question.}
 
 \item{punc}{The punctuation at the end of the row names.}
 }

@@ -5,7 +5,7 @@
 #' @param df A data frame used to create the table.
 #' @param vars A character vector of variable names to include in the table (all vars have to be binary).
 #' @param value The value in the rows of `vars` (only one value across all variables).
-#' @param row.names The name of each row in the table. Should be equivalent to each option in the select all that apply question
+#' @param row.names The name of each row in the table. Should be equivalent to each option in the select all that apply question.
 #' @param punc The punctuation at the end of the row names.
 #'
 #' @return A frequency table
