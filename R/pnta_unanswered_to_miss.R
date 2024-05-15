@@ -21,16 +21,16 @@
 #'
 
 
-test.dta <- chcRne::bns2_pkg_data
-
-these.cols <- c("q14_20")
-
-updated_data <- pnta.unanswered.to.miss(data = test.dta,
-                                        these.cols = these.cols,
-                                        pnta = test.dta$q14_30)
-
-test.dta |> dplyr::select(all_of(these.cols), q14_30)
-updated_data |> dplyr::select(all_of(these.cols), q14_30)
+# test.dta <- chcRne::bns2_pkg_data
+#
+# these.cols <- c("q14_20")
+#
+# updated_data <- pnta.unanswered.to.miss(data = test.dta,
+#                                         these.cols = these.cols,
+#                                         pnta = test.dta$q14_30)
+#
+# test.dta |> dplyr::select(all_of(these.cols), q14_30)
+# updated_data |> dplyr::select(all_of(these.cols), q14_30)
 
 
 
