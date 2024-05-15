@@ -21,10 +21,23 @@
 #'
 
 
-pnta.unanswered.to.miss <- function(data, prefix, pnta){
-  these.cols <- grepl(prefix, colnames(data)) # get all relevant columns
+test.dta <- chcRne::bns2_pkg_data
+
+these.cols <- c("q14_20")
+
+updated_data <- pnta.unanswered.to.miss(data = test.dta,
+                                        these.cols = these.cols,
+                                        pnta = test.dta$q14_30)
+
+test.dta |> dplyr::select(all_of(these.cols), q14_30)
+updated_data |> dplyr::select(all_of(these.cols), q14_30)
+
+
+
+pnta.unanswered.to.miss <- function(data, these.cols, pnta){
+  # If there exists NAs, sum the non-NA answers in the row (for text/NA data)
   if (anyNA(data[, these.cols])) {
-    n.answer <- rowSums(!is.na(data[,these.cols])) # If there exists NAs, sum the non-NA answers in the row (for text/NA data)
+    n.answer <- rowSums(!is.na(data[,these.cols]))
   }
   else {
     n.answer <- rowSums(data[,these.cols])   # count number of response per row
@@ -33,6 +46,7 @@ pnta.unanswered.to.miss <- function(data, prefix, pnta){
   data[n.answer == 0, these.cols] <- NA         # if #answers is 0, set all to NA missing.
   return(data)
 }
+
 
 # Note: If a row in the `data` for the columns used in above function (i.e q14_20:q14_26) does not have any responses,
 # the function breaks
