@@ -4,14 +4,18 @@
 \alias{pnta.unanswered.to.miss}
 \title{PNTA to NA}
 \usage{
-pnta.unanswered.to.miss(data, prefix, pnta)
+pnta.unanswered.to.miss(data, these.cols, pnta, prefix = TRUE)
 }
 \arguments{
 \item{data}{The data frame of interest.}
 
-\item{prefix}{The prefix used to identify the relevant columns.}
+\item{these.cols}{The columns containing the observations we want to convert to NA when the rows of the pnta variable are marked.
+This parameter can be a prefix that all the columns of interest contain, or a list of the specific columns you want converted.}
 
 \item{pnta}{The variable that contains the "Prefer not to answer" option.}
+
+\item{prefix}{If prefix = TRUE you can use a prefix to select columns, if prefix = FALSE
+you must select columns by name.}
 }
 \value{
 A modified data frame with NA assigned to cells in specified rows where prefer not to answer was selected.
@@ -20,11 +24,18 @@ A modified data frame with NA assigned to cells in specified rows where prefer n
 This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
 }
 \examples{
-subset <- bns2_pkg_data[c(14:15, 17:18), ]
+# Using a prefix
 
-updated_data <- pnta.unanswered.to.miss(data = subset,
-                                  prefix = "q14_2",
-                                  pnta = subset$q14_30)
+updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+                                  these.cols = "q14_2",
+                                  pnta = bns2_pkg_data$q14_30,
+                                  prefix = TRUE)
 updated_data |> dplyr::select(q14_20:q14_26, q14_30)
 
+# Selecting columns by name
+updated_data2 <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+                                  these.cols = c("q14_20", "q14_21"),
+                                  pnta = bns2_pkg_data$q14_30,
+                                  prefix = FALSE)
+updated_data2 |> dplyr::select(q14_20:q14_26, q14_30)
 }

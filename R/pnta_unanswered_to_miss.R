@@ -5,41 +5,53 @@
 #' This function sets all options (vars) in a select all that apply question to NA when the "Prefer not to answer" option was selected
 #'
 #' @param data The data frame of interest.
-#' @param prefix The prefix used to identify the relevant columns.
+#' @param these.cols The columns containing the observations we want to convert to NA when the rows of the pnta variable are marked.
+#' This parameter can be a prefix that all the columns of interest contain, or a list of the specific columns you want converted.
 #' @param pnta The variable that contains the "Prefer not to answer" option.
+#' @param prefix If prefix = TRUE you can use a prefix to select columns, if prefix = FALSE
+#' you must select columns by name.
 #'
 #' @return A modified data frame with NA assigned to cells in specified rows where prefer not to answer was selected.
 #' @export
 #'
 #' @examples
-#' subset <- bns2_pkg_data[c(14:15, 17:18), ]
+#' # Using a prefix
 #'
-#' updated_data <- pnta.unanswered.to.miss(data = subset,
-#'                                   prefix = "q14_2",
-#'                                   pnta = subset$q14_30)
+#' updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+#'                                   these.cols = "q14_2",
+#'                                   pnta = bns2_pkg_data$q14_30,
+#'                                   prefix = TRUE)
 #' updated_data |> dplyr::select(q14_20:q14_26, q14_30)
 #'
-
+#' # Selecting columns by name
+#' updated_data2 <- pnta.unanswered.to.miss(data = bns2_pkg_data,
+#'                                   these.cols = c("q14_20", "q14_21"),
+#'                                   pnta = bns2_pkg_data$q14_30,
+#'                                   prefix = FALSE)
+#' updated_data2 |> dplyr::select(q14_20:q14_26, q14_30)
 
 # test.dta <- chcRne::bns2_pkg_data
 #
-# these.cols <- c("q14_20")
+# these.cols <- c("q14_20", "q14_21")
 #
 # updated_data <- pnta.unanswered.to.miss(data = test.dta,
 #                                         these.cols = these.cols,
-#                                         pnta = test.dta$q14_30)
+#                                         pnta = test.dta$q14_30,
+#                                         prefix = FALSE)
 #
 # test.dta |> dplyr::select(all_of(these.cols), q14_30)
 # updated_data |> dplyr::select(all_of(these.cols), q14_30)
 
 
 
-pnta.unanswered.to.miss <- function(data, these.cols, pnta){
-  # If there exists NAs, sum the non-NA answers in the row (for text/NA data)
+pnta.unanswered.to.miss <- function(data, these.cols, pnta, prefix = TRUE){
+  if (prefix) {
+    these.cols <- grepl(these.cols, names(data))
+  }
   if (anyNA(data[, these.cols])) {
     n.answer <- rowSums(!is.na(data[,these.cols]))
   }
-  else {
+  if (!anyNA(data[, these.cols])) {
     n.answer <- rowSums(data[,these.cols])   # count number of response per row
   }
   n.answer <- replace(n.answer, pnta == 1 | pnta == "Prefer not to answer", 0)  # if prefer not to answer (PNTA) is marked, set # answers to 0
