@@ -54,7 +54,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pnta.unanswered.to.miss</span><span class="op">(</span><span class="va">data</span>, <span class="va">prefix</span>, <span class="va">pnta</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pnta.unanswered.to.miss</span><span class="op">(</span><span class="va">data</span>, <span class="va">these.cols</span>, <span class="va">pnta</span>, prefix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,12 +63,18 @@
 <dd><p>The data frame of interest.</p></dd>
 
 
-<dt>prefix</dt>
-<dd><p>The prefix used to identify the relevant columns.</p></dd>
+<dt>these.cols</dt>
+<dd><p>The columns containing the observations we want to convert to NA when the rows of the pnta variable are marked.
+This parameter can be a prefix that all the columns of interest contain, or a list of the specific columns you want converted.</p></dd>
 
 
 <dt>pnta</dt>
 <dd><p>The variable that contains the "Prefer not to answer" option.</p></dd>
+
+
+<dt>prefix</dt>
+<dd><p>If prefix = TRUE you can use a prefix to select columns, if prefix = FALSE
+you must select columns by name.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -80,15 +86,48 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">subset</span> <span class="op">&lt;-</span> <span class="va">bns2_pkg_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">14</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">17</span><span class="op">:</span><span class="fl">18</span><span class="op">)</span>, <span class="op">]</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Using a prefix</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">updated_data</span> <span class="op">&lt;-</span> <span class="fu">pnta.unanswered.to.miss</span><span class="op">(</span>data <span class="op">=</span> <span class="va">subset</span>,</span></span>
-<span class="r-in"><span>                                  prefix <span class="op">=</span> <span class="st">"q14_2"</span>,</span></span>
-<span class="r-in"><span>                                  pnta <span class="op">=</span> <span class="va">subset</span><span class="op">$</span><span class="va">q14_30</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in pnta.unanswered.to.miss(data = subset, prefix = "q14_2", pnta = subset$q14_30):</span> unused argument (prefix = "q14_2")</span>
+<span class="r-in"><span><span class="va">updated_data</span> <span class="op">&lt;-</span> <span class="fu">pnta.unanswered.to.miss</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bns2_pkg_data</span>,</span></span>
+<span class="r-in"><span>                                  these.cols <span class="op">=</span> <span class="st">"q14_2"</span>,</span></span>
+<span class="r-in"><span>                                  pnta <span class="op">=</span> <span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q14_30</span>,</span></span>
+<span class="r-in"><span>                                  prefix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">updated_data</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_20</span><span class="op">:</span><span class="va">q14_26</span>, <span class="va">q14_30</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'updated_data' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 50 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    q14_20 q14_21 q14_22 q14_23 q14_24 q14_25 q14_26 q14_30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>      0      0      0      0     <span style="color: #BB0000;">NA</span>      1      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>      1      0      0      0      0      1      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>      0      0      0      0      0      0      0     <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 40 more rows</span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Selecting columns by name</span></span></span>
+<span class="r-in"><span><span class="va">updated_data2</span> <span class="op">&lt;-</span> <span class="fu">pnta.unanswered.to.miss</span><span class="op">(</span>data <span class="op">=</span> <span class="va">bns2_pkg_data</span>,</span></span>
+<span class="r-in"><span>                                  these.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q14_20"</span>, <span class="st">"q14_21"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                  pnta <span class="op">=</span> <span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q14_30</span>,</span></span>
+<span class="r-in"><span>                                  prefix <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">updated_data2</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_20</span><span class="op">:</span><span class="va">q14_26</span>, <span class="va">q14_30</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 50 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    q14_20 q14_21 q14_22 q14_23 q14_24 q14_25 q14_26 q14_30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>      0      0      0      0     <span style="color: #BB0000;">NA</span>      1      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>      1      0      0      0      0      1      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>      0      0      0      0      0      0      0     <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      0      0      0      0      0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>      0      0      0      0      0      0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      0      0      0      0      0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 40 more rows</span></span>
 </code></pre></div>
     </div>
   </div>
