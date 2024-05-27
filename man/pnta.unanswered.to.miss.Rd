@@ -15,7 +15,7 @@ This parameter can be a prefix that all the columns of interest contain, or a li
 \item{pnta}{The variable that contains the "Prefer not to answer" option.}
 
 \item{prefix}{If prefix = TRUE you can use a prefix to select columns, if prefix = FALSE
-you must select columns by name.}
+you must select columns by name. The function defaults to prefix = FALSE}
 }
 \value{
 A modified data frame with NA assigned to cells in specified rows where prefer not to answer was selected.
