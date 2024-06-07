@@ -18,6 +18,8 @@ Imports:
     formattable
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://smoorad99.github.io/chcRnePackage/
+Config/testthat/edition: 3

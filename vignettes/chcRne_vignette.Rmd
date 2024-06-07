@@ -1,6 +1,6 @@
 ---
 output: rmarkdown::html_vignette
-title: "Code examples"
+title: "Removing NA as a Level"
 pkgdown:
   as_is: true
 description: >
@@ -21,26 +21,47 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-# Load in necessary libraries
+# Load in necessary librariesand set seed
+set.seed(2025)
 library(chcRne)
 library(dplyr)
 ```
 
-This page is currently under development and will contain commonly used code examples that are not suited to a single-function format.
+
+```{r echo=FALSE}
+# First, lets generate some data where `NA` is included as a level
+Var1 <- sample(c("Disagree", "Agree", NA), 10, replace = TRUE, prob = c(0.3, 0.4, 0.3))
+Var2 <- sample(c("Disagree",  "Agree", NA), 10, replace = TRUE, prob = c(0.3, 0.3, 0.4))
+# Convert Var1 and Var2 to factors with NA as a level
+Var1 <- factor(Var1, levels = c("Disagree", "Agree"), ordered = TRUE)
+Var2 <- factor(Var1, levels = c("Disagree", "Agree"), ordered = TRUE)
+Var1 <- addNA(Var1)
+Var2 <- addNA(Var2)
+na.as.lvl <- data.frame(Var1, Var2)
+```
 
 ### Applying `remove.na.levels()` to multiple variables
 
-```{r eval=FALSE}
-# List out all variable names with this problem
-cols.with.na.lvls <- bns2_pkg_data |> 
-  select(where(is.ordered)) |> names()
-
-# Apply function
-df <- bns2_pkg_data %>% mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
+First, lets look at the levels of some of the different variables within the data frame of interest.
+```{r}
+sapply(na.as.lvl, levels)
 ```
 
+As we can see in the above output, both Var1 and Var2 have `NA` as a level. Now we apply the `remove.na.levels` to Var1 and Var2.
+```{r}
+# List out all variable names with NA as a level
+cols.with.na.lvls <- na.as.lvl %>% select(where(is.ordered)) %>% names()
 
+# Apply function
+na.not.as.lvl <- na.as.lvl |>  mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
+```
 
+Now that we have applied the function to the variables of interest, lets check and make sure NA is no longer a level in Var1 and Var2.
+```{r}
+sapply(na.not.as.lvl, levels)
+```
+
+Success! NA is no longer a level in Var1 and `Var2.
 
 
 
