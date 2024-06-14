@@ -10,7 +10,9 @@
 #' @param var A variable for which the counts and percents are calculated.
 #' @param ... One or more categories of `var` to get the counts and calculate the percentages. If the ellipsis is left blank, the function
 #' will calculate the count and percent for the category with highest count.
-#'
+#' @param format1 Allows for two different formats of the count and percent. Defaults to `TRUE` which outputs the
+#' the count then the percent in parentheses "count (percent)". If `format1` is set to `FALSE` the function outputs
+#' both the count and percent in parentheses "(n=count, percent)".
 #' @return A string including the total count and percentage of the
 #' categories in the input variable.
 #' @export

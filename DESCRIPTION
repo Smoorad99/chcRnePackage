@@ -15,7 +15,8 @@ Depends:
 Imports:
     dplyr,
     kableExtra,
-    formattable
+    formattable,
+    rstudioapi
 Suggests: 
     knitr,
     rmarkdown,

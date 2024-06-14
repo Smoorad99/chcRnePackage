@@ -1,6 +1,6 @@
 ---
 output: rmarkdown::html_vignette
-title: "Removing NA as a Level"
+title: "Removing NA as a level form multiple variables"
 pkgdown:
   as_is: true
 description: >
@@ -42,7 +42,7 @@ na.as.lvl <- data.frame(Var1, Var2)
 
 ### Applying `remove.na.levels()` to multiple variables
 
-First, lets look at the levels of some of the different variables within the data frame of interest.
+First, lets look at the levels of the different variables within the data frame `na.as.lvl`.
 ```{r}
 sapply(na.as.lvl, levels)
 ```
@@ -61,7 +61,7 @@ Now that we have applied the function to the variables of interest, lets check a
 sapply(na.not.as.lvl, levels)
 ```
 
-Success! NA is no longer a level in Var1 and `Var2.
+Success! NA is no longer a level in Var1 and Var2.
 
 
 
