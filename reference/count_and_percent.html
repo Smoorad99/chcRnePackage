@@ -34,7 +34,7 @@ variable they reside in."><!-- mathjax --><script src="https://cdnjs.cloudflare.
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/chcRne_vignette.html">Removing NA as a Level</a>
+      <a href="../articles/chcRne_vignette.html">Removing NA as a level form multiple variables</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
@@ -70,6 +70,12 @@ variable they reside in.</p>
 <dt>...</dt>
 <dd><p>One or more categories of `var` to get the counts and calculate the percentages. If the ellipsis is left blank, the function
 will calculate the count and percent for the category with highest count.</p></dd>
+
+
+<dt>format1</dt>
+<dd><p>Allows for two different formats of the count and percent. Defaults to `TRUE` which outputs the
+the count then the percent in parentheses "count (percent)". If `format1` is set to `FALSE` the function outputs
+both the count and percent in parentheses "(n=count, percent)".</p></dd>
 
 </dl></div>
     <div id="value">
