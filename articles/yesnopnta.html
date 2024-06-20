@@ -84,36 +84,28 @@ function</h1>
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://smoorad99.github.io/chcRnePackage/">chcRne</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="puropse">Puropse<a class="anchor" aria-label="anchor" href="#puropse"></a>
 </h3>
-<p>This vignette focuses on the <code>yesno_to_binary</code> and
-<code>pnta_unaswered_to_miss</code> functions. The purpose of this
+<p>This vignette focuses on the <code><a href="../reference/yesno_to_binary.html">yesno_to_binary()</a></code> and
+<code>pnta_unaswered_to_miss()</code> functions. The purpose of this
 section is to help users identify when to use
-<code>pnta_unaswered_to_miss</code>, how to get the data in a format the
-function can use, and finally how to apply the function.</p>
+<code>pnta_unaswered_to_miss()</code>, how to get the data in a format
+the function can use, and finally, how to apply the function.</p>
 </div>
 <div class="section level3">
-<h3 id="when-to-use">When to use?<a class="anchor" aria-label="anchor" href="#when-to-use"></a>
+<h3 id="when-to-use">When to use<a class="anchor" aria-label="anchor" href="#when-to-use"></a>
 </h3>
-<p>We use <code>pnta_unanswered_to_miss</code> when working with a
+<p>We use <code>pnta_unanswered_to_miss()</code> when working with a
 select all that apply question that has a column for prefer not to
 answer. This is most commonly a column filled with “Yes” and “No”, “0”
 and “1”, or “Prefer not to answer” and “NA”. The issue arises when
 someone marks the prefer not to answer option along with at least one
 other of the options of the select all that apply question. When someone
-selects the prefer not to answer option we want to mark all other cells
-in the columns relevant to the prefer not to answer question as
-<code>NA</code>.</p>
+selects the prefer not to answer option, we want to mark all other cells
+of that row in the columns relevant to the prefer not to answer question
+as <code>NA</code>.</p>
 <p>Lets take a look at what this may look like</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">bns2_pkg_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span><span class="op">:</span><span class="va">q14_10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>pnta <span class="op">=</span> <span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q14_30</span><span class="op">)</span></span>
@@ -126,18 +118,17 @@ in the columns relevant to the prefer not to answer question as
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> No    Yes   Yes        1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> No    No    Yes        0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> No    Yes   Yes        0</span></span></code></pre></div>
-<p>As we can see in the snippet from the df there are “Yes” responses in
-the same row someone marked prefer not to answer. Before we can change
-these rows to <code>NA</code> we want the data to be in a 1/0
-format.</p>
+<p>As we can see from the above snippet there are “Yes” and “No”
+responses in the same row someone marked prefer not to answer. Before we
+can change these rows to <code>NA</code> we want the data to be in a 1/0
+format because the <code>pnta_unanswered_to_miss()</code> function is
+not compatible with non-binary data.</p>
 </div>
 <div class="section level3">
 <h3 id="changing-the-columns-from-yesno-to-10">Changing the columns from yes/no to 1/0<a class="anchor" aria-label="anchor" href="#changing-the-columns-from-yesno-to-10"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">bns2_pkg_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span><span class="op">:</span><span class="va">q14_10</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_converted</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/yesno_to_binary.html">yesno_to_binary</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"q14_"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">df_converted</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/yesno_to_binary.html">yesno_to_binary</a></span><span class="op">(</span><span class="va">data</span>, these.cols <span class="op">=</span> <span class="st">"q14_"</span>, prefix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># View the converted dataframe side-by-side</span></span>
 <span><span class="va">old</span> <span class="op">&lt;-</span> <span class="va">bns2_pkg_data</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span>, <span class="va">q14_4</span><span class="op">)</span></span>
 <span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_converted</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span>, <span class="va">q14_4</span><span class="op">)</span></span>
@@ -153,38 +144,37 @@ format.</p>
 <span><span class="co">#&gt; 8     No   Yes     0     1</span></span>
 <span><span class="co">#&gt; 9     No   Yes     0     1</span></span>
 <span><span class="co">#&gt; 10    No   Yes     0     1</span></span></code></pre></div>
-<ul>
-<li>We are using <code>yesno_to_binary</code> to change q14_1 - q14_10
-from yes/no to 1/0.</li>
-</ul>
-<p><br style="line-height: 10px"></p>
-<ul>
-<li>Each column of our mark all that apply question is now 1/0, which
-allows us to use <code><a href="../reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> to set all
-columns in the select all that apply question to NA when the “Prefer not
-to answer” option was selected.</li>
-</ul>
+</div>
+<div class="section level3">
+<h3 id="applying-the-pnta-function">Applying the pnta function<a class="anchor" aria-label="anchor" href="#applying-the-pnta-function"></a>
+</h3>
+<p>Each column of our mark all that apply question is now 1/0, which
+allows us to use <code><a href="../reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> to set all cells
+of a row in relevant columns of the select all that apply question to NA
+when the “Prefer not to answer” option was selected.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_unanswered_to_miss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_converted</span>,</span>
 <span>                                  these.col <span class="op">=</span> <span class="st">"q14_"</span>,</span>
-<span>                                  pnta <span class="op">=</span> <span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q14_30</span>,</span>
+<span>                                  pnta <span class="op">=</span> <span class="va">df_converted</span><span class="op">$</span><span class="va">pnta</span>,</span>
 <span>                                  prefix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_unanswered_to_miss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_3</span><span class="op">:</span><span class="va">q14_5</span>, <span class="va">q14_30</span><span class="op">)</span></span>
-<span><span class="va">new</span><span class="op">$</span><span class="va">q14_30</span> <span class="op">&lt;-</span> <span class="va">df_converted</span><span class="op">$</span><span class="va">q14_30</span></span>
+<span></span>
+<span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_unanswered_to_miss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_3</span><span class="op">:</span><span class="va">q14_5</span>, <span class="va">pnta</span><span class="op">)</span></span>
 <span><span class="va">new</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
-<span><span class="co">#&gt;    q14_3 q14_4 q14_5 q14_30</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     0     1     1      0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     0     1     0      0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     0     1     0      0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     0     1     0      0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     0     1     1      0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     0     1     0     <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     0     1     0      0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      1</span></span></code></pre></div>
+<span><span class="co">#&gt;    q14_3 q14_4 q14_5  pnta</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     0     1     1     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     0     1     0     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     0     1     0     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     0     1     0     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     0     1     1     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     0     1     0    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     0     1     0     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     1</span></span></code></pre></div>
+<p>Success! All rows where <code>pnta == 1</code> are
+<code>NA</code>.</p>
 </div>
   </div>
 
