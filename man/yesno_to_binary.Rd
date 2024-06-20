@@ -4,14 +4,16 @@
 \alias{yesno_to_binary}
 \title{Convert Yes/No variables to binary}
 \usage{
-yesno_to_binary(data, prefix)
+yesno_to_binary(data, these.cols, prefix = TRUE)
 }
 \arguments{
 \item{data}{A dataframe containing the variables to be converted.}
 
-\item{prefix}{A character string used to select columns by name. Columns
-whose names start with this prefix will have their "Yes"/"No" values
-converted to 0/1.}
+\item{these.cols}{A prefix used to select columns by name or a list of the exact column names. Selected columns
+will have "Yes"/"No" values converted to 0/1.}
+
+\item{prefix}{Whether or not you are using a prefix to select columns. This argument defaults to true
+i.e. assumes your using a prefix unless you tell it otherwise.}
 }
 \value{
 The original dataframe with specified Yes/No variables converted
@@ -24,7 +26,7 @@ binary numeric values, with "No" as 0 and "Yes" as 1.
 }
 \examples{
 # Convert "Yes"/"No" responses in columns starting with "q14" to 0/1
-df_converted <- yesno_to_binary(bns2_pkg_data, "q14_")
+df_converted <- yesno_to_binary(data = bns2_pkg_data, these.cols = "q14_", prefix = TRUE)
 
 # View the converted dataframe side-by-side
 old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
