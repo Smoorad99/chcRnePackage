@@ -1,13 +1,13 @@
 ---
 output: rmarkdown::html_vignette
-title: "Removing NA as a level form multiple variables"
+title: "Removing NA as a level from multiple variables"
 pkgdown:
   as_is: true
 description: >
   If you are new to chcRne or are blanking on function names you can find documentation on the functions including  examples here.
 
 vignette: >
-  %\VignetteIndexEntry{Code examples}
+  %\VignetteIndexEntry{Removing NA as a level from multiple variables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

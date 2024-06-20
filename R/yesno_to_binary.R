@@ -32,3 +32,10 @@ yesno_to_binary <- function(data, prefix) {
 
   return(data)
 }
+
+##################
+# Code for testing
+##################
+
+# data <- bns2_pkg_data
+# prefix <- "q14_"
