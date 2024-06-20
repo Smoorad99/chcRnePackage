@@ -4,7 +4,7 @@
 \alias{question_table}
 \title{Table of counts percentages for single question}
 \usage{
-question_table(data, x, cnames, kbl_styling = TRUE)
+question_table(data, x, cnames = c("Measure", "Yes (\%)"), kbl_styling = TRUE)
 }
 \arguments{
 \item{data}{A data frame containing the dataset to be analyzed.}
@@ -12,7 +12,8 @@ question_table(data, x, cnames, kbl_styling = TRUE)
 \item{x}{The name of the column in `data` containing the question.}
 
 \item{cnames}{A character vector of length 2 specifying the column names for the
-resulting table. The first element is for the category name and the second for the percentages.}
+resulting table. The first element is for the category name and the second for the percentages.
+Defaults to c("Measure", "Yes (pecent)")}
 
 \item{kbl_styling}{A logical value indicating whether to style the table with `kableExtra`.
 Defaults to TRUE. If TRUE, the table is returned with `kableExtra` styling applied.}

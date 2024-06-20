@@ -10,8 +10,11 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
   comment = "#>"
 )
+#<br style="line-height: 10px" /> code for halfish line breaks
 ```
 
 ```{r setup}
@@ -20,10 +23,10 @@ library(dplyr)
 ```
 
 ### Puropse
-This vignette focuses on the `yesno_to_binary` and `pnta_unaswered_to_miss` functions. The purpose of this section is to help users identify when to use `pnta_unaswered_to_miss`, how to get the data in a format the function can use, and finally how to apply the function.
+This vignette focuses on the `yesno_to_binary()` and `pnta_unaswered_to_miss()` functions. The purpose of this section is to help users identify when to use `pnta_unaswered_to_miss()`, how to get the data in a format the function can use, and finally, how to apply the function.
 
-### When to use?
-We use `pnta_unanswered_to_miss` when working with a select all that apply question that has a column for prefer not to answer. This is most commonly a column filled with "Yes" and "No", "0" and "1", or "Prefer not to answer" and "NA". The issue arises when someone marks the prefer not to answer option along with at least one other of the options of the select all that apply question. When someone selects the prefer not to answer option we want to mark all other cells in the columns relevant to the prefer not to answer question as `NA`.
+### When to use
+We use `pnta_unanswered_to_miss()` when working with a select all that apply question that has a column for prefer not to answer. This is most commonly a column filled with "Yes" and "No", "0" and "1", or "Prefer not to answer" and "NA". The issue arises when someone marks the prefer not to answer option along with at least one other of the options of the select all that apply question. When someone selects the prefer not to answer option, we want to mark all other cells of that row in the columns relevant to the prefer not to answer question as `NA`.
 
 Lets take a look at what this may look like
 
@@ -32,39 +35,29 @@ data <- bns2_pkg_data %>% select(q14_1:q14_10) %>% mutate(pnta = bns2_pkg_data$q
 data[8:12, 7:10]
 ```
 
-As we can see in the snippet from the df there are "Yes" responses in the same row someone marked prefer not to answer. Before we can change these rows to `NA` we want the data to be in a 1/0 format.
+As we can see from the above snippet there are "Yes" and "No" responses in the same row someone marked prefer not to answer. Before we can change these rows to `NA` we want the data to be in a 1/0 format because the `pnta_unanswered_to_miss()` function is not compatible with non-binary data.
 
 ### Changing the columns from yes/no to 1/0
 
 ```{r}
-data <- bns2_pkg_data %>% select(q14_1:q14_10)
-
-df_converted <- yesno_to_binary(data, "q14_")
+df_converted <- yesno_to_binary(data, these.cols = "q14_", prefix = TRUE)
 # View the converted dataframe side-by-side
 old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
 new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) %>% head(10)
-
 ```
 
 
-- We are using `yesno_to_binary` to change q14_1 - q14_10 from yes/no to 1/0.
-
-
-```{r echo=FALSE}
-df_converted$q14_30 <- bns2_pkg_data$q14_30
-```
-
-<br style="line-height: 10px" />
-
-- Each column of our mark all that apply question is now 1/0, which allows us to use `pnta.unanswered.to.miss()` to set all columns in the select all that apply question to NA when the "Prefer not to answer" option was selected.
+### Applying the pnta function
+Each column of our mark all that apply question is now 1/0, which allows us to use `pnta.unanswered.to.miss()` to set all cells of a row in relevant columns of the select all that apply question to NA when the "Prefer not to answer" option was selected.
 ```{r}
 df_unanswered_to_miss <- pnta.unanswered.to.miss(data = df_converted,
                                   these.col = "q14_",
-                                  pnta = bns2_pkg_data$q14_30,
+                                  pnta = df_converted$pnta,
                                   prefix = TRUE)
-new <- df_unanswered_to_miss %>%  select(q14_3:q14_5, q14_30)
-new$q14_30 <- df_converted$q14_30
+
+new <- df_unanswered_to_miss %>%  select(q14_3:q14_5, pnta)
 new %>% head(10)
 ```
 
+Success! All rows where `pnta == 1` are `NA`.
