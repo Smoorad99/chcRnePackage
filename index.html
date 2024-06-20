@@ -50,7 +50,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/chcRne_vignette.html">Removing NA as a level form multiple variables</a>
+      <a href="articles/Removing%20NA%20as%20a%20level%20form%20multiple%20variables.html">Removing NA as a level from multiple variables</a>
+    </li>
+    <li>
+      <a href="articles/yesnopnta.html">When and how to use the PNTA unanswered to miss function</a>
     </li>
   </ul>
 </li>
@@ -79,7 +82,7 @@
 <p>The chcRne package was developed to organize functions, useful code snippets, and other information relevant to the Research and Evaluation team at the Center for Healthy Communities.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Run the following two lines of code to install chcRne</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>) </span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Smoorad99/chcRnePackage"</span>)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Smoorad99/chcRnePackage"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
@@ -114,13 +117,15 @@
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## 8     No   Yes     0     1</span></span>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="do">## 9     No   Yes     0     1</span></span>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="do">## 10    No   Yes     0     1</span></span></code></pre></div>
+<p><br style="line-height: 10px"></p>
 <ul>
 <li>Each column of our mark all that apply question is now 1/0, which allows us to use <code><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss()</a></code> to set all columns in the select all that apply question to NA when the “Prefer not to answer” option was selected.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_unanswered_to_miss</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pnta.unanswered.to.miss.html">pnta.unanswered.to.miss</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_converted</span>,</span>
-<span>                                  prefix <span class="op">=</span> <span class="st">"q14_"</span>,</span>
-<span>                                  pnta <span class="op">=</span> <span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q14_30</span><span class="op">)</span></span>
+<span>                                  these.col <span class="op">=</span> <span class="st">"q14_"</span>,</span>
+<span>                                  pnta <span class="op">=</span> <span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q14_30</span>,</span>
+<span>                                  prefix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_unanswered_to_miss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_3</span><span class="op">:</span><span class="va">q14_5</span>, <span class="va">q14_30</span><span class="op">)</span></span>
 <span><span class="va">new</span><span class="op">$</span><span class="va">q14_30</span> <span class="op">&lt;-</span> <span class="va">df_converted</span><span class="op">$</span><span class="va">q14_30</span></span>
 <span><span class="va">new</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
@@ -161,6 +166,7 @@
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## I am a broke college student. (n = 38) 27 (71.1%)</span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## I live with chefs. (n = 39)             7 (17.9%)</span></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## I like cooking. (n = 39)                 3 (7.7%)</span></span></code></pre></div>
+<p><br style="line-height: 10px"></p>
 <ul>
 <li>If we were working with a single categorical variable we could use <code>question_table</code> to create a table with counts and percentages.</li>
 </ul>
@@ -185,22 +191,35 @@
 <div class="section level3">
 <h3 id="statistics-often-used-in-inline-code">Statistics (often used in inline code)<a class="anchor" aria-label="anchor" href="#statistics-often-used-in-inline-code"></a>
 </h3>
-<p>Functions in this section return statistics often used for figure/table summaries. Many of these functions will often be used in inline code.</p>
-<ul>
-<li>
-<code><a href="reference/print_n_reporting.html">print_n_reporting()</a></code> reports the coun and percent of non-NA responses.</li>
-</ul>
+<p>Functions in this section return statistics often used for figure/table summaries. Many of these functions will be used in inline code. For these inline code examples we will be looking at <code>q13</code>, which captures the level of education reported by participants.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/print_n_reporting.html">print_n_reporting</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span>, <span class="st">"q13"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="do">## [1] "(n=49, 98.0% of 50 reporting)"</span></span></code></pre></div>
-<ul>
-<li>
-<code><a href="reference/count_and_percent.html">count_and_percent()</a></code> returns a string that includes the total count and percentage of the categories in the input variable.</li>
-</ul>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q13</span>, useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="do">##         Associate's degree High school diploma or GED </span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="do">##                          3                         12 </span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="do">##      Less than high school              Other/Unknown </span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="do">##                         25                          2 </span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">##               Some college                       &lt;NA&gt; </span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">##                          7                          1</span></span></code></pre></div>
+<p><br style="line-height: 10px"></p>
+<p><strong><code><a href="reference/print_n_reporting.html">print_n_reporting()</a></code></strong> returns the count and percent of non-NA responses. In the table above we can see that of the 50 responses, 49 are non-NA values.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Getting the count and percent of respondents reporting some college or a bachelors degree.</span></span>
-<span><span class="fu"><a href="reference/count_and_percent.html">count_and_percent</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q13</span>, <span class="st">"Some college"</span>, <span class="st">"Bachelor's degree"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">## [1] "7 (14.3%)"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/print_n_reporting.html">print_n_reporting</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span>, <span class="st">"q13"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">## [1] "(n=49, 98.0% of 50 reporting)"</span></span></code></pre></div>
+<p><br style="line-height: 10px"></p>
+<p><strong><code><a href="reference/count_and_percent.html">count_and_percent()</a></code></strong> returns a string that includes the total count and percent of respondents that selected a category specified in the function. If you include one category, the function will return the count and percent of respondents that selected that category relative to all non-NA responses.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Getting the count and percent of respondents reporting a level of education of some college or a bachelors degree.</span></span>
+<span><span class="fu"><a href="reference/count_and_percent.html">count_and_percent</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q13</span>, <span class="st">"High school diploma or GED"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="do">## [1] "12 (24.5%)"</span></span></code></pre></div>
+<p>If you include two or more categories (separated by commas), the function will return the count and percent of respondents that selected any of the included categories. In the example below, we are getting the count and percent of respondents that reported their level of education as “Some college” OR a “Bachelor’s degree”.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/count_and_percent.html">count_and_percent</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q13</span>, <span class="st">"Some college"</span>, <span class="st">"Bachelor's degree"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="do">## [1] "7 (14.3%)"</span></span></code></pre></div>
+<p>If you do not specify a category the function will return the count and percent of the category with the most responses.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/count_and_percent.html">count_and_percent</a></span><span class="op">(</span><span class="va">bns2_pkg_data</span><span class="op">$</span><span class="va">q13</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="do">## [1] "25 (51.0%)"</span></span></code></pre></div>
 </div>
 </div>
 </div>
