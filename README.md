@@ -13,7 +13,7 @@ team at the Center for Healthy Communities.
 
     # Run the following two lines of code to install chcRne
     install.packages("devtools") 
-    devtools::install_github("Smoorad99/chcRnePackage")
+    devtools::install_github("Smoorad99/chcRnePackage", dependencies = TRUE)
 
 ## Examples
 
@@ -34,9 +34,10 @@ library(dplyr)
 
 data <- bns2_pkg_data %>% select(q13, q14_1:q14_10)
 
-df_converted <- yesno_to_binary(data, "q14_")
-# View the converted dataframe side-by-side
-old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
+df_converted <- yesno_to_binary(data = data, these.cols = "q14_", prefix = TRUE)
+# View the converted dataframe side-by-side to check if the function worked
+
+old <- data |> dplyr::select(q14_1, q14_4)
 new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) %>% head(10)
 ```
@@ -53,6 +54,8 @@ cbind(old, new) %>% head(10)
     ## 9     No   Yes     0     1
     ## 10    No   Yes     0     1
 
+<br style="line-height: 10px" />
+
 - Each column of our mark all that apply question is now 1/0, which
   allows us to use `pnta.unanswered.to.miss()` to set all columns in the
   select all that apply question to NA when the “Prefer not to answer”
@@ -60,8 +63,9 @@ cbind(old, new) %>% head(10)
 
 ``` r
 df_unanswered_to_miss <- pnta.unanswered.to.miss(data = df_converted,
-                                  prefix = "q14_",
-                                  pnta = bns2_pkg_data$q14_30)
+                                  these.col = "q14_",
+                                  pnta = bns2_pkg_data$q14_30,
+                                  prefix = TRUE)
 new <- df_unanswered_to_miss %>%  select(q14_3:q14_5, q14_30)
 new$q14_30 <- df_converted$q14_30
 new %>% head(10)
@@ -110,6 +114,8 @@ mark_all_that_apply_tbl
     ## I live with chefs. (n = 39)             7 (17.9%)
     ## I like cooking. (n = 39)                 3 (7.7%)
 
+<br style="line-height: 10px" />
+
 - If we were working with a single categorical variable we could use
   `question_table` to create a table with counts and percentages.
 
@@ -137,10 +143,27 @@ question_tbl
 ### Statistics (often used in inline code)
 
 Functions in this section return statistics often used for figure/table
-summaries. Many of these functions will often be used in inline code.
+summaries. Many of these functions will be used in inline code. For
+these inline code examples we will be looking at `q13`, which captures
+the level of education reported by participants.
 
-- `print_n_reporting()` reports the coun and percent of non-NA
-  responses.
+``` r
+table(bns2_pkg_data$q13, useNA = "always")
+```
+
+    ## 
+    ##         Associate's degree High school diploma or GED 
+    ##                          3                         12 
+    ##      Less than high school              Other/Unknown 
+    ##                         25                          2 
+    ##               Some college                       <NA> 
+    ##                          7                          1
+
+<br style="line-height: 10px" />
+
+**`print_n_reporting()`** returns the count and percent of non-NA
+responses. In the table above we can see that of the 50 responses, 49
+are non-NA values.
 
 ``` r
 print_n_reporting(bns2_pkg_data, "q13")
@@ -148,12 +171,38 @@ print_n_reporting(bns2_pkg_data, "q13")
 
     ## [1] "(n=49, 98.0% of 50 reporting)"
 
-- `count_and_percent()` returns a string that includes the total count
-  and percentage of the categories in the input variable.
+<br style="line-height: 10px" />
+
+**`count_and_percent()`** returns a string that includes the total count
+and percent of respondents that selected a category specified in the
+function. If you include one category, the function will return the
+count and percent of respondents that selected that category relative to
+all non-NA responses.
 
 ``` r
-# Getting the count and percent of respondents reporting some college or a bachelors degree.
+# Getting the count and percent of respondents reporting a level of education of some college or a bachelors degree.
+count_and_percent(bns2_pkg_data$q13, "High school diploma or GED")
+```
+
+    ## [1] "12 (24.5%)"
+
+If you include two or more categories (separated by commas), the
+function will return the count and percent of respondents that selected
+any of the included categories. In the example below, we are getting the
+count and percent of respondents that reported their level of education
+as “Some college” OR a “Bachelor’s degree”.
+
+``` r
 count_and_percent(bns2_pkg_data$q13, "Some college", "Bachelor's degree")
 ```
 
     ## [1] "7 (14.3%)"
+
+If you do not specify a category the function will return the count and
+percent of the category with the most responses.
+
+``` r
+count_and_percent(bns2_pkg_data$q13)
+```
+
+    ## [1] "25 (51.0%)"
