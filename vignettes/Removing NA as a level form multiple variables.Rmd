@@ -44,12 +44,16 @@ na.as.lvl <- data.frame(Var1, Var2)
 
 First, lets look at the levels of the different variables within the data frame `na.as.lvl`.
 ```{r}
-sapply(na.as.lvl, levels)
+#If we want to check the levels of a single variable
+levels(na.as.lvl$Var1)
+
+# Applying the levels function to all variables in the na.as.lvl data frame
+sapply(na.as.lvl, levels) 
 ```
 
 As we can see in the above output, both Var1 and Var2 have `NA` as a level. Now we apply the `remove.na.levels` to Var1 and Var2.
 ```{r}
-# List out all variable names with NA as a level
+# List out all variable names of ordered factors
 cols.with.na.lvls <- na.as.lvl %>% select(where(is.ordered)) %>% names()
 
 # Apply function

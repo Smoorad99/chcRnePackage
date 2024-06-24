@@ -13,7 +13,7 @@ team at the Center for Healthy Communities.
 
     # Run the following two lines of code to install chcRne
     install.packages("devtools") 
-    devtools::install_github("Smoorad99/chcRnePackage", dependencies = TRUE, build_vignettes = TRUE)
+    devtools::install_github("Smoorad99/chcRnePackage", dependencies = TRUE)
 
 ## Examples
 
@@ -34,9 +34,10 @@ library(dplyr)
 
 data <- bns2_pkg_data %>% select(q13, q14_1:q14_10)
 
-df_converted <- yesno_to_binary(data, "q14_")
-# View the converted dataframe side-by-side
-old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
+df_converted <- yesno_to_binary(data = data, these.cols = "q14_", prefix = TRUE)
+# View the converted dataframe side-by-side to check if the function worked
+
+old <- data |> dplyr::select(q14_1, q14_4)
 new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) %>% head(10)
 ```

@@ -23,7 +23,7 @@ The chcRne package was developed to organize functions, useful code snippets, an
 ```
 # Run the following two lines of code to install chcRne
 install.packages("devtools") 
-devtools::install_github("Smoorad99/chcRnePackage", dependencies = TRUE, build_vignettes = TRUE)
+devtools::install_github("Smoorad99/chcRnePackage", dependencies = TRUE)
 ```
 
 ## Examples

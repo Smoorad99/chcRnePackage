@@ -35,7 +35,7 @@ data <- bns2_pkg_data %>% select(q14_1:q14_10) %>% mutate(pnta = bns2_pkg_data$q
 data[8:12, 7:10]
 ```
 
-As we can see from the above snippet there are "Yes" and "No" responses in the same row someone marked prefer not to answer. Before we can change these rows to `NA` we want the data to be in a 1/0 format because the `pnta_unanswered_to_miss()` function is not compatible with non-binary data.
+As we can see from the above snippet there are "Yes" and "No" responses in the same row someone marked prefer not to answer (`pnta == 1`). Before we can change these rows to `NA` we want the data to be in a 1/0 format because the `pnta_unanswered_to_miss()` function is not compatible with non-binary data.
 
 ### Changing the columns from yes/no to 1/0
 
