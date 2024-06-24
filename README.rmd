@@ -23,10 +23,10 @@ The chcRne package was developed to organize functions, useful code snippets, an
 ```
 # Run the following two lines of code to install chcRne
 install.packages("devtools") 
-devtools::install_github("Smoorad99/chcRnePackage")
+devtools::install_github("Smoorad99/chcRnePackage", dependencies = TRUE)
 ```
 
-## Examples
+<!-- ## Examples -->
 The following sections serve as a walk through to help users see how the chcRne functions can be used when cleaning data, making figures and tables, and reporting on those figures and tables.
 
 ### Data Management
@@ -40,9 +40,10 @@ library(dplyr)
 
 data <- bns2_pkg_data %>% select(q13, q14_1:q14_10)
 
-df_converted <- yesno_to_binary(data, "q14_")
-# View the converted dataframe side-by-side
-old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
+df_converted <- yesno_to_binary(data = data, these.cols = "q14_", prefix = TRUE)
+# View the converted dataframe side-by-side to check if the function worked
+
+old <- data |> dplyr::select(q14_1, q14_4)
 new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) %>% head(10)
 
@@ -52,11 +53,14 @@ cbind(old, new) %>% head(10)
 df_converted$q14_30 <- bns2_pkg_data$q14_30
 ```
 
+<br style="line-height: 10px" />
+
 - Each column of our mark all that apply question is now 1/0, which allows us to use `pnta.unanswered.to.miss()` to set all columns in the select all that apply question to NA when the "Prefer not to answer" option was selected.
 ```{r}
 df_unanswered_to_miss <- pnta.unanswered.to.miss(data = df_converted,
-                                  prefix = "q14_",
-                                  pnta = bns2_pkg_data$q14_30)
+                                  these.col = "q14_",
+                                  pnta = bns2_pkg_data$q14_30,
+                                  prefix = TRUE)
 new <- df_unanswered_to_miss %>%  select(q14_3:q14_5, q14_30)
 new$q14_30 <- df_converted$q14_30
 new %>% head(10)
@@ -81,6 +85,8 @@ mark_all_that_apply_tbl <- nperc_tbl_MATA(df = df_unanswered_to_miss,
 mark_all_that_apply_tbl
 ```
 
+<br style="line-height: 10px" />
+
 - If we were working with a single categorical variable we could use `question_table` to create a table with counts and percentages.
 
 ```{r}
@@ -96,18 +102,35 @@ question_tbl
 <br/>
 
 ### Statistics (often used in inline code)
-Functions in this section return statistics often used for figure/table summaries. Many of these functions will be used in inline code.
+Functions in this section return statistics often used for figure/table summaries. Many of these functions will be used in inline code. For these inline code examples we will be looking at `q13`, which captures the level of education reported by participants.
 
-- `print_n_reporting()` reports the count and percent of non-NA responses.
+```{r}
+table(bns2_pkg_data$q13, useNA = "always")
+```
+<br style="line-height: 10px" />
+
+**`print_n_reporting()`** returns the count and percent of non-NA responses. In the table above we can see that of the 50 responses, 49 are non-NA values. 
 
 ```{r}
 print_n_reporting(bns2_pkg_data, "q13")
 ```
+<br style="line-height: 10px" />
 
-
-- `count_and_percent()` returns a string that includes the total count and percentage of the categories of interest.
-
+**`count_and_percent()`** returns a string that includes the total count and percent of respondents that selected a category specified in the function. If you include one category, the function will return the count and percent of respondents that selected that category relative to all non-NA responses.
 ```{r}
 # Getting the count and percent of respondents reporting a level of education of some college or a bachelors degree.
+count_and_percent(bns2_pkg_data$q13, "High school diploma or GED")
+```
+
+If you include two or more categories (separated by commas), the function will return the count and percent of respondents that selected any of the included categories. In the example below, we are getting the count and percent of respondents that reported their level of education as "Some college" OR a "Bachelor's degree". 
+
+```{r}
 count_and_percent(bns2_pkg_data$q13, "Some college", "Bachelor's degree")
 ```
+
+If you do not specify a category the function will return the count and percent of the category with the most responses. 
+
+```{r}
+count_and_percent(bns2_pkg_data$q13)
+```
+
