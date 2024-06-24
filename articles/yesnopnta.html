@@ -119,10 +119,11 @@ as <code>NA</code>.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> No    No    Yes        0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> No    Yes   Yes        0</span></span></code></pre></div>
 <p>As we can see from the above snippet there are “Yes” and “No”
-responses in the same row someone marked prefer not to answer. Before we
-can change these rows to <code>NA</code> we want the data to be in a 1/0
-format because the <code>pnta_unanswered_to_miss()</code> function is
-not compatible with non-binary data.</p>
+responses in the same row someone marked prefer not to answer
+(<code>pnta == 1</code>). Before we can change these rows to
+<code>NA</code> we want the data to be in a 1/0 format because the
+<code>pnta_unanswered_to_miss()</code> function is not compatible with
+non-binary data.</p>
 </div>
 <div class="section level3">
 <h3 id="changing-the-columns-from-yesno-to-10">Changing the columns from yes/no to 1/0<a class="anchor" aria-label="anchor" href="#changing-the-columns-from-yesno-to-10"></a>
