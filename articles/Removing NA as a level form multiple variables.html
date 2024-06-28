@@ -54,7 +54,7 @@
       <a href="../articles/Removing%20NA%20as%20a%20level%20form%20multiple%20variables.html">Removing NA as a level from multiple variables</a>
     </li>
     <li>
-      <a href="../articles/yesnopnta.html">When and how to use the PNTA unanswered to miss function</a>
+      <a href="../articles/yesnopnta.html">PNTA unanswered to miss tutorial</a>
     </li>
   </ul>
 </li>
@@ -94,12 +94,7 @@ variables</h1>
 <p>First, lets look at the levels of the different variables within the
 data frame <code>na.as.lvl</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#If we want to check the levels of a single variable</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">na.as.lvl</span><span class="op">$</span><span class="va">Var1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Disagree" "Agree"    NA</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># Applying the levels function to all variables in the na.as.lvl data frame</span></span>
+<code class="sourceCode R"><span><span class="co"># Applying the levels function to all variables in the na.as.lvl data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">na.as.lvl</span>, <span class="va">levels</span><span class="op">)</span> </span>
 <span><span class="co">#&gt;      Var1       Var2      </span></span>
 <span><span class="co">#&gt; [1,] "Disagree" "Disagree"</span></span>
@@ -108,7 +103,7 @@ data frame <code>na.as.lvl</code>.</p>
 <p>As we can see in the above output, both Var1 and Var2 have
 <code>NA</code> as a level. Now we apply the
 <code>remove.na.levels</code> to Var1 and Var2.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># List out all variable names of ordered factors</span></span>
 <span><span class="va">cols.with.na.lvls</span> <span class="op">&lt;-</span> <span class="va">na.as.lvl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html" class="external-link">where</a></span><span class="op">(</span><span class="va">is.ordered</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -116,7 +111,7 @@ data frame <code>na.as.lvl</code>.</p>
 <span><span class="va">na.not.as.lvl</span> <span class="op">&lt;-</span> <span class="va">na.as.lvl</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="va">cols.with.na.lvls</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="../reference/remove.na.levels.html">remove.na.levels</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now that we have applied the function to the variables of interest,
 lets check and make sure NA is no longer a level in Var1 and Var2.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">na.not.as.lvl</span>, <span class="va">levels</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      Var1       Var2      </span></span>
 <span><span class="co">#&gt; [1,] "Disagree" "Disagree"</span></span>
