@@ -3,7 +3,7 @@
 \docType{data}
 \name{bns2_pkg_data}
 \alias{bns2_pkg_data}
-\title{This is data included in my package}
+\title{This is data included in the chcRne package}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 50 rows and 28 columns.
 }
@@ -14,7 +14,7 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 bns2_pkg_data
 }
 \description{
-This is data included in my package
+This is data included in the chcRne package
 }
 \examples{
 bns2_pkg_data

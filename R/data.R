@@ -1,4 +1,4 @@
-#' This is data included in my package
+#' This is data included in the chcRne package
 #'
 #' @name bns2_pkg_data
 #' @docType data

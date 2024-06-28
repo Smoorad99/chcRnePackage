@@ -43,10 +43,8 @@ na.as.lvl <- data.frame(Var1, Var2)
 ### Applying `remove.na.levels()` to multiple variables
 
 First, lets look at the levels of the different variables within the data frame `na.as.lvl`.
-```{r}
-#If we want to check the levels of a single variable
-levels(na.as.lvl$Var1)
 
+```{r}
 # Applying the levels function to all variables in the na.as.lvl data frame
 sapply(na.as.lvl, levels) 
 ```

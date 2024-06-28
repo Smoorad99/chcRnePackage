@@ -1,8 +1,8 @@
 ---
-title: "When and how to use the PNTA unanswered to miss function"
+title: "PNTA unanswered to miss tutorial"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{When and how to use the PNTA unanswered to miss function}
+  %\VignetteIndexEntry{PNTA unanswered to miss tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,7 +22,7 @@ library(chcRne)
 library(dplyr)
 ```
 
-### Puropse
+### Purpose
 This vignette focuses on the `yesno_to_binary()` and `pnta_unaswered_to_miss()` functions. The purpose of this section is to help users identify when to use `pnta_unaswered_to_miss()`, how to get the data in a format the function can use, and finally, how to apply the function.
 
 ### When to use
