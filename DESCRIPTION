@@ -20,7 +20,7 @@ Imports:
     kableExtra,
     formattable,
     rstudioapi,
-    datasets
+    sjPlot
 Suggests: 
     knitr,
     rmarkdown,
