@@ -126,7 +126,7 @@ If you include two or more categories in a vector, the function will return the 
 
 ```{r}
 # We can also exclude the `df` argument and pipe (|>) in the data
-bns2_pkg_data |> count_and_percent(values = c("Less than high school","Some college"))
+bns2_pkg_data |> count_and_percent(var = q13, values = c("Less than high school", "Some college"))
 ```
 
 If you do not specify a category the function will return the count and percent of the category with the most responses. 

@@ -36,7 +36,7 @@ count_and_percent <- function(df, var, values = NULL, format1 = TRUE) {
   total <- df |>
     dplyr::filter(!is.na({{var}})) |>
     nrow() # Getting count of non-NA rows in var
-  percent <- formattable::percent(counts/total, digits = 1)
+  percent <- formattable::percent(counts/total, digits = 1) # Grabbing the percent and saving it
   if (format1) return(paste0(counts, " (", percent, ")"))
   if (!format1) return(paste0("(n=", counts, ", ", percent, ")"))
 }

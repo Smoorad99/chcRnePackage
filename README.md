@@ -15,7 +15,7 @@ team at the Center for Healthy Communities.
     install.packages("devtools") 
     devtools::install_github("Smoorad99/chcRnePackage", dependencies = TRUE)
 
-## Examples
+<!-- ## Examples -->
 
 The following sections serve as a walk through to help users see how the
 chcRne functions can be used when cleaning data, making figures and
@@ -180,29 +180,30 @@ count and percent of respondents that selected that category relative to
 all non-NA responses.
 
 ``` r
-# Getting the count and percent of respondents reporting a level of education of some college or a bachelors degree.
-count_and_percent(bns2_pkg_data$q13, "High school diploma or GED")
+# Getting the count and percent of respondents reporting a level of education High school diploma or GED.
+count_and_percent(df = bns2_pkg_data, var = q13, "High school diploma or GED")
 ```
 
     ## [1] "12 (24.5%)"
 
-If you include two or more categories (separated by commas), the
-function will return the count and percent of respondents that selected
-any of the included categories. In the example below, we are getting the
-count and percent of respondents that reported their level of education
-as “Some college” OR a “Bachelor’s degree”.
+If you include two or more categories in a vector, the function will
+return the count and percent of respondents that selected any of the
+included categories. In the example below, we are getting the count and
+percent of respondents that reported their level of education as “Some
+college” OR a “Bachelor’s degree”.
 
 ``` r
-count_and_percent(bns2_pkg_data$q13, "Some college", "Bachelor's degree")
+# We can also exclude the `df` argument and pipe (|>) in the data
+bns2_pkg_data |> count_and_percent(var = q13, values = c("Less than high school", "Some college"))
 ```
 
-    ## [1] "7 (14.3%)"
+    ## [1] "32 (65.3%)"
 
 If you do not specify a category the function will return the count and
 percent of the category with the most responses.
 
 ``` r
-count_and_percent(bns2_pkg_data$q13)
+bns2_pkg_data |> count_and_percent(var = q13)
 ```
 
     ## [1] "25 (51.0%)"

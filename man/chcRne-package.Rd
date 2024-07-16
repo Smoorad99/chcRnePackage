@@ -18,5 +18,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Saul Mooradian \email{slmooradian@csuchico.edu}
 
+Authors:
+\itemize{
+  \item Robin Donatello \email{rdonatello@cuchico.edu}
+  \item Kelsey Kyllonen \email{kmkyllonen@csuchico.edu}
+}
+
 }
 \keyword{internal}
