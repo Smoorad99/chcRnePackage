@@ -12,7 +12,7 @@ Description: If you are new to chcRne or are blanking on function names you can 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Depends: 
     R (>= 2.10)
 Imports:
@@ -28,7 +28,3 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://smoorad99.github.io/chcRnePackage/
 Config/testthat/edition: 3
-
-
-
-

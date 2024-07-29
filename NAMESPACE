@@ -2,6 +2,7 @@
 
 export(addPackageSnippets)
 export(count_and_percent)
+export(find_dupes)
 export(get_perct)
 export(nperc_tbl_MATA)
 export(pnta.unanswered.to.miss)
