@@ -25,8 +25,8 @@
 #' @import dplyr
 #'
 count_and_percent <- function(df, var, values = NULL, format1 = TRUE) {
-  col <- df |>
-    dplyr::select({{var}})
+     col <- df |>
+       dplyr::select({{var}})
   if (is.null(values)) {
     values <- names(which.max(table(col))) # Getting the category with the most responses when values are not provided (setting up default)
   }

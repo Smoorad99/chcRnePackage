@@ -9,7 +9,7 @@ find_dupes <- function (data, vars) { # Finding IDs with no matches
 
 
 
-
+#
 # find_dupes <- function (data, vars) { # Finding IDs with no matches
 #   count <- data %>% group_by(across({{vars}})) %>%
 #     tally() %>% ungroup() # Getting number of rows for each ID
@@ -35,7 +35,4 @@ find_dupes <- function (data, vars) { # Finding IDs with no matches
 # a$MissingResponse
 #
 # b <- find_dupes(data, c("ID", "group"))
-#
-# count <- data %>% group_by(ID) %>%
-#   tally()
-# count
+
