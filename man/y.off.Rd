@@ -19,7 +19,4 @@ The purpose of `y.off` is to ensure the count and percent remains "on screen" re
 df <- bns2_pkg_data |> head(15)
 sjPlot::plot_frq(df$q13)
 sjPlot::plot_frq(df$q13, y.offset = y.off(bns2_pkg_data$q13))
-
-
-
 }

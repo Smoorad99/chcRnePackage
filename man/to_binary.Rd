@@ -4,15 +4,18 @@
 \alias{to_binary}
 \title{Convert Yes/No variables to binary}
 \usage{
-to_binary(data, these.cols, prefix = FALSE)
+to_binary(data, these.cols, prefix = FALSE, yesno = FALSE)
 }
 \arguments{
 \item{data}{A dataframe containing the variables to be converted.}
 
 \item{these.cols}{A prefix used to select all columns with the prefix or the columns specified like you would using dplyr::select()}
 
-\item{prefix}{Whether or not you are using a prefix to select columns. This argument defaults to false
+\item{prefix}{A logical argument that indicates whether or not you are using a prefix to select columns. This argument defaults to false
 i.e. assumes your not using a prefix unless you tell it otherwise.}
+
+\item{yesno}{A logical argument that indicates the values of the the columns you are selecting. If TRUE you are using to_binary
+on columns with values of Yes/No. If FALSE, you are indicating the column values are string/NA.}
 }
 \value{
 The original dataframe with specified variables converted
@@ -24,7 +27,7 @@ binary (1/0) where a replaces the strings and a 0 replaces the NAs.
 }
 \examples{
 # Convert "Yes"/"No" responses in columns starting with "q14" to 1/0
-df_converted <- to_binary(data = bns2_pkg_data, these.cols = "q14_", prefix = TRUE)
+df_converted <- to_binary(data = bns2_pkg_data, these.cols = "q14_", prefix = TRUE, yesno = TRUE)
 
 # View the converted dataframe side-by-side
 old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)

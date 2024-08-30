@@ -21,7 +21,7 @@ nperc_tbl_MATA(df, vars, value, row.names, punc)
 A frequency table
 }
 \description{
-This function creates a table showing the n counts and percentages for each option in a mark all that apply question.
+`nperc_tbl_MATA` can be used to create a table showing the n counts and percentages for each option in a mark all that apply question.
 }
 \examples{
 # Save the variable names to questions and the names of the questions to rnames

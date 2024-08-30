@@ -25,8 +25,7 @@ tables, and reporting on those figures and tables.
 
 Functions in this section are used for data management.
 
-- We are using `yesno_to_binary` to change q14_1 - q14_10 from yes/no to
-  1/0.
+- We are using `to_binary` to change q14_1 - q14_10 from yes/no to 1/0.
 
 ``` r
 library(chcRne)
@@ -34,7 +33,7 @@ library(dplyr)
 
 data <- bns2_pkg_data %>% select(q13, q14_1:q14_10)
 
-df_converted <- yesno_to_binary(data = data, these.cols = "q14_", prefix = TRUE)
+df_converted <- to_binary(data = data, these.cols = "q14_", prefix = TRUE, yesno = TRUE)
 # View the converted dataframe side-by-side to check if the function worked
 
 old <- data |> dplyr::select(q14_1, q14_4)

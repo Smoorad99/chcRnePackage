@@ -1,6 +1,6 @@
 #' @title Creates frequency table
 #' @description
-#' This function creates a table showing the n counts and percentages for each option in a mark all that apply question.
+#' `nperc_tbl_MATA` can be used to create a table showing the n counts and percentages for each option in a mark all that apply question.
 #'
 #' @param df A data frame used to create the table.
 #' @param vars A character vector of variable names to include in the table (all vars have to be binary).
