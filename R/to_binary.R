@@ -26,7 +26,7 @@
 #'
 
 to_binary <- function(data, these.cols, prefix = FALSE, yesno = FALSE) {
-  if (prefix & yesno == FALSE) {
+  if (prefix & !yesno) {
     data <- data |> mutate(across(starts_with({{these.cols}}),  ~ifelse(is.na(.x), 0, 1)))
   }
   if (prefix == FALSE & yesno == FALSE) {
@@ -42,10 +42,10 @@ to_binary <- function(data, these.cols, prefix = FALSE, yesno = FALSE) {
 }
 
 ## Testing ----
-#data <- bns2_pkg_data
-#these.cols <- "q14_"
+data <- bns2_pkg_data
+these.cols <- "q14_"
 
-# to_binary(data = bns2_pkg_data, these.cols = c(q14_1:q14_4), prefix = FALSE, yesno = TRUE)
+# to_binary(data = bns2_pkg_data, these.cols = "q14_", prefix = TRUE, yesno = FALSE)
 
 ## Attempt 1 ----
 # yesno_to_binary <- function(data, these.cols, prefix = TRUE) {

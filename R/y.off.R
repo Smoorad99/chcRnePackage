@@ -17,8 +17,7 @@
 
 
 y.off <- function(datavar) {
-  rows <- max(table(datavar))
-  return(rows*.01)
+  max(table(datavar))*.01
 }
 
 ## Testing ----
