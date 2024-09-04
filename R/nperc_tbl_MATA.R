@@ -35,3 +35,7 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc) {
     #tmp2 |> kableExtra::kable(col.names = c(col.title, "Yes (%)")) |> kableExtra::kable_styling(bootstrap_options = "striped") |> kableExtra::column_spec(2, width='3.5cm')
     }
 # Removed col.title as input for the function because we removed the kables styling
+
+# Rework for future release (not the next one)
+# Option to show as plot
+# If plot = TRUE.. take pre-summarized data call ggplot and use ggcolumn

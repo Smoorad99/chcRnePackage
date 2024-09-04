@@ -10,7 +10,7 @@ y.off(datavar)
 \item{datavar}{Data frame $ variable}
 }
 \value{
-A `plot_frq` bar chart with counts and percents on screen.
+a number that is equal 1/100th of the max category in the selected variable
 }
 \description{
 The purpose of `y.off` is to ensure the count and percent remains "on screen" regardless of number of rows when using `plot_frq()`.

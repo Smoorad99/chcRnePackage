@@ -8,7 +8,7 @@ find_dupes <- function (data, vars) { # Finding IDs with no matches
 
 
 
-
+## NO -----
 #
 # find_dupes <- function (data, vars) { # Finding IDs with no matches
 #   count <- data %>% group_by(across({{vars}})) %>%
@@ -32,5 +32,6 @@ find_dupes <- function (data, vars) { # Finding IDs with no matches
 # a$MissingResponse
 #
 # b <- find_dupes(data, c("ID", "group"))
+# -----
 
-find_dupes(data, "ID")
+# find_dupes(data, "ID")

@@ -6,7 +6,7 @@
 #'
 #' @param datavar Data frame $ variable
 #'
-#' @return A `plot_frq` bar chart with counts and percents on screen.
+#' @return a number that is equal 1/100th of the max category in the selected variable
 #' @importFrom sjPlot plot_frq
 #' @export
 #'

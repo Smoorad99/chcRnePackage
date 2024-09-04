@@ -29,21 +29,21 @@ to_binary <- function(data, these.cols, prefix = FALSE, yesno = FALSE) {
   if (prefix & !yesno) {
     data <- data |> mutate(across(starts_with({{these.cols}}),  ~ifelse(is.na(.x), 0, 1)))
   }
-  if (prefix == FALSE & yesno == FALSE) {
+  if (!prefix & !yesno) {
     data <- data |> mutate(across({{these.cols}},  ~ifelse(is.na(.x), 0, 1)))
   }
   if (prefix & yesno) {
     data <- data |> mutate(across(starts_with({{these.cols}}), ~ifelse(.x == "Yes", 1, ifelse(.x == "No", 0, NA))))
   }
-  if (prefix == FALSE & yesno) {
+  if (!prefiX & yesno) {
     data <- data |> mutate(across({{these.cols}}, ~ifelse(.x == "Yes", 1, ifelse(.x == "No", 0, NA))))
   }
   return(data)
 }
 
 ## Testing ----
-data <- bns2_pkg_data
-these.cols <- "q14_"
+# data <- bns2_pkg_data
+# these.cols <- "q14_"
 
 # to_binary(data = bns2_pkg_data, these.cols = "q14_", prefix = TRUE, yesno = FALSE)
 
