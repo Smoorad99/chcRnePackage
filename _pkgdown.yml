@@ -9,8 +9,9 @@ reference:
     Functions for data management
   contents:
   - remove.na.levels
-  - yesno_to_binary
+  - to_binary
   - pnta.unanswered.to.miss
+  - find_dupes
 
 - subtitle: Tables
   desc: >
@@ -31,6 +32,7 @@ reference:
   desc: >
     Random stuff
   contents:
+  - y.off
   - bns2_pkg_data
   - addPackageSnippets
 

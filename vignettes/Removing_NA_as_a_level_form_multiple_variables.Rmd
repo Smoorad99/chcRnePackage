@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-# Load in necessary librariesand set seed
+# Load in necessary libraries and set seed
 set.seed(2025)
 library(chcRne)
 library(dplyr)
@@ -52,7 +52,7 @@ sapply(na.as.lvl, levels)
 As we can see in the above output, both Var1 and Var2 have `NA` as a level. Now we apply the `remove.na.levels` to Var1 and Var2.
 ```{r}
 # List out all variable names of ordered factors
-cols.with.na.lvls <- na.as.lvl %>% select(where(is.ordered)) %>% names()
+cols.with.na.lvls <- na.as.lvl %>% select(Var1, Var2) %>% names()
 
 # Apply function
 na.not.as.lvl <- na.as.lvl |>  mutate(across(all_of(cols.with.na.lvls), ~remove.na.levels(.x)))
