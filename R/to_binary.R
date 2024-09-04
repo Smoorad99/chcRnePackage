@@ -35,7 +35,7 @@ to_binary <- function(data, these.cols, prefix = FALSE, yesno = FALSE) {
   if (prefix & yesno) {
     data <- data |> mutate(across(starts_with({{these.cols}}), ~ifelse(.x == "Yes", 1, ifelse(.x == "No", 0, NA))))
   }
-  if (!prefiX & yesno) {
+  if (!prefix & yesno) {
     data <- data |> mutate(across({{these.cols}}, ~ifelse(.x == "Yes", 1, ifelse(.x == "No", 0, NA))))
   }
   return(data)

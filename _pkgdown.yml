@@ -11,6 +11,7 @@ reference:
   - remove.na.levels
   - to_binary
   - pnta.unanswered.to.miss
+  - find_dupes
 
 - subtitle: Tables
   desc: >

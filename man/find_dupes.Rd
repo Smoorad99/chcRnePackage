@@ -2,7 +2,7 @@
 % Please edit documentation in R/find_dupes.R
 \name{find_dupes}
 \alias{find_dupes}
-\title{Title}
+\title{Finding dupes in pre/post data}
 \usage{
 find_dupes(data, vars)
 }
@@ -15,10 +15,10 @@ find_dupes(data, vars)
 A data set containing the ID variables and number of copies found
 }
 \description{
-Title
+Finding dupes in pre/post data
 }
 \examples{
-library(dplyr)
+suppressMessages(library(dplyr))
 testdata <- datasets::sleep \%>\% rbind(c(.4, 1, 1)) \%>\% filter(extra != 3.7) # for example purposes
 find_dupes(testdata, "ID")
 # For more than one key variable

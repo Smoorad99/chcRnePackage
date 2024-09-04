@@ -1,6 +1,5 @@
 
-
-#' Title
+#' Finding dupes in pre/post data
 #'
 #' @param data A data frame containing at least one key ID variable used to identify any duplicates
 #' @param vars The ID variable in quotes. If more than one variable is needed to identify unique records, pass a comma separated character vector e.g. `c("a", "b")`

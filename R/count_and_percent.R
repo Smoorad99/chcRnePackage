@@ -17,9 +17,12 @@
 #' @export
 #'
 #' @examples
-#' count_and_percent(df = bns2_pkg_data, var = q13, values = c("Less than high school", "Some college"))
+#' count_and_percent(df = bns2_pkg_data,
+#'                   var = q13,
+#'                   values = c("Less than high school", "Some college"))
 #'
-#' # Using a pipe and leaving excluding `values` argument (defaults to the level of var with most rows/responses)
+#' # Using a pipe and leaving excluding `values` argument
+#' (defaults to the level of var with most rows/responses)
 #' bns2_pkg_data |> count_and_percent(var = q13)
 #'
 #' @import dplyr
