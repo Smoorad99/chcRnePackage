@@ -1,5 +1,20 @@
-library(dplyr)
-data <- datasets::sleep %>% rbind(c(.4, 1, 1)) %>% filter(extra != 3.7)
+
+
+#' Title
+#'
+#' @param data A data frame containing at least one key ID variable used to identify any duplicates
+#' @param vars The ID variable in quotes. If more than one variable is needed to identify unique records, pass a comma separated character vector e.g. `c("a", "b")`
+#'
+#' @return A data set containing the ID variables and number of copies found
+#' @export
+#' @import dplyr
+#'
+#' @examples
+#' suppressMessages(library(dplyr))
+#' testdata <- datasets::sleep %>% rbind(c(.4, 1, 1)) %>% filter(extra != 3.7) # for example purposes
+#' find_dupes(testdata, "ID")
+#' # For more than one key variable
+#' find_dupes(testdata, c("ID", "group"))
 
 find_dupes <- function (data, vars) { # Finding IDs with no matches
   data |> group_by(across({{vars}})) %>%
