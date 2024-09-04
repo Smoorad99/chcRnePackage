@@ -1,12 +1,11 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
-  Removing NA as a level form multiple variables: Removing NA as a level form multiple
-    variables.html
+  Bugs: Bugs.html
+  Removing_NA_as_a_level_form_multiple_variables: Removing_NA_as_a_level_form_multiple_variables.html
   yesnopnta: yesnopnta.html
-last_built: 2024-06-28T15:39Z
+last_built: 2024-09-04T23:30Z
 urls:
   reference: https://smoorad99.github.io/chcRnePackage/reference
   article: https://smoorad99.github.io/chcRnePackage/articles
-
