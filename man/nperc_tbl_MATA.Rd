@@ -30,7 +30,9 @@ cols <- c("q14_1", "q14_3", "q14_4")
 nperc_tbl_MATA(df = bns2_pkg_data,
                vars = cols,
                value = "Yes",
-               row.names = c("I am a broke college student","No good restaurants", "I like cooking"),
+               row.names = c("I am a broke college student",
+                             "No good restaurants",
+                             "I like cooking"),
                punc = ".")
 
 

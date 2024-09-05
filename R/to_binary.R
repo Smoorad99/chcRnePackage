@@ -4,10 +4,10 @@
 #' binary (1/0) where a replaces the strings and a 0 replaces the NAs.
 #'
 #' @param data A dataframe containing the variables to be converted.
-#' @param these.cols A prefix used to select all columns with the prefix or the columns specified like you would using dplyr::select()
-#' @param prefix A logical argument that indicates whether or not you are using a prefix to select columns. This argument defaults to false
+#' @param these.cols A prefix used to select all columns with the prefix or the columns specified like you would using `dplyr::select()`
+#' @param prefix A logical argument that indicates whether or not you are using a prefix to select columns. This argument defaults to FALSE
 #' i.e. assumes your not using a prefix unless you tell it otherwise.
-#' @param yesno A logical argument that indicates the values of the the columns you are selecting. If TRUE you are using to_binary
+#' @param yesno A logical argument that indicates the values of the the columns you are selecting. If TRUE you are using `to_binary`
 #' on columns with values of Yes/No. If FALSE, you are indicating the column values are string/NA.
 #'
 #' @return The original dataframe with specified variables converted
@@ -22,7 +22,7 @@
 #' # View the converted dataframe side-by-side
 #' old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
 #' new <- df_converted |> dplyr::select(q14_1, q14_4)
-#' cbind(old, new)
+#' cbind(old, new) |> head(10)
 #'
 
 to_binary <- function(data, these.cols, prefix = FALSE, yesno = FALSE) {

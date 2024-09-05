@@ -33,9 +33,10 @@ library(dplyr)
 
 data <- bns2_pkg_data %>% select(q13, q14_1:q14_10)
 
+# Use function
 df_converted <- to_binary(data = data, these.cols = "q14_", prefix = TRUE, yesno = TRUE)
-# View the converted dataframe side-by-side to check if the function worked
 
+# View the converted dataframe side-by-side to check if the function worked
 old <- data |> dplyr::select(q14_1, q14_4)
 new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) %>% head(10)

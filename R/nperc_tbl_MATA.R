@@ -18,7 +18,9 @@
 #' nperc_tbl_MATA(df = bns2_pkg_data,
 #'                vars = cols,
 #'                value = "Yes",
-#'                row.names = c("I am a broke college student","No good restaurants", "I like cooking"),
+#'                row.names = c("I am a broke college student",
+#'                              "No good restaurants",
+#'                              "I like cooking"),
 #'                punc = ".")
 #'
 #'
@@ -34,6 +36,13 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc) {
     #tmp2 <- tibble::rownames_to_column(tmp2, var = "Temp")
     #tmp2 |> kableExtra::kable(col.names = c(col.title, "Yes (%)")) |> kableExtra::kable_styling(bootstrap_options = "striped") |> kableExtra::column_spec(2, width='3.5cm')
     }
+
+## Testing ---
+# df <- bns2_pkg_data
+# vars <- c("q14_1", "q14_3", "q14_4")
+# value <- "Yes"
+# row.names <- c("I am a broke college student","No good restaurants", "I like cooking")
+
 # Removed col.title as input for the function because we removed the kables styling
 
 # Rework for future release (not the next one)

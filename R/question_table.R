@@ -18,7 +18,10 @@
 #'   Otherwise, a plain data frame is returned.
 #'
 #' @examples
-#' question_table(data = bns2_pkg_data, x = 'q13', cnames = c("Level of Education", "Yes %"), kbl_styling = TRUE)
+#' question_table(data = bns2_pkg_data,
+#'                x = 'q13',
+#'                cnames = c("Level of Education", "Yes %"),
+#'                kbl_styling = TRUE)
 #'
 #' @import dplyr
 #' @importFrom formattable percent
