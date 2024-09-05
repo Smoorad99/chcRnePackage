@@ -23,9 +23,11 @@ library(dplyr)
 ```
 
 ### Purpose
+
 This vignette focuses on the `to_binary()` and `pnta_unaswered_to_miss()` functions. The purpose of this section is to help users identify when to use `pnta_unaswered_to_miss()`, how to get the data in a format the function can use, and finally, how to apply the function.
 
 ### When to use
+
 We use `pnta_unanswered_to_miss()` when working with a select all that apply question that has a column for prefer not to answer. This is most commonly a column filled with "Yes" and "No", "0" and "1", or "Prefer not to answer" and "NA". The issue arises when someone marks the prefer not to answer option along with at least one other of the options of the select all that apply question. When someone selects the prefer not to answer option, we want to mark all other cells of that row in the columns relevant to the prefer not to answer question as `NA`.
 
 Lets take a look at what this may look like
@@ -47,9 +49,10 @@ new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) %>% head(10)
 ```
 
-
 ### Applying the pnta function
+
 Each column of our mark all that apply question is now 1/0, which allows us to use `pnta.unanswered.to.miss()` to set all cells of a row in relevant columns of the select all that apply question to NA when the "Prefer not to answer" option was selected.
+
 ```{r}
 df_unanswered_to_miss <- pnta.unanswered.to.miss(data = df_converted,
                                   these.col = "q14_",
