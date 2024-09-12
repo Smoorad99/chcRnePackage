@@ -42,6 +42,14 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc) {
 # vars <- c("q14_1", "q14_3", "q14_4")
 # value <- "Yes"
 # row.names <- c("I am a broke college student","No good restaurants", "I like cooking")
+# punc <- ""
+
+# tm <- df |> select(vars) |>
+#   mutate(across(everything(), ~ifelse(.x == "Yes", 1, ifelse(.x == "No", 0, NA)))) |>
+#   t()
+#
+# tm2 <- tm |> rowSums(na.rm = TRUE) |> data.frame()
+# na <- apply(tm, 1, function(x) sum(!is.na(x)))
 
 # Removed col.title as input for the function because we removed the kables styling
 
