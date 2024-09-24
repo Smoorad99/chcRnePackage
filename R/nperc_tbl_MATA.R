@@ -43,16 +43,24 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc) {
 # value <- "Yes"
 # row.names <- c("I am a broke college student","No good restaurants", "I like cooking")
 # punc <- ""
-
-# tm <- df |> select(vars) |>
-#   mutate(across(everything(), ~ifelse(.x == "Yes", 1, ifelse(.x == "No", 0, NA)))) |>
-#   t()
 #
-# tm2 <- tm |> rowSums(na.rm = TRUE) |> data.frame()
-# na <- apply(tm, 1, function(x) sum(!is.na(x)))
+# tm <- df |> select(all_of(vars))
+# tm2 <- tm |> summarise_at(vars(vars), ~sum(. == value, na.rm = TRUE))
+# non.na <- tm |> summarise_at(vars(vars), ~sum(!is.na(.)))
+#
+# plot_list <- list()
+#
+# for (i in 1:ncol(tm)){
+#   plot <- plot_frq(tm[,i], y.offset = .05)
+#   plot_list[[i]] <- plot
+# }
+#
+# plot_list[[i]] <- lapply(tm, plot_frq)
+# plot_grob <- gridExtra::arrangeGrob(grobs=plot_list)
+# gridExtra::grid.arrange(plot_grob)
 
 # Removed col.title as input for the function because we removed the kables styling
 
 # Rework for future release (not the next one)
 # Option to show as plot
-# If plot = TRUE.. take pre-summarized data call ggplot and use ggcolumn
+# If plot = TRUE.. take pre-summarized data call ggplot and use geom_column

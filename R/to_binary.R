@@ -1,7 +1,7 @@
 #' Convert Yes/No variables to binary
 #'
-#' This function converts all "String"/"NA" responses in the selected columns to
-#' binary (1/0) where a replaces the strings and a 0 replaces the NAs.
+#' This function converts all "String"/"NA" or "Yes/"No" responses in the selected columns to
+#' binary (1/0) where the strings are replaced by 1s and the NAs are replaced by 0s.
 #'
 #' @param data A dataframe containing the variables to be converted.
 #' @param these.cols A prefix used to select all columns with the prefix or the columns specified like you would using `dplyr::select()`
@@ -46,6 +46,13 @@ to_binary <- function(data, these.cols, prefix = FALSE, yesno = FALSE) {
 # these.cols <- "q14_"
 
 # to_binary(data = bns2_pkg_data, these.cols = "q14_", prefix = TRUE, yesno = FALSE)
+
+# V3
+# to_binary2 <- function(data, these.cols, value) {
+#   data |> mutate(across({{these.cols}},  ~ifelse(.x == value, 1, ifelse(.x == "NA", NA, 0)))) #NA part of this is WHACK
+# }
+
+# a <- to_binary2(data = bns2_pkg_data, these.cols = c(q14_1, q14_4), value = "No")
 
 ## Attempt 1 ----
 # yesno_to_binary <- function(data, these.cols, prefix = TRUE) {

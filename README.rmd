@@ -8,10 +8,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 # chcRne <img src="man/figures/hex.png" align="left" height="138" />
 ```
 
-
-
 <img src="man/figures/hex.png" style="width: 18%; float: left;" alt="chcRne logo">
-
 <hr style="height:40px; visibility:hidden;" />
  
 # chcRne
