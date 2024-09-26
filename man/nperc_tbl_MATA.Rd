@@ -4,18 +4,21 @@
 \alias{nperc_tbl_MATA}
 \title{Creates frequency table}
 \usage{
-nperc_tbl_MATA(df, vars, value, row.names, punc)
+nperc_tbl_MATA(df, vars, value, row.names, punc, plot = FALSE)
 }
 \arguments{
 \item{df}{A data frame used to create the table.}
 
-\item{vars}{A character vector of variable names to include in the table (all vars have to be binary).}
+\item{vars}{A vector of variable names to include in the table (all vars have to be dichotomus).
+Input the desired variables as if you were selecting variables using dplyr's `select()` function.}
 
 \item{value}{The value in the rows of `vars` (only one value across all variables).}
 
 \item{row.names}{The name of each row in the table. Should be equivalent to each option in the select all that apply question.}
 
 \item{punc}{The punctuation at the end of the row names.}
+
+\item{plot}{If TRUE, returns a count and percent bar plot instead of a data frame. Defaults to FALSE.}
 }
 \value{
 A frequency table
@@ -25,15 +28,14 @@ A frequency table
 }
 \examples{
 # Save the variable names to questions and the names of the questions to rnames
-cols <- c("q14_1", "q14_3", "q14_4")
 
 nperc_tbl_MATA(df = bns2_pkg_data,
-               vars = cols,
+               vars = c(q14_1:q14_4),
                value = "Yes",
                row.names = c("I am a broke college student",
                              "No good restaurants",
                              "I like cooking"),
-               punc = ".")
+               punc = ".", plot = TRUE)
 
 
 }

@@ -22,8 +22,8 @@ The original dataframe with specified variables converted
 to binary.
 }
 \description{
-This function converts all "String"/"NA" responses in the selected columns to
-binary (1/0) where a replaces the strings and a 0 replaces the NAs.
+This function converts all "String"/"NA" or "Yes/"No" responses in the selected columns to
+binary (1/0) where the strings are replaced by 1s and the NAs are replaced by 0s.
 }
 \examples{
 # Convert "Yes"/"No" responses in columns starting with "q14" to 1/0
