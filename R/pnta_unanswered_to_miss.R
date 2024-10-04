@@ -16,7 +16,6 @@
 #'
 #' @examples
 #' # Using a prefix
-#'
 #' updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
 #'                                   these.cols = "q14_2",
 #'                                   pnta = bns2_pkg_data$q14_30,
@@ -30,17 +29,6 @@
 #'                                   prefix = FALSE)
 #' updated_data2 |> dplyr::select(q14_20:q14_26, q14_30)
 
-# test.dta <- chcRne::bns2_pkg_data
-#
-# these.cols <- c("q14_20", "q14_21")
-#
-# updated_data <- pnta.unanswered.to.miss(data = test.dta,
-#                                         these.cols = these.cols,
-#                                         pnta = test.dta$q14_30,
-#                                         prefix = FALSE)
-#
-# test.dta |> dplyr::select(all_of(these.cols), q14_30)
-# updated_data |> dplyr::select(all_of(these.cols), q14_30)
 
 
 

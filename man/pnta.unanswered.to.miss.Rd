@@ -25,7 +25,6 @@ This function sets all options (vars) in a select all that apply question to NA 
 }
 \examples{
 # Using a prefix
-
 updated_data <- pnta.unanswered.to.miss(data = bns2_pkg_data,
                                   these.cols = "q14_2",
                                   pnta = bns2_pkg_data$q14_30,

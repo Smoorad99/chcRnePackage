@@ -24,12 +24,6 @@
 #'                cnames = c("Level of Education", "Yes %"),
 #'                kbl_styling = FALSE)
 #'
-
-#' # With kable styling
-#' question_table(data = bns2_pkg_data,
-#'                x = 'q13',
-#'                cnames = c("Level of Education", "Yes %"),
-#'                kbl_styling = TRUE)
 #' @import dplyr
 #' @importFrom formattable percent
 #' @importFrom kableExtra kable kable_styling column_spec kbl
