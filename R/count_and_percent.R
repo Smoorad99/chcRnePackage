@@ -21,7 +21,7 @@
 #'                   var = q13,
 #'                   values = c("Less than high school", "Some college"))
 #'
-#' # Using a pipe and leaving excluding `values` argument defaults to the level of var with most rows
+#' # Using a pipe and leaving excluding `values` argument defaults to the level of variable with most rows
 #' bns2_pkg_data |> count_and_percent(var = q13)
 #'
 #' @import dplyr

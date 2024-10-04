@@ -15,8 +15,16 @@
 #' @export
 #'
 #' @examples
-#' # Save the variable names to questions and the names of the questions to rnames
+#' # Table
+#' nperc_tbl_MATA(df = bns2_pkg_data,
+#'                vars = c(q14_1:q14_4),
+#'                value = "Yes",
+#'                row.names = c("I am a broke college student",
+#'                              "No good restaurants",
+#'                              "I like cooking"),
+#'                punc = ".")
 #'
+#' # Barplot
 #' nperc_tbl_MATA(df = bns2_pkg_data,
 #'                vars = c(q14_1:q14_4),
 #'                value = "Yes",
@@ -24,7 +32,6 @@
 #'                              "No good restaurants",
 #'                              "I like cooking"),
 #'                punc = ".", plot = TRUE)
-#'
 #'
 nperc_tbl_MATA <- function(df, vars, value, row.names, punc, plot = FALSE) {
   tm <- df |> select({{vars}}) # Selects the vars the user inputs
@@ -95,4 +102,4 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc, plot = FALSE) {
 # Rework for future release (not the next one)
 # Option to show as plot
 # If plot = TRUE.. take pre-summarized data call ggplot and use geom_column
-x <- list()
+# x <- list()

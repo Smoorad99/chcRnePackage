@@ -27,8 +27,16 @@ A frequency table
 `nperc_tbl_MATA` can be used to create a table showing the n counts and percentages for each option in a mark all that apply question.
 }
 \examples{
-# Save the variable names to questions and the names of the questions to rnames
+# Table
+nperc_tbl_MATA(df = bns2_pkg_data,
+               vars = c(q14_1:q14_4),
+               value = "Yes",
+               row.names = c("I am a broke college student",
+                             "No good restaurants",
+                             "I like cooking"),
+               punc = ".")
 
+# Barplot
 nperc_tbl_MATA(df = bns2_pkg_data,
                vars = c(q14_1:q14_4),
                value = "Yes",
@@ -36,6 +44,5 @@ nperc_tbl_MATA(df = bns2_pkg_data,
                              "No good restaurants",
                              "I like cooking"),
                punc = ".", plot = TRUE)
-
 
 }

@@ -18,14 +18,21 @@
 #'   Otherwise, a plain data frame is returned.
 #'
 #' @examples
+#' # Without kable styling
+#' question_table(data = bns2_pkg_data,
+#'                x = 'q13',
+#'                cnames = c("Level of Education", "Yes %"),
+#'                kbl_styling = FALSE)
+#'
+
+#' # With kable styling
 #' question_table(data = bns2_pkg_data,
 #'                x = 'q13',
 #'                cnames = c("Level of Education", "Yes %"),
 #'                kbl_styling = TRUE)
-#'
 #' @import dplyr
 #' @importFrom formattable percent
-#' @importFrom kableExtra kable kable_styling column_spec
+#' @importFrom kableExtra kable kable_styling column_spec kbl
 #' @export
 #'
 question_table <- function (data, x, cnames = c("Measure", "Yes (%)"), kbl_styling = TRUE) {
@@ -37,7 +44,7 @@ question_table <- function (data, x, cnames = c("Measure", "Yes (%)"), kbl_styli
     mutate(a = paste0(count," (", percent(count/nrow(temp), digits = 1), ")")) |>
     select(-c(count))
   colnames(tbl) <- cnames
-  if (kbl_styling) return(tbl |> kable() |>
+  if (kbl_styling) return(tbl |> kbl() |>
                             kable_styling(bootstrap_options = "striped") |>
                             column_spec(2, width='3.5cm'))
   if (!kbl_styling) return(tbl)

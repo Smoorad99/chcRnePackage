@@ -34,4 +34,11 @@ old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
 new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) |> head(10)
 
+# Selecting columns by column name
+df_converted <- to_binary(data = bns2_pkg_data, these.cols = c(q14_5, q14_6), prefix = FALSE, yesno = TRUE)
+
+# View
+old <- bns2_pkg_data |> dplyr::select(q14_5, q14_6)
+new <- df_converted |> dplyr::select(q14_5, q14_6)
+cbind(old, new) |> head(10)
 }
