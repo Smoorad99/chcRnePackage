@@ -11,18 +11,20 @@
 #' @export
 #'
 #' @examples
-#' df <- bns2_pkg_data |> head(15)
+#' df <- bns2_pkg_data |> head(10)
 #'
 #' # Without adjusting the y.offset
 #' sjPlot::plot_frq(df$q13)
 #'
 #' # Using y.off function
-#' sjPlot::plot_frq(df$q13, y.offset = y.off(bns2_pkg_data$q13))
+#' sjPlot::plot_frq(df$q13, y.offset = y.off(df$q13))
 
 
 y.off <- function(datavar) {
   max(table(datavar))*.01
 }
+
+# Next steps - Make y.off work for plot frq coord flips and ggplot coord flips
 
 ## Testing ----
 # library(sjPlot)
@@ -34,8 +36,24 @@ y.off <- function(datavar) {
 # plot_frq(ChickWeight$Diet, y.offset = y.off(ChickWeight$Diet))
 #
 
-## Attempt 1 ----
+## Messing around with y.off when coord.flip = TRUE ----
+##If we wanted to do this to 'work' we would probably have to control create a function for the x axis limit too.
 
+# for (i in 5:10) {
+#   p <- list()
+#   df <- bns2_pkg_data |> head(i)
+#   p <- plot_frq(df$q13, coord.flip = TRUE, y.offset = max(table(df$q13))*.08)
+# }
+#
+# myplot <- function(df){
+#   plot_frq(df$q13, coord.flip = TRUE, y.offset = max(table(df$q13))*.08)
+# }
+# lapply(bns2_pkg_data |> head(i), )
+#
+# list_o_plots <- lapply(list_o_dfs, myplot)
+# list_o_plots
+
+## First attempt ----
 # y.off <- function(datavar) {
 #   rows <- max(table(datavar)) # Get the category with the most responses
 #   if (rows < 6) {

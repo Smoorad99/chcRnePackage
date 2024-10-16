@@ -17,7 +17,9 @@
 #'
 #' @examples
 #' # Convert "Yes"/"No" responses in columns starting with "q14" to 1/0
-#' df_converted <- to_binary(data = bns2_pkg_data, these.cols = "q14_", prefix = TRUE, yesno = TRUE)
+#' df_converted <- to_binary(data = bns2_pkg_data,
+#'                           these.cols = "q14_",
+#'                           prefix = TRUE, yesno = TRUE)
 #'
 #' # View the converted dataframe side-by-side
 #' old <- bns2_pkg_data |> dplyr::select(q14_1, q14_4)
@@ -26,7 +28,9 @@
 #'
 #'
 #' # Selecting columns by column name
-#' df_converted <- to_binary(data = bns2_pkg_data, these.cols = c(q14_5, q14_6), prefix = FALSE, yesno = TRUE)
+#' df_converted <- to_binary(data = bns2_pkg_data,
+#'                           these.cols = c(q14_5, q14_6),
+#'                           prefix = FALSE, yesno = TRUE)
 #'
 #' # View
 #' old <- bns2_pkg_data |> dplyr::select(q14_5, q14_6)

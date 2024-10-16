@@ -21,25 +21,55 @@
 #'                   var = q13,
 #'                   values = c("Less than high school", "Some college"))
 #'
-#' # Using a pipe and leaving excluding `values` argument defaults to the level of variable with most rows
+#' # Excludingthe`values` argument defaults to the level of variable with most rows
 #' bns2_pkg_data |> count_and_percent(var = q13)
 #'
 #' @import dplyr
 #'
 count_and_percent <- function(df, var, values = NULL, format1 = TRUE) {
-     col <- df |>
-       dplyr::select({{var}})
+  col <- df |>
+    dplyr::select({{var}})
   if (is.null(values)) {
     values <- names(which.max(table(col))) # Getting the category with the most responses when values are not provided (setting up default)
   }
-  counts <- col |>
-    dplyr::filter({{var}} %in% {{values}}) |>
-    nrow() # Getting counts of the number of occurrences of values in var
-  total <- df |>
-    dplyr::filter(!is.na({{var}})) |>
-    nrow() # Getting count of non-NA rows in var
+  counts <- sum(col[[1]] %in% values, na.rm = TRUE) # Getting counts of the number of occurrences of values in var
+  total <- sum(!is.na(col)) # Getting count of non-NA rows in var
   percent <- formattable::percent(counts/total, digits = 1) # Grabbing the percent and saving it
   if (format1) return(paste0(counts, " (", percent, ")"))
   if (!format1) return(paste0("(n=", counts, ", ", percent, ")"))
 }
 
+# Testing
+
+# library(chcRne)
+# df <- bns2_pkg_data %>% mutate(`Exp Question` = q13)
+# var <- "Exp Question"
+# values <- c("Less than high school", "Some college")
+# # var <- "q13"
+# sum(col == values, na.rm = TRUE)
+
+## Code to implement in the function
+# stopifnotcolumn <- function(data, string) {
+#   if (is.na(match(string, colnames(data)))) {
+#     stop(string, " was not found in your data frame.")
+#   }
+#   return(invisible(TRUE))
+# }
+
+## Prior attempt
+# count_and_percent <- function(df, var, values = NULL, format1 = TRUE) {
+#   col <- df |>
+#     dplyr::select({{var}})
+#   if (is.null(values)) {
+#     values <- names(which.max(table(col))) # Getting the category with the most responses when values are not provided (setting up default)
+#   }
+#   counts <- col |>
+#     dplyr::filter({{var}} %in% {{values}}) |>
+#     nrow() # Getting counts of the number of occurrences of values in var
+#   total <- df |>
+#     dplyr::filter(!is.na({{var}})) |>
+#     nrow() # Getting count of non-NA rows in var
+#   percent <- formattable::percent(counts/total, digits = 1) # Grabbing the percent and saving it
+#   if (format1) return(paste0(counts, " (", percent, ")"))
+#   if (!format1) return(paste0("(n=", counts, ", ", percent, ")"))
+# }
