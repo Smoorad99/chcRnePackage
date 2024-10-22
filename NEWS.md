@@ -1,3 +1,5 @@
+# chcRne 0.2.1
+
 # chcRne 0.3.0 (Unreleased)
 * `nperc_tbl_MATA()` - If the argument `plot = TRUE` the function will return a bar plot with counts and percentages instead of a table.
 
