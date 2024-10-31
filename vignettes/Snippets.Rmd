@@ -39,7 +39,46 @@ Snippets are not just for R code! You can have snippets for HTML, Quarto, JavaSc
   across(COLS), ~ifelse(is.na(.x), 0, 1)
   
 ### Quarto
+#### Callout boxes
 
+	
+## red important
+snippet def
+	:::{.callout-important}
+	### Definition
+	${1:text}
+	:::
+snippet redbox
+	:::{.callout-important}
+	#### Title
+	text
+	
+	:::
+# 2 columns
+snippet column
+	:::: {.columns}
+	::: {.column width="50%"}
+	Left stuff
+	:::
+	::: {.column width="50%"}
+	Right stuff
+	:::
+	::::
+	
+# panel tabset
+snippet tabset
+	::: {.panel-tabset}
+	## header1
+	
+	Tab content
+	
+	## header2
+	
+	Tab content
+	:::
+# aside
+snippet aside
+	[]{.aside}
 
 ### HTML
 

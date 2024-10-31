@@ -4,7 +4,7 @@
 \alias{nperc_tbl_MATA}
 \title{Creates frequency table}
 \usage{
-nperc_tbl_MATA(df, vars, value, row.names, punc, plot = FALSE)
+nperc_tbl_MATA(df, vars, value, row.names = NULL, punc = NULL, plot = FALSE)
 }
 \arguments{
 \item{df}{A data frame used to create the table.}
@@ -40,9 +40,6 @@ nperc_tbl_MATA(df = bns2_pkg_data,
 nperc_tbl_MATA(df = bns2_pkg_data,
                vars = c(q14_1:q14_4),
                value = "Yes",
-               row.names = c("I am a broke college student",
-                             "No good restaurants",
-                             "I like cooking"),
-               punc = ".", plot = TRUE)
+               plot = TRUE)
 
 }

@@ -28,13 +28,11 @@
 #' nperc_tbl_MATA(df = bns2_pkg_data,
 #'                vars = c(q14_1:q14_4),
 #'                value = "Yes",
-#'                row.names = c("I am a broke college student",
-#'                              "No good restaurants",
-#'                              "I like cooking"),
-#'                punc = ".", plot = TRUE)
+#'                plot = TRUE)
 #'
-nperc_tbl_MATA <- function(df, vars, value, row.names, punc, plot = FALSE) {
+nperc_tbl_MATA <- function(df, vars, value, row.names = NULL, punc = NULL, plot = FALSE) {
   tm <- df |> select({{vars}}) # Selects the vars the user inputs
+  if (is.null(row.names)) {row.names <- colnames(tm)}
   non.na <- tm |> summarise(across({{vars}}, ~sum(!is.na(.)))) |> tidyr::pivot_longer(everything()) # get number of non na responses in each col
   tm1 <- tm |> summarise(across({{vars}}, ~sum(. == value, na.rm = TRUE))) |>
     tidyr::pivot_longer(everything()) |>
@@ -55,6 +53,9 @@ nperc_tbl_MATA <- function(df, vars, value, row.names, punc, plot = FALSE) {
     return(tm3)
   }
 }
+
+#rename("Question" = name, Count = value)
+# Make example plot smaller
 
 ## Testing ---
 # df <- bns2_pkg_data
