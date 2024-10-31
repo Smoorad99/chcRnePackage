@@ -1,11 +1,11 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  Bugs: Bugs.html
   Removing_NA_as_a_level_form_multiple_variables: Removing_NA_as_a_level_form_multiple_variables.html
+  Snippets: Snippets.html
   yesnopnta: yesnopnta.html
-last_built: 2024-09-04T23:30Z
+last_built: 2024-10-31T22:32Z
 urls:
   reference: https://smoorad99.github.io/chcRnePackage/reference
   article: https://smoorad99.github.io/chcRnePackage/articles

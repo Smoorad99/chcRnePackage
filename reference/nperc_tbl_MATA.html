@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chcRne</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -32,15 +32,18 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/Bugs.html">Bugs</a>
+      <a href="../articles/Removing_NA_as_a_level_form_multiple_variables.html">Removing NA as a level from multiple variables</a>
     </li>
     <li>
-      <a href="../articles/Removing_NA_as_a_level_form_multiple_variables.html">Removing NA as a level from multiple variables</a>
+      <a href="../articles/Snippets.html">CHC Snippets</a>
     </li>
     <li>
       <a href="../articles/yesnopnta.html">PNTA unanswered to miss tutorial</a>
     </li>
   </ul></li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -60,7 +63,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span><span class="va">df</span>, <span class="va">vars</span>, <span class="va">value</span>, <span class="va">row.names</span>, <span class="va">punc</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span><span class="va">df</span>, <span class="va">vars</span>, <span class="va">value</span>, row.names <span class="op">=</span> <span class="cn">NULL</span>, punc <span class="op">=</span> <span class="cn">NULL</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,7 +75,8 @@
 
 
 <dt id="arg-vars">vars<a class="anchor" aria-label="anchor" href="#arg-vars"></a></dt>
-<dd><p>A character vector of variable names to include in the table (all vars have to be binary).</p></dd>
+<dd><p>A vector of variable names to include in the table (all vars have to be dichotomus).
+Input the desired variables as if you were selecting variables using dplyr's `select()` function.</p></dd>
 
 
 <dt id="arg-value">value<a class="anchor" aria-label="anchor" href="#arg-value"></a></dt>
@@ -86,6 +90,10 @@
 <dt id="arg-punc">punc<a class="anchor" aria-label="anchor" href="#arg-punc"></a></dt>
 <dd><p>The punctuation at the end of the row names.</p></dd>
 
+
+<dt id="arg-plot">plot<a class="anchor" aria-label="anchor" href="#arg-plot"></a></dt>
+<dd><p>If TRUE, returns a count and percent bar plot instead of a data frame. Defaults to FALSE.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -94,19 +102,27 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Save the variable names to questions and the names of the questions to rnames</span></span></span>
-<span class="r-in"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q14_1"</span>, <span class="st">"q14_3"</span>, <span class="st">"q14_4"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Table</span></span></span>
 <span class="r-in"><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span>df <span class="op">=</span> <span class="va">bns2_pkg_data</span>,</span></span>
-<span class="r-in"><span>               vars <span class="op">=</span> <span class="va">cols</span>,</span></span>
+<span class="r-in"><span>               vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">q14_1</span><span class="op">:</span><span class="va">q14_4</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>               value <span class="op">=</span> <span class="st">"Yes"</span>,</span></span>
-<span class="r-in"><span>               row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"I am a broke college student"</span>,<span class="st">"No good restaurants"</span>, <span class="st">"I like cooking"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>               row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"I am a broke college student"</span>,</span></span>
+<span class="r-in"><span>                             <span class="st">"No good restaurants"</span>,</span></span>
+<span class="r-in"><span>                             <span class="st">"I like cooking"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>               punc <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                           Yes (%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I like cooking. (n = 46)               33 (71.7%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I am a broke college student. (n = 47) 20 (42.6%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No good restaurants. (n = 47)            3 (6.4%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   col                                    npct      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> I am a broke college student. (n = 47) 33 (70.2%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> No good restaurants. (n = 47)          20 (42.6%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> I like cooking. (n = 46)               3 (6.5%)  </span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Barplot</span></span></span>
+<span class="r-in"><span><span class="fu">nperc_tbl_MATA</span><span class="op">(</span>df <span class="op">=</span> <span class="va">bns2_pkg_data</span>,</span></span>
+<span class="r-in"><span>               vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">q14_1</span><span class="op">:</span><span class="va">q14_4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>               value <span class="op">=</span> <span class="st">"Yes"</span>,</span></span>
+<span class="r-in"><span>               plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="nperc_tbl_MATA-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -118,11 +134,11 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Saul Mooradian, Robin Donatello, Kelsey Kyllonen.</p>
+  <p></p><p>Developed by Saul Mooradian.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>

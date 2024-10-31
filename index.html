@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">chcRne</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -50,15 +50,18 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/Bugs.html">Bugs</a>
+      <a href="articles/Removing_NA_as_a_level_form_multiple_variables.html">Removing NA as a level from multiple variables</a>
     </li>
     <li>
-      <a href="articles/Removing_NA_as_a_level_form_multiple_variables.html">Removing NA as a level from multiple variables</a>
+      <a href="articles/Snippets.html">CHC Snippets</a>
     </li>
     <li>
       <a href="articles/yesnopnta.html">PNTA unanswered to miss tutorial</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -74,8 +77,7 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<p><img src="reference/figures/hex.png" style="width: 18%; float: left;" alt="chcRne logo"></p>
-<hr style="height:40px; visibility:hidden;">
+<img src="reference/figures/hex.png" style="width: 18%; float: left;" alt="chcRne logo"><hr style="height:40px; visibility:hidden;">
 <div class="section level1">
 <div class="page-header"><h1 id="chcrne">chcRne<a class="anchor" aria-label="anchor" href="#chcrne"></a>
 </h1></div>
@@ -101,9 +103,10 @@
 <span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">bns2_pkg_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q13</span>, <span class="va">q14_1</span><span class="op">:</span><span class="va">q14_10</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Use function</span></span>
 <span><span class="va">df_converted</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/to_binary.html">to_binary</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, these.cols <span class="op">=</span> <span class="st">"q14_"</span>, prefix <span class="op">=</span> <span class="cn">TRUE</span>, yesno <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co"># View the converted dataframe side-by-side to check if the function worked</span></span>
 <span></span>
+<span><span class="co"># View the converted dataframe side-by-side to check if the function worked</span></span>
 <span><span class="va">old</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span>, <span class="va">q14_4</span><span class="op">)</span></span>
 <span><span class="va">new</span> <span class="op">&lt;-</span> <span class="va">df_converted</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">q14_1</span>, <span class="va">q14_4</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">old</span>, <span class="va">new</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
@@ -163,10 +166,12 @@
 <span>               row.names <span class="op">=</span> <span class="va">rnames</span>,</span>
 <span>               punc <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
 <span><span class="va">mark_all_that_apply_tbl</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="do">##                                           Yes (%)</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## I am a broke college student. (n = 38) 27 (71.1%)</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## I live with chefs. (n = 39)             7 (17.9%)</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## I like cooking. (n = 39)                 3 (7.7%)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="do">## # A tibble: 3 × 2</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">##   col                                    npct      </span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                  &lt;chr&gt;     </span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## 1 I like cooking. (n = 39)               27 (69.2%)</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">## 2 I am a broke college student. (n = 38) 7 (18.4%) </span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="do">## 3 I live with chefs. (n = 39)            3 (7.7%)</span></span></code></pre></div>
 <p><br style="line-height: 10px"></p>
 <ul>
 <li>If we were working with a single categorical variable we could use <code>question_table</code> to create a table with counts and percentages.</li>
@@ -248,9 +253,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Saul Mooradian <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Robin Donatello <br><small class="roles"> Author </small>  </li>
-<li>Kelsey Kyllonen <br><small class="roles"> Author </small>  </li>
+<li>Saul Mooradian <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -262,12 +266,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Saul Mooradian, Robin Donatello, Kelsey Kyllonen.</p>
+<p>Developed by Saul Mooradian.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
