@@ -28,9 +28,11 @@ then returns the total count and total percent of those categories relative to t
 variable they reside in.
 }
 \examples{
-count_and_percent(df = bns2_pkg_data, var = q13, values = c("Less than high school", "Some college"))
+count_and_percent(df = bns2_pkg_data,
+                  var = q13,
+                  values = c("Less than high school", "Some college"))
 
-# Using a pipe and leaving excluding `values` argument (defaults to the level of var with most rows/responses)
+# Excludingthe`values` argument defaults to the level of variable with most rows
 bns2_pkg_data |> count_and_percent(var = q13)
 
 }

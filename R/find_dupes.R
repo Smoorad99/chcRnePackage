@@ -12,6 +12,7 @@
 #' suppressMessages(library(dplyr))
 #' testdata <- datasets::sleep %>% rbind(c(.4, 1, 1)) %>% filter(extra != 3.7) # for example purposes
 #' find_dupes(testdata, "ID")
+#'
 #' # For more than one key variable
 #' find_dupes(testdata, c("ID", "group"))
 

@@ -129,7 +129,7 @@ addPackageSnippets <- function() {
 
       # Make sure there is at least one empty line between entries
       #
-      if (tail(readLines(rstudioSnippetsFilePath), n=1) != "") {
+      if (utils::tail(readLines(rstudioSnippetsFilePath), n=1) != "") {
         snippetText <- paste0("\n", snippetText)
       }
 

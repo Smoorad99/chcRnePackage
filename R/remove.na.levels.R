@@ -17,7 +17,6 @@
 #' remove.na.levels(bns2_pkg_data$q13.na) |>
 #'   table()
 #'
-#' # We can use the `across` function from `dplyr` to apply this function to multiple variables in of fell swoop.
 #'
 #' @export
 remove.na.levels <- function(x){

@@ -1,6 +1,5 @@
 
 <img src="man/figures/hex.png" style="width: 18%; float: left;" alt="chcRne logo">
-
 <hr style="height:40px; visibility:hidden;" />
 
 # chcRne
@@ -33,9 +32,10 @@ library(dplyr)
 
 data <- bns2_pkg_data %>% select(q13, q14_1:q14_10)
 
+# Use function
 df_converted <- to_binary(data = data, these.cols = "q14_", prefix = TRUE, yesno = TRUE)
-# View the converted dataframe side-by-side to check if the function worked
 
+# View the converted dataframe side-by-side to check if the function worked
 old <- data |> dplyr::select(q14_1, q14_4)
 new <- df_converted |> dplyr::select(q14_1, q14_4)
 cbind(old, new) %>% head(10)
@@ -108,10 +108,12 @@ mark_all_that_apply_tbl <- nperc_tbl_MATA(df = df_unanswered_to_miss,
 mark_all_that_apply_tbl
 ```
 
-    ##                                           Yes (%)
-    ## I am a broke college student. (n = 38) 27 (71.1%)
-    ## I live with chefs. (n = 39)             7 (17.9%)
-    ## I like cooking. (n = 39)                 3 (7.7%)
+    ## # A tibble: 3 × 2
+    ##   col                                    npct      
+    ##   <chr>                                  <chr>     
+    ## 1 I like cooking. (n = 39)               27 (69.2%)
+    ## 2 I am a broke college student. (n = 38) 7 (18.4%) 
+    ## 3 I live with chefs. (n = 39)            3 (7.7%)
 
 <br style="line-height: 10px" />
 

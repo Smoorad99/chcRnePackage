@@ -1,11 +1,11 @@
 Package: chcRne
 Type: Package
 Title: Functions and code snippets for the R&E team at the CHC
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
-    person("Saul", "Mooradian", , "slmooradian@csuchico.edu", role = c("aut", "cre")),
-    person("Robin", "Donatello", email = "rdonatello@cuchico.edu", role = "aut"),
-    person("Kelsey", "Kyllonen", email = "kmkyllonen@csuchico.edu", role = "aut"))
+    person("Saul", "Mooradian", , "slmooradian@csuchico.edu", role = c("aut", "cre","cph")),
+    person("Robin", "Donatello", email = "rdonatello@cuchico.edu", role = "ctb"),
+    person("Kelsey", "Kyllonen", email = "kmkyllonen@csuchico.edu", role = "ctb"))
 Maintainer: The package maintainer <slmooradian@somewhere.net>
 Description: If you are new to chcRne or are blanking on function names you can find documentation on the functions including examples
   here.
@@ -20,7 +20,9 @@ Imports:
     kableExtra,
     formattable,
     rstudioapi,
-    sjPlot
+    sjPlot,
+    ggplot2,
+    tidyr
 Suggests: 
     knitr,
     rmarkdown,

@@ -16,12 +16,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Saul Mooradian \email{slmooradian@csuchico.edu}
+\strong{Maintainer}: Saul Mooradian \email{slmooradian@csuchico.edu} [copyright holder]
 
-Authors:
+Other contributors:
 \itemize{
-  \item Robin Donatello \email{rdonatello@cuchico.edu}
-  \item Kelsey Kyllonen \email{kmkyllonen@csuchico.edu}
+  \item Robin Donatello \email{rdonatello@cuchico.edu} [contributor]
+  \item Kelsey Kyllonen \email{kmkyllonen@csuchico.edu} [contributor]
 }
 
 }

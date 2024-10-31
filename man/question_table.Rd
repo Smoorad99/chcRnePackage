@@ -30,6 +30,10 @@ response percentages. The table can be optionally styled using `kableExtra`
 for better visualization.
 }
 \examples{
-question_table(data = bns2_pkg_data, x = 'q13', cnames = c("Level of Education", "Yes \%"), kbl_styling = TRUE)
+# Without kable styling
+question_table(data = bns2_pkg_data,
+               x = 'q13',
+               cnames = c("Level of Education", "Yes \%"),
+               kbl_styling = FALSE)
 
 }
