@@ -1,7 +1,10 @@
 # chcRne 0.2.1
 
-# chcRne 0.3.0 (Unreleased)
-* `nperc_tbl_MATA()` - If the argument `plot = TRUE` the function will return a bar plot with counts and percentages instead of a table.
+## New additions
+* `nperc_tbl_MATA()` - If the argument `plot = TRUE` the function will return a bar plot with counts and percentages instead of a table. This bug was resolved in this release.
+
+## Fixes
+* `count_and_percent` was returning 0 (0%) when used on a variable that was encapsulated with tick marks and used in inline code.
 
 # chcRne 0.2.0
 
