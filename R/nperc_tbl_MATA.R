@@ -36,14 +36,13 @@ nperc_tbl_MATA <- function(df, vars, value, row.names = NULL, punc = NULL, plot 
   non.na <- tm |> summarise(across({{vars}}, ~sum(!is.na(.)))) |> tidyr::pivot_longer(everything()) # get number of non na responses in each col
   tm1 <- tm |> summarise(across({{vars}}, ~sum(. == value, na.rm = TRUE))) |>
     tidyr::pivot_longer(everything()) |>
-    arrange(desc(value)) |>
     rename("Question" = "name", "Count" = "value") # sum count of responses  in each col, pivot, put in descending order, and rename cols.
   tm2 <- tm1 |> mutate(
     n = non.na$value,
     npct = paste0(Count, " (", unname(formattable::percent(Count/n, digits = 1)), ")"),
     col = paste0(row.names, punc, " (n = ", n, ")")
   ) # Add columns for non na responses, and format count and percent
-  tm3 <- tm2 |> select(col, npct) # clean up
+  tm3 <- tm2 |> arrange(desc(Count)) |> select(col, npct) # clean up
   bp <- tm2 |> ggplot(aes(x = Question, y = Count)) +
     geom_col() + geom_text(aes(label = npct), vjust = -0.2)
   if (plot) {
@@ -59,13 +58,17 @@ nperc_tbl_MATA <- function(df, vars, value, row.names = NULL, punc = NULL, plot 
 
 ## Testing ---
 # df <- bns2_pkg_data
-# vars <- "q14_1"
+# vars <- "q14_1:q14_4"
 # value <- "Yes"
 # row.names <- c("I am a broke college student")
 # punc <- ""
 
 
-
+# nperc_tbl_MATA(df = bns2_pkg_data,
+#                vars = c(q14_5:q14_8),
+#                row.names = c("A14_5", "A14_6", "A14_7", "A14_8"),
+#                value = "Yes",
+#                plot = FALSE)
 
 # Use pivot longer and pivot wider instead of transpose
 ## First attempt
