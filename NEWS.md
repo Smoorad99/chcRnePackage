@@ -1,3 +1,7 @@
+# chcRne 0.2.2
+## Fixes
+* `nperc_tbl_MATA()` - The names were not following the movement of values when arranged in descending order. If you installed chcRne 0.2.1 this function was not working as intended.
+
 # chcRne 0.2.1
 
 ## New additions
