@@ -64,11 +64,11 @@ nperc_tbl_MATA <- function(df, vars, value, row.names = NULL, punc = NULL, plot 
 # punc <- ""
 
 
-nperc_tbl_MATA(df = bns2_pkg_data,
-               vars = c(q14_5:q14_8),
-               row.names = c("A14_5", "A14_6", "A14_7", "A14_8"),
-               value = "Yes",
-               plot = TRUE)
+# nperc_tbl_MATA(df = bns2_pkg_data,
+#                vars = c(q14_5:q14_8),
+#                row.names = c("A14_5", "A14_6", "A14_7", "A14_8"),
+#                value = "Yes",
+#                plot = TRUE)
 
 # Use pivot longer and pivot wider instead of transpose
 ## First attempt
