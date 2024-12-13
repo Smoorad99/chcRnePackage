@@ -57,11 +57,11 @@ nperc_tbl_MATA <- function(df, vars, value, row.names = NULL, punc = NULL, plot 
 # Make example plot smaller
 
 ## Testing ---
-# df <- bns2_pkg_data
-# vars <- "q14_1:q14_4"
-# value <- "Yes"
-# row.names <- c("I am a broke college student")
-# punc <- ""
+df <- bns2_pkg_data
+vars <- "q14_1:q14_4"
+value <- "Yes"
+row.names <- c("I am a broke college student")
+punc <- ""
 
 
 # nperc_tbl_MATA(df = bns2_pkg_data,
