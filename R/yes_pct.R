@@ -16,7 +16,10 @@
 #' @export
 #'
 #' @examples
+#' # Output a data frame
 #' yes_pct(bns2_pkg_data, q13, q14_1, value = "Yes")
+#'
+#' # Output a plot
 #' yes_pct(bns2_pkg_data, q13, q14_1, value = "Yes", plot = TRUE)
 
 yes_pct <-  function(df, var1, var2, value, plot = FALSE) {

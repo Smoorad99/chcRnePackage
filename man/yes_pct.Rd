@@ -23,6 +23,9 @@ to visualize the summarized data. Defaults to plot = FALSE.}
 yes_pct calculates the count and percent of a user specified value in var2 for each level of a var1.
 }
 \examples{
+# Output a data frame
 yes_pct(bns2_pkg_data, q13, q14_1, value = "Yes")
+
+# Output a plot
 yes_pct(bns2_pkg_data, q13, q14_1, value = "Yes", plot = TRUE)
 }
