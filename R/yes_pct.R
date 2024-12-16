@@ -2,6 +2,9 @@
 
 #' Yes and percent
 #'
+#' yes_pct calculates the count and percent of a user specified value in var2 for each level of a var1.
+#'
+#'
 #' @param df A data frame containing the data set to be analyzed.
 #' @param var1 The variable containing the levels to be grouped and summarized.
 #' @param var2 The variable you want to count the number of occurrences of a certain value.
@@ -10,10 +13,12 @@
 #' frame with summarized data. If plot = TRUE `yes_pct` will return a ggplot object
 #' to visualize the summarized data. Defaults to plot = FALSE.
 #'
-#' @return
 #' @export
 #'
 #' @examples
+#' yes_pct(bns2_pkg_data, q13, q14_1, value = "Yes")
+#' yes_pct(bns2_pkg_data, q13, q14_1, value = "Yes", plot = TRUE)
+
 yes_pct <-  function(df, var1, var2, value, plot = FALSE) {
   tmp <- df |> select({{var1}}, {{var2}}) |> na.omit()
   summarized_df <- tmp |>
@@ -33,3 +38,6 @@ yes_pct <-  function(df, var1, var2, value, plot = FALSE) {
     summarized_df
   }
 }
+
+# test code
+#yes_pct(bns2_pkg_data, q13, q14_1, value = "Yes")
