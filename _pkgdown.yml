@@ -19,6 +19,7 @@ reference:
   contents:
   - nperc_tbl_MATA
   - question_table
+  - yes_pct
 
 - subtitle: Statistics
   desc: >
