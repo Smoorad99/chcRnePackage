@@ -1,6 +1,6 @@
 url: https://smoorad99.github.io/chcRnePackage/
 template:
-  bootstrap: 3
+  bootstrap: 5
 reference:
 - title: Functions
 
@@ -35,6 +35,10 @@ reference:
   contents:
   - y.off
   - bns2_pkg_data
+  - ca_counties
+  - campuses
+  - toss_feedback
+  - calfresh_spellings
   - addPackageSnippets
 
 development:

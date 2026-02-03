@@ -22,4 +22,4 @@ bns2_pkg_data
 \author{
 CHC
 }
-\keyword{data}
+\keyword{dataset}

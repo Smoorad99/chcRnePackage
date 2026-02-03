@@ -35,4 +35,9 @@ count_and_percent(df = bns2_pkg_data,
 # Excludingthe`values` argument defaults to the level of variable with most rows
 bns2_pkg_data |> count_and_percent(var = q13)
 
+bns2_pkg_data <- bns2_pkg_data |> dplyr::mutate(test = rep_len(1:10, nrow(bns2_pkg_data)))
+count_and_percent(df = bns2_pkg_data,
+                     var = test,
+                     values = c(5:10))
+
 }

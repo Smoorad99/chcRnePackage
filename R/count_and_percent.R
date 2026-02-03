@@ -24,6 +24,11 @@
 #' # Excludingthe`values` argument defaults to the level of variable with most rows
 #' bns2_pkg_data |> count_and_percent(var = q13)
 #'
+#' bns2_pkg_data <- bns2_pkg_data |> dplyr::mutate(test = rep_len(1:10, nrow(bns2_pkg_data)))
+#' count_and_percent(df = bns2_pkg_data,
+#'                      var = test,
+#'                      values = c(5:10))
+#'
 #' @import dplyr
 #'
 count_and_percent <- function(df, var, values = NULL, format1 = TRUE) {
@@ -42,10 +47,11 @@ count_and_percent <- function(df, var, values = NULL, format1 = TRUE) {
 # Testing
 
 # library(chcRne)
-# df <- bns2_pkg_data %>% mutate(`Exp Question` = q13)
+# df <- bns2_pkg_data %>% mutate(`Exp Question` = q13,
+#                                test = rep_len(1:10, nrow(df)))
 # var <- "Exp Question"
-# values <- c("Less than high school", "Some college")
-# # var <- "q13"
+# values <- c(8:13)
+# var <- "test"
 # sum(col == values, na.rm = TRUE)
 
 ## Code to implement in the function
