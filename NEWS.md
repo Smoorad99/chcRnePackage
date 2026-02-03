@@ -1,4 +1,6 @@
 # chcRne 0.3.0
+## New additions
+* Added new datasets covering California campuses, counties, CalFresh spelling variants, and non-informative feedback responses.
 
 # chcRne 0.2.2
 ## Fixes
