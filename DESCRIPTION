@@ -22,7 +22,8 @@ Imports:
     rstudioapi,
     sjPlot,
     ggplot2,
-    tidyr
+    tidyr,
+    lubridate
 Suggests: 
     knitr,
     rmarkdown,
